@@ -38,7 +38,6 @@ const LoginForm = () => {
         ))}
       </div>
       <div>
-        <label htmlFor='email'>Email</label>
         <input
           name='email'
           type='text'
@@ -48,7 +47,6 @@ const LoginForm = () => {
         />
       </div>
       <div>
-        <label htmlFor='password'>Password</label>
         <input
           name='password'
           type='password'
@@ -56,7 +54,7 @@ const LoginForm = () => {
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
+        <button type='submit'>Log in</button>
       </div>
     </form>
   );

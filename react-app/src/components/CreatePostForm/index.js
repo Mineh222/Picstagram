@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { thunkCreatePost } from "../../store/posts";
 
 
@@ -10,6 +10,8 @@ export default function CreatePostForm() {
 
     const [picture, setPicture] = useState(null);
     const [caption, setCaption] = useState('');
+
+    const username = useSelector((state) => state.session.user.username);
 
 
     const handleSubmit = async (e) => {
@@ -22,7 +24,7 @@ export default function CreatePostForm() {
 
         if (newPost) {
             reset();
-            history.push("/")
+            history.push(`/${username}`)
         }
     }
 

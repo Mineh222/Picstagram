@@ -1,9 +1,17 @@
 const GET_USER_POSTS = 'post/getUserPosts';
 const CREATE_POST = 'post/createPost';
+const GET_EXPLORE_POSTS = 'post/getExplorePosts';
 
 export const actionGetUserPosts = (posts) => {
     return {
         type: GET_USER_POSTS,
+        posts
+    }
+}
+
+export const actionGetExplorePosts = (posts) => {
+    return {
+        type: GET_EXPLORE_POSTS,
         posts
     }
 }
@@ -24,6 +32,10 @@ export const thunkGetUserPosts = (username) => async (dispatch) => {
         return user_posts;
     }
 }
+
+// export const thunkGetExplorePosts = () => async (dispatch) => {
+//     const response
+// }
 
 export const thunkCreatePost = (formData) => async (dispatch) => {
     const response = await fetch('/api/posts/new', {

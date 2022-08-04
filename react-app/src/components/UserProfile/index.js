@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { thunkGetUserPosts } from '../../store/posts';
@@ -8,15 +8,35 @@ export default function UserProfile() {
     const { username } = useParams();
 
     const posts = useSelector((state) => Object.values(state.posts));
-    console.log(posts)
+
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         dispatch(thunkGetUserPosts(username))
     }, [dispatch, username])
 
+    useEffect(() => {
+      if (!username) {
+        return;
+      }
+      (async () => {
+        const response = await fetch(`/api/users/profile/${username}`);
+        const user = await response.json();
+        setUser(user);
+      })();
+    }, [username]);
+
+    if (!user) {
+      return null;
+    }
+
     return (
         <div>
-            {posts.map(post => {
+            <div>{user.username}</div>
+            <div>{user.full_name}</div>
+            <img src={user.profile_photo}></img>
+            <div>{user.bio}</div>
+            {posts.reverse().map(post => {
                 return (
                     <div key={post.id}>
                         <img src={post.picture}></img>

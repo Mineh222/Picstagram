@@ -26,6 +26,14 @@ def get_user_posts(username):
     data = [post.to_dict() for post in posts]
     return {'posts': data}
 
+
+@post_routes.route('/explore')
+@login_required
+def get_all_posts():
+    posts = Post.query.all()
+    data = [post.to_dict() for post in posts]
+    return {'posts': data}
+
 @post_routes.route('/new', methods=['POST'])
 @login_required
 def create_post():

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useParams, NavLink } from 'react-router-dom'
 import { thunkGetExplorePosts } from '../../store/posts';
 
 export default function ExplorePage() {
@@ -23,7 +23,9 @@ export default function ExplorePage() {
             {shuffledPosts.map(post => {
                 return (
                     <div key={post.id}>
-                        <img src={post.picture}></img>
+                        <NavLink to={`/post/${post.id}`}>
+                            <img src={post.picture}></img>
+                        </NavLink>
                     </div>
                 )
             })}

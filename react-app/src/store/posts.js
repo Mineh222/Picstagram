@@ -4,6 +4,7 @@ const GET_EXPLORE_POSTS = 'post/getExplorePosts';
 const UPDATE_POST = 'post/updatePost';
 const GET_SINGLE_POST = 'post/getSinglePost';
 const GET_ALL_POSTS = 'post/getAllPosts';
+const DELETE_POST = 'post/deletePost';
 
 export const actionGetUserPosts = (posts) => {
     return {
@@ -47,6 +48,13 @@ export const actionGetAllPosts = (posts) => {
     }
 }
 
+export const actionDeletePost = (postId) => {
+    return {
+        type: DELETE_POST,
+        postId
+    }
+}
+
 export const thunkGetUserPosts = (username) => async (dispatch) => {
     const responses = await fetch(`/api/posts/${username}`)
 
@@ -58,7 +66,7 @@ export const thunkGetUserPosts = (username) => async (dispatch) => {
 }
 
 export const thunkGetExplorePosts = (userId) => async (dispatch) => {
-    const responses = await fetch(`/api/posts/${userId}`)
+    const responses = await fetch(`/api/posts/explore/${userId}`)
 
     if (responses.ok) {
         const explore_posts = await responses.json();
@@ -114,6 +122,18 @@ export const thunkGetAllPosts = () => async (dispatch) => {
     }
 }
 
+export const thunkDeletePost = (postId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}/delete`, {
+        method: 'DELETE'
+    })
+
+    if (response.ok) {
+        const deletedPost = await response.json();
+        dispatch(actionDeletePost(postId))
+        return deletedPost;
+    }
+}
+
 const initialState = {};
 
 const postsReducer = (state = initialState, action) => {
@@ -152,6 +172,10 @@ const postsReducer = (state = initialState, action) => {
             let singlePost = {}
             singlePost[action.post.id] = action.post
             return singlePost
+
+        case DELETE_POST:
+            delete newState[action.postId]
+            return newState
 
         default:
             return state;

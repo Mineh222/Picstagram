@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 import { thunkGetUserPosts } from '../../store/posts';
 
 export default function UserProfile() {
@@ -43,8 +43,10 @@ export default function UserProfile() {
             {posts.reverse().map(post => {
                 return (
                     <div key={post.id}>
-                        <img src={post.picture}></img>
-                        <div>{post.caption}</div>
+                        <NavLink to={`/post/${post.id}`}>
+                          <img src={post.picture}></img>
+                          <div>{post.caption}</div>
+                        </NavLink>
                     </div>
                 )
             })}

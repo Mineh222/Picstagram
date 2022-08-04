@@ -29,7 +29,7 @@ def get_all_posts():
 @post_routes.route('/<username>')
 @login_required
 def get_user_posts(username):
-    user = User.query.filter(username == username).first()
+    user = User.query.filter_by(username=username).first()
     posts = user.posts
     data = [post.to_dict() for post in posts]
     return {'posts': data}
@@ -90,3 +90,11 @@ def update_post(id):
         db.session.commit()
         return post.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+@post_routes.route('/<id>/delete', methods=['DELETE'])
+def delete_post(id):
+    post = Post.query.get(id)
+    db.session.delete(post)
+    db.session.commit()
+    return post.to_dict()

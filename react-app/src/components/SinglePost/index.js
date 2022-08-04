@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { thunkGetSinglePost } from '../../store/posts';
-import { NavLink, useParams } from 'react-router-dom';
+import { thunkGetSinglePost, thunkDeletePost } from '../../store/posts';
+import { NavLink, useParams, useHistory } from 'react-router-dom';
 
 export default function SinglePost() {
     const dispatch = useDispatch();
+    const history = useHistory();
     const { postId } = useParams();
 
     const sessionUser = useSelector((state) => state.session.user);
@@ -16,6 +17,11 @@ export default function SinglePost() {
         dispatch(thunkGetSinglePost(postId))
     }, [dispatch, postId])
 
+    const onDelete = () => {
+        dispatch(thunkDeletePost(postId))
+        history.push(`/${sessionUser.username}`)
+    }
+
     if (!post) return null
 
     return (
@@ -25,7 +31,10 @@ export default function SinglePost() {
             <img src={post.picture}></img>
             <div>{post.caption}</div>
             {sessionUser.id == post.user_id && (
-                <NavLink to={`/post/${postId}/edit`}>Edit</NavLink>
+                <>
+                    <NavLink to={`/post/${postId}/edit`}>Edit</NavLink>
+                    <button onClick={onDelete}>Delete</button>
+                </>
             )}
         </div>
     )

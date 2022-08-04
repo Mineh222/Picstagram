@@ -45,7 +45,7 @@ export default function CreatePostForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>Picture:</label>
+            <label>*Picture:</label>
             <input
               type="file"
               accept="image/*"
@@ -53,6 +53,7 @@ export default function CreatePostForm() {
             />
             <label>Caption:</label>
             <input
+                placeholder="Optional"
                 type="text"
                 name="caption"
                 onChange={updateCaption}

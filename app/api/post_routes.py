@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Post, User
+from app.forms import PostForm
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 from flask_wtf.csrf import validate_csrf
@@ -18,21 +19,29 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@post_routes.route('/<username>')
-@login_required
-def get_user_posts(username):
-    user = User.query.filter(User.username == username).first()
-    posts = user.posts
-    data = [post.to_dict() for post in posts]
-    return {'posts': data}
-
-
-@post_routes.route('/explore')
+@post_routes.route('/all')
 @login_required
 def get_all_posts():
     posts = Post.query.all()
     data = [post.to_dict() for post in posts]
     return {'posts': data}
+
+@post_routes.route('/<username>')
+@login_required
+def get_user_posts(username):
+    user = User.query.filter(username == username).first()
+    posts = user.posts
+    data = [post.to_dict() for post in posts]
+    return {'posts': data}
+
+
+@post_routes.route('/explore/<id>')
+@login_required
+def get_explore_posts(id):
+    posts = Post.query.filter(Post.user_id != id).all()
+    data = [post.to_dict() for post in posts]
+    return {'posts': data}
+
 
 @post_routes.route('/new', methods=['POST'])
 @login_required
@@ -62,3 +71,22 @@ def create_post():
 
     except:
         return {"errors": "Invalid or missing csrf token"}, 400
+
+
+@post_routes.route('/<int:id>')
+def get_single_post(id):
+    post = Post.query.get(id)
+    return post.to_dict()
+
+@post_routes.route('/<id>/edit', methods=['PUT'])
+def update_post(id):
+    form = PostForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    post = Post.query.get(id)
+
+    if form.validate_on_submit():
+        post.caption = form.data['caption']
+
+        db.session.commit()
+        return post.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400

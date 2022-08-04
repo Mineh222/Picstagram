@@ -10,9 +10,9 @@ const NavBar = () => {
   return (
     <nav>
       <ul>
-        <NavLink to='/' exact={true} activeClassName='active'>
+        {/* <NavLink to='/' exact={true} activeClassName='active'>
           Home
-        </NavLink>
+        </NavLink> */}
         {!sessionUser && (
           <>
             <NavLink to='/login' exact={true} activeClassName='active'>
@@ -25,10 +25,13 @@ const NavBar = () => {
         )}
         {sessionUser && (
           <>
+            <NavLink to={`/explore/${sessionUser.id}`} exact={true}>
+              Explore
+            </NavLink>
             <NavLink to='/post/new' exact={true}>
               New Post
             </NavLink>
-            <NavLink to={`${sessionUser.username}`} exact={true}>
+            <NavLink to={`/${sessionUser.username}`} exact={true}>
               Profile
             </NavLink>
             <LogoutButton />

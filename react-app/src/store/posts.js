@@ -1,6 +1,9 @@
 const GET_USER_POSTS = 'post/getUserPosts';
 const CREATE_POST = 'post/createPost';
 const GET_EXPLORE_POSTS = 'post/getExplorePosts';
+const UPDATE_POST = 'post/updatePost';
+const GET_SINGLE_POST = 'post/getSinglePost';
+const GET_ALL_POSTS = 'post/getAllPosts';
 
 export const actionGetUserPosts = (posts) => {
     return {
@@ -23,6 +26,27 @@ export const actionCreatePost = (post) => {
     }
 }
 
+export const actionUpdatePost = (post) => {
+    return {
+        type: UPDATE_POST,
+        post
+    }
+}
+
+export const actionGetSinglePost = (post) => {
+    return {
+        type: GET_SINGLE_POST,
+        post
+    }
+}
+
+export const actionGetAllPosts = (posts) => {
+    return {
+        type: GET_ALL_POSTS,
+        posts
+    }
+}
+
 export const thunkGetUserPosts = (username) => async (dispatch) => {
     const responses = await fetch(`/api/posts/${username}`)
 
@@ -33,9 +57,15 @@ export const thunkGetUserPosts = (username) => async (dispatch) => {
     }
 }
 
-// export const thunkGetExplorePosts = () => async (dispatch) => {
-//     const response
-// }
+export const thunkGetExplorePosts = (userId) => async (dispatch) => {
+    const responses = await fetch(`/api/posts/${userId}`)
+
+    if (responses.ok) {
+        const explore_posts = await responses.json();
+        dispatch(actionGetExplorePosts(explore_posts));
+        return explore_posts;
+    }
+}
 
 export const thunkCreatePost = (formData) => async (dispatch) => {
     const response = await fetch('/api/posts/new', {
@@ -50,12 +80,60 @@ export const thunkCreatePost = (formData) => async (dispatch) => {
     }
 }
 
+export const thunkUpdatePost =  (postId, caption) => async dispatch => {
+    const response = await fetch(`/api/posts/${postId}/edit`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({caption})
+    })
+
+    if (response.ok) {
+        const updatedPost = await response.json();
+        dispatch(actionUpdatePost(updatedPost));
+        return updatedPost
+    }
+}
+
+export const thunkGetSinglePost = (id) => async dispatch => {
+    const response = await fetch(`/api/posts/${id}`);
+
+    if (response.ok) {
+        const singlePost = await response.json();
+        dispatch(actionGetSinglePost(singlePost));
+        return singlePost
+    }
+}
+
+export const thunkGetAllPosts = () => async (dispatch) => {
+    const response = await fetch('/api/posts/all');
+
+    if (response.ok) {
+        const allPosts = await response.json();
+        dispatch(actionGetAllPosts(allPosts));
+        return allPosts;
+    }
+}
+
 const initialState = {};
 
 const postsReducer = (state = initialState, action) => {
     let newState = {...state}
     switch (action.type) {
+        case GET_ALL_POSTS:
+            newState = {};
+            action.posts.posts.forEach(post => {
+                newState[post.id] = post
+            });
+            return newState;
+
         case GET_USER_POSTS:
+            newState = {};
+            action.posts.posts.forEach(post => {
+                newState[post.id] = post
+            });
+            return newState;
+
+        case GET_EXPLORE_POSTS:
             newState = {};
             action.posts.posts.forEach(post => {
                 newState[post.id] = post
@@ -65,6 +143,15 @@ const postsReducer = (state = initialState, action) => {
         case CREATE_POST:
             newState[action.post.id] = action.post
             return newState
+
+        case UPDATE_POST:
+            newState[action.post.id] = action.post
+            return newState
+
+        case GET_SINGLE_POST:
+            let singlePost = {}
+            singlePost[action.post.id] = action.post
+            return singlePost
 
         default:
             return state;

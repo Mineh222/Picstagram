@@ -30,6 +30,10 @@ export default function UserProfile() {
       return null;
     }
 
+    if (!posts) {
+        return null;
+    }
+
     return (
         <div>
             <div>{user.username}</div>

@@ -19,9 +19,16 @@ def seed_posts():
         caption='Garden Goals'
     )
 
+    post4 = Post(
+        user_id = 2,
+        picture='https://mypicstagrambucket.s3.us-west-1.amazonaws.com/IMG_1060.jpeg',
+        caption='Goodnight 😴'
+    )
+
     db.session.add(post1)
     db.session.add(post2)
     db.session.add(post3)
+    db.session.add(post4)
 
     db.session.commit()
 

@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { thunkGetSinglePost, thunkDeletePost } from '../../store/posts';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 
+import Comments from '../Comments';
+
 export default function SinglePost() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -36,6 +38,7 @@ export default function SinglePost() {
                     <button onClick={onDelete}>Delete</button>
                 </>
             )}
+            <Comments />
         </div>
     )
 }

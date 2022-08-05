@@ -74,11 +74,13 @@ def create_post():
 
 
 @post_routes.route('/<int:id>')
+@login_required
 def get_single_post(id):
     post = Post.query.get(id)
     return post.to_dict()
 
 @post_routes.route('/<id>/edit', methods=['PUT'])
+@login_required
 def update_post(id):
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -93,8 +95,20 @@ def update_post(id):
 
 
 @post_routes.route('/<id>/delete', methods=['DELETE'])
+@login_required
 def delete_post(id):
     post = Post.query.get(id)
     db.session.delete(post)
     db.session.commit()
     return post.to_dict()
+
+
+# ------ Comments ------
+
+@post_routes.route('/<id>/comments')
+@login_required
+def get_comments(id):
+    post = Post.query.get(id)
+    comments = post.comments
+    data = [comment.to_dict() for comment in comments]
+    return {'comments': data}

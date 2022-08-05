@@ -1,9 +1,17 @@
 const GET_ALL_POST_COMMENTS = 'comment/getALLPostComments';
+const POST_COMMENT = 'comment/postComment';
 
 export const actionGetAllPostComments = (comments) => {
     return {
         type: GET_ALL_POST_COMMENTS,
         comments
+    }
+}
+
+export const actionPostComment = (comment) => {
+    return {
+        type: POST_COMMENT,
+        comment
     }
 }
 
@@ -17,6 +25,20 @@ export const thunkGetAllPostComments = (id) => async dispatch => {
     }
 }
 
+export const thunkPostComment = (id, comment) => async dispatch => {
+    const response = await fetch(`/api/posts/${id}/comments/new`, {
+        method: 'POST',
+        headers: {'Content-Type': "application/json"},
+        body: JSON.stringify(comment)
+    });
+
+    if (response.ok) {
+        const newComment = await response.json();
+        dispatch(actionPostComment(newComment));
+        return newComment;
+    }
+}
+
 let initialState = {}
 
 const commentsReducer = (state = initialState, action) => {
@@ -27,6 +49,10 @@ const commentsReducer = (state = initialState, action) => {
             action.comments.comments.forEach(comment => {
                 newState[comment.id] = comment
             })
+            return newState
+
+        case POST_COMMENT:
+            newState[action.comment.id] = action.comment
             return newState
 
         default:

@@ -24,7 +24,7 @@ export default function ExplorePage() {
                 return (
                     <div key={post.id}>
                         <NavLink to={`/post/${post.id}`}>
-                            <img src={post.picture}></img>
+                            <img src={post.picture} alt={post.caption}></img>
                         </NavLink>
                     </div>
                 )

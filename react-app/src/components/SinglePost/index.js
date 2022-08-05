@@ -5,6 +5,7 @@ import { thunkGetSinglePost, thunkDeletePost } from '../../store/posts';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 
 import Comments from '../Comments';
+import CommentForm from '../CommentForm';
 
 export default function SinglePost() {
     const dispatch = useDispatch();
@@ -39,6 +40,7 @@ export default function SinglePost() {
                 </>
             )}
             <Comments />
+            <CommentForm />
         </div>
     )
 }

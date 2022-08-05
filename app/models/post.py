@@ -13,7 +13,7 @@ class Post(db.Model):
     created_at = db.Column(DateTime(timezone=True), server_default=func.now())
     updated_at = db.Column(DateTime(timezone=True), onupdate=func.now())
 
-    user = db.relationship("User", back_populates="posts")
+    user = db.relationship("User", back_populates="posts", lazy='subquery')
     comments = db.relationship("Comment", back_populates="post")
 
     post_likes = db.relationship("User",
@@ -31,5 +31,5 @@ class Post(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'user': self.user.to_dict(),
-            # 'comments': [comment.to_dict() for comment in self.comments],
+            'comments': [comment.to_dict() for comment in self.comments]
         }

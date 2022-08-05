@@ -9,6 +9,10 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import { authenticate } from './store/session';
 import CreatePostForm from './components/CreatePostForm';
+import ExplorePage from './components/ExplorePage';
+import SinglePost from './components/SinglePost';
+import UpdatePostForm from './components/UpdatePostForm';
+import { thunkGetAllPosts } from './store/posts';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -16,6 +20,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
+      await dispatch(thunkGetAllPosts());
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -43,6 +48,15 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/post/new' exact={true} >
           <CreatePostForm/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/explore/:userId' exact={true} >
+          <ExplorePage/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/post/:postId' exact={true} >
+          <SinglePost/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/post/:postId/edit' exact={true} >
+          <UpdatePostForm/>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

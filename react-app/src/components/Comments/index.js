@@ -1,30 +1,33 @@
-import { useEffect, useState } from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { thunkGetAllPostComments } from '../../store/comments';
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
+import EditCommentForm from '../UpdateCommentForm';
+import { thunkDeleteComment } from '../../store/comments';
 
-export default function Comments() {
+export default function Comments({comment}) {
     const dispatch = useDispatch();
-    const { postId } = useParams();
+
+    const [showUpdateCommentForm, setShowUpdateCommentForm ] = useState(false);
 
     const sessionUser = useSelector((state) => state.session.user);
     const comments = useSelector((state) => Object.values(state.comments));
-
-    useEffect(() => {
-        dispatch(thunkGetAllPostComments(postId))
-    }, [dispatch, postId])
 
     if (!comments) return null;
 
     return (
         <div>
-            {comments.map(comment => {
-                return (
-                    <div key={comment.id}>
-                        <div>{comment.user.username} {comment.comment}</div>
-                    </div>
-                )
-            })}
+            <div>{comment.user.username} {comment.comment}</div>
+                {!showUpdateCommentForm ?
+                    <>
+                        {(comment.user_id === sessionUser.id) && (
+                            <>
+                                <button onClick={() => setShowUpdateCommentForm(true)}>Edit</button>
+                                <button onClick={() => dispatch(thunkDeleteComment(comment.id))}>Delete</button>
+                            </>
+                        )}
+                    </>
+                    :
+                    <EditCommentForm comment={comment} setTrigger={() => setShowUpdateCommentForm(false)}/>
+                }
         </div>
     )
 }

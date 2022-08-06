@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from app.models import db, Post, User
-from app.forms import PostForm
+from app.models import db, Post, User, Comment
+from app.forms import PostForm, CommentForm
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 from flask_wtf.csrf import validate_csrf
@@ -112,3 +112,22 @@ def get_comments(id):
     comments = post.comments
     data = [comment.to_dict() for comment in comments]
     return {'comments': data}
+
+
+@post_routes.route('/<id>/comments/new', methods=['POST', 'GET'])
+@login_required
+def post_comment(id):
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_comment = Comment(
+            user_id=form.data['user_id'],
+            post_id=id,
+            comment=form.data['comment']
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401

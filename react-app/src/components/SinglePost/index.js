@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { thunkGetSinglePost, thunkDeletePost } from '../../store/posts';
+import { thunkGetAllPostComments } from '../../store/comments';
 import { NavLink, useParams, useHistory } from 'react-router-dom';
 
 import Comments from '../Comments';
+import CommentForm from '../CommentForm';
 
 export default function SinglePost() {
     const dispatch = useDispatch();
@@ -13,7 +15,7 @@ export default function SinglePost() {
 
     const sessionUser = useSelector((state) => state.session.user);
     const post = useSelector((state) => state.posts[postId]);
-    console.log(post);
+    const comments = useSelector((state) => Object.values(state.comments));
 
     useEffect(() => {
         dispatch(thunkGetSinglePost(postId))
@@ -23,6 +25,10 @@ export default function SinglePost() {
         dispatch(thunkDeletePost(postId))
         history.push(`/${sessionUser.username}`)
     }
+
+    useEffect(() => {
+        dispatch(thunkGetAllPostComments(postId))
+    }, [dispatch, postId])
 
     if (!post) return null
 
@@ -38,7 +44,14 @@ export default function SinglePost() {
                     <button onClick={onDelete}>Delete</button>
                 </>
             )}
-            <Comments />
+            <div >
+              {comments.map((comment) => (
+                <div key={comment.id}>
+                  <Comments comment={comment}/>
+                </div>
+              ))}
+            </div>
+            <CommentForm />
         </div>
     )
 }

@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { useSelector} from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
 import EditCommentForm from '../UpdateCommentForm';
+import { thunkDeleteComment } from '../../store/comments';
 
 export default function Comments({comment}) {
+    const dispatch = useDispatch();
 
     const [showUpdateCommentForm, setShowUpdateCommentForm ] = useState(false);
 
@@ -17,7 +19,10 @@ export default function Comments({comment}) {
                 {!showUpdateCommentForm ?
                     <>
                         {(comment.user_id === sessionUser.id) && (
-                            <button onClick={() => setShowUpdateCommentForm(true)}>Edit</button>
+                            <>
+                                <button onClick={() => setShowUpdateCommentForm(true)}>Edit</button>
+                                <button onClick={() => dispatch(thunkDeleteComment(comment.id))}>Delete</button>
+                            </>
                         )}
                     </>
                     :

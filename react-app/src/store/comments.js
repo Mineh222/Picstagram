@@ -1,5 +1,6 @@
 const GET_ALL_POST_COMMENTS = 'comment/getALLPostComments';
 const POST_COMMENT = 'comment/postComment';
+const UPDATE_COMMENT = 'comment/updateComment';
 
 export const actionGetAllPostComments = (comments) => {
     return {
@@ -11,6 +12,13 @@ export const actionGetAllPostComments = (comments) => {
 export const actionPostComment = (comment) => {
     return {
         type: POST_COMMENT,
+        comment
+    }
+}
+
+export const actionUpdateComment = (comment) => {
+    return {
+        type: UPDATE_COMMENT,
         comment
     }
 }
@@ -39,6 +47,20 @@ export const thunkPostComment = (id, comment) => async dispatch => {
     }
 }
 
+export const thunkUpdateComment = (commentId, comment) => async dispatch => {
+    const response = await fetch(`/api/comments/${commentId}/update`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({comment})
+    })
+
+    if (response.ok) {
+        const updatedComment = await response.json();
+        dispatch(actionUpdateComment(updatedComment));
+        return updatedComment
+    }
+}
+
 let initialState = {}
 
 const commentsReducer = (state = initialState, action) => {
@@ -52,6 +74,10 @@ const commentsReducer = (state = initialState, action) => {
             return newState
 
         case POST_COMMENT:
+            newState[action.comment.id] = action.comment
+            return newState
+
+        case UPDATE_COMMENT:
             newState[action.comment.id] = action.comment
             return newState
 

@@ -115,6 +115,7 @@ def get_comments(id):
 
 
 @post_routes.route('/<id>/comments/new', methods=['POST', 'GET'])
+@login_required
 def post_comment(id):
     form = CommentForm()
     form['csrf_token'].data = request.cookies['csrf_token']

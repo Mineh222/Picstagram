@@ -37,7 +37,7 @@ export default function SinglePost() {
 
     return (
         <div>
-            <img id="user_avator_single_post" src={post.user.profile_photo} alt="user_profile_pic"></img>
+            <img id="user_avator_single_post" src={post.user.profile_pic} alt="user_profile_pic"></img>
             <span>{post.user.username}</span>
             <div>
                 <img src={post.picture}></img>

@@ -15,10 +15,10 @@ class User(db.Model, UserMixin):
     full_name = db.Column(db.String(100), nullable=False)
     username = db.Column(db.String(40), nullable=False, unique=True)
     bio = db.Column(db.String(150))
-    profile_photo = db.Column(db.String(255))
+    profile_pic = db.Column(db.String(255), default="https://mypicstagrambucket.s3.us-west-1.amazonaws.com/no-profile-picture-icon-18.jpeg")
     hashed_password = db.Column(db.String(255), nullable=False)
     created_at = db.Column(DateTime(timezone=True), server_default=func.now())
-    updated_at = db.Column(DateTime(timezone=True), onupdate=func.now())
+    # updated_at = db.Column(DateTime(timezone=True), onupdate=func.now())
 
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
@@ -60,7 +60,6 @@ class User(db.Model, UserMixin):
             'full_name': self.full_name,
             'username': self.username,
             'bio': self.bio,
-            'profile_photo': self.profile_photo,
+            'profile_pic': self.profile_pic,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
         }

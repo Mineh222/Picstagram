@@ -54,7 +54,7 @@ def upgrade():
     )
     op.add_column('users', sa.Column('full_name', sa.String(length=100), nullable=False))
     op.add_column('users', sa.Column('bio', sa.String(length=150), nullable=True))
-    op.add_column('users', sa.Column('profile_photo', sa.String(length=255), nullable=True))
+    op.add_column('users', sa.Column('profile_photo', sa.String(length=255), nullable=True, default="https://mypicstagrambucket.s3.us-west-1.amazonaws.com/no-profile-picture-icon-18.jpeg"))
     op.add_column('users', sa.Column('created_at', sa.DateTime(timezone=True), server_default=sa.text('now()'), nullable=True))
     op.add_column('users', sa.Column('updated_at', sa.DateTime(timezone=True), nullable=True))
     # ### end Alembic commands ###

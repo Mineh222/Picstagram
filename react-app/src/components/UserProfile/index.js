@@ -38,7 +38,7 @@ export default function UserProfile() {
         <div>
             <div>{user.username}</div>
             <div>{user.full_name}</div>
-            <img src={user.profile_photo}></img>
+            <img src={user.profile_pic}></img>
             <div>{user.bio}</div>
             {posts.reverse().map(post => {
                 return (

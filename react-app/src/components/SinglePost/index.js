@@ -7,6 +7,9 @@ import { NavLink, useParams, useHistory } from 'react-router-dom';
 
 import Comments from '../Comments';
 import CommentForm from '../CommentForm';
+import Likes from '../Likes';
+
+import './SinglePost.css';
 
 export default function SinglePost() {
     const dispatch = useDispatch();
@@ -34,10 +37,12 @@ export default function SinglePost() {
 
     return (
         <div>
-            <img src={post.user.profile_photo}></img>
-            <div>{post.user.username}</div>
-            <img src={post.picture}></img>
-            <div>{post.caption}</div>
+            <img id="user_avator_single_post" src={post.user.profile_photo} alt="user_profile_pic"></img>
+            <span>{post.user.username}</span>
+            <div>
+                <img src={post.picture}></img>
+                <div>{post.caption}</div>
+            </div>
             {sessionUser.id == post.user_id && (
                 <>
                     <NavLink to={`/post/${postId}/edit`}>Edit</NavLink>
@@ -51,7 +56,23 @@ export default function SinglePost() {
                 </div>
               ))}
             </div>
-            <CommentForm />
+            <div>
+                {post.likes.length === 0 && (
+                    <div></div>
+                )}
+                {post.likes.length === 1 && (
+                    <span>{post.likes.length} like</span>
+                )}
+                {post.likes.length > 1 && (
+                    <span>{post.likes.length} likes</span>
+                )}
+            </div>
+            <div>
+                <Likes sessionUser={sessionUser} post={post}/>
+            </div>
+            <div>
+                <CommentForm />
+            </div>
         </div>
     )
 }

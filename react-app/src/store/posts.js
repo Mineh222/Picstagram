@@ -134,6 +134,32 @@ export const thunkDeletePost = (postId) => async (dispatch) => {
     }
 }
 
+export const thunkUpdateLike = (postId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}/like`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+    })
+
+    if (response.ok) {
+        const liked_post = await response.json();
+        dispatch(actionUpdatePost(liked_post));
+        return liked_post;
+    }
+}
+
+export const thunkUpdateUnlike = (postId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/${postId}/unlike`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+    })
+
+    if (response.ok) {
+        const unliked_post = await response.json();
+        dispatch(actionUpdatePost(unliked_post));
+        return unliked_post;
+    }
+}
+
 const initialState = {};
 
 const postsReducer = (state = initialState, action) => {

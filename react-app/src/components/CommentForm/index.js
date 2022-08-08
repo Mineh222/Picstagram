@@ -15,7 +15,7 @@ export default function CommentForm() {
 
     useEffect(() => {
         const errors = [];
-        if (comment.length < 1) errors.push("Comment must be at least 1 character.");
+        if (comment.length < 5) errors.push("Comment must be at least 5 characters.");
         if (comment.length > 150) errors.push("Comment length cannot exceed 150 characters");
         setValidationerrors(errors);
     }, [comment])
@@ -25,7 +25,7 @@ export default function CommentForm() {
 
         setHasSubmitted(true);
 
-        // if (validationErrors.length) return alert("Cannot submit comment")
+        if (validationErrors.length) return alert("Cannot submit comment")
 
         const payload = {
             user_id: sessionUser.id,

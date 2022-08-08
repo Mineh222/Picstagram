@@ -131,3 +131,23 @@ def post_comment(id):
         return new_comment.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+# ------ LIKES ------
+
+@post_routes.route('/<id>/like', methods=['PUT'])
+@login_required
+def like_post(id):
+    post = Post.query.get(id)
+    post.like_post(current_user)
+    db.session.commit()
+    return post.to_dict()
+
+
+@post_routes.route('/<id>/unlike', methods=['PUT'])
+@login_required
+def unlike_post(id):
+    post = Post.query.get(id)
+    post.unlike_post(current_user)
+    db.session.commit()
+    return post.to_dict()

@@ -22,6 +22,18 @@ class Post(db.Model):
             cascade="all, delete"
     )
 
+    def has_liked_post(self, user):
+        user_likes = [user.id for user in self.post_likes]
+        return user.id in user_likes
+
+    def like_post(self, user):
+        if not self.has_liked_post(user):
+            self.post_likes.append(user)
+
+    def unlike_post(self, user):
+        if self.has_liked_post(user):
+            self.post_likes.remove(user)
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -31,5 +43,6 @@ class Post(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'user': self.user.to_dict(),
-            'comments': [comment.to_dict() for comment in self.comments]
+            'comments': [comment.to_dict() for comment in self.comments],
+            'likes': [user.to_dict() for user in self.post_likes]
         }

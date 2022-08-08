@@ -28,7 +28,7 @@ def password_match(form, field):
 
 
 class SignUpForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), user_exists])
+    email = StringField('email', validators=[DataRequired(), user_exists, Email(message="Please enter a valid email address.")])
     full_name = StringField('full_name', validators=[DataRequired()])
     username = StringField(
         'username', validators=[DataRequired(), username_exists])

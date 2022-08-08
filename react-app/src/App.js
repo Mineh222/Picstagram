@@ -13,6 +13,7 @@ import ExplorePage from './components/ExplorePage';
 import SinglePost from './components/SinglePost';
 import UpdatePostForm from './components/UpdatePostForm';
 import { thunkGetAllPosts } from './store/posts';
+import UpdateUserProfileForm from './components/UpdateUserProfileForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -57,6 +58,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/post/:postId/edit' exact={true} >
           <UpdatePostForm/>
+        </ProtectedRoute>
+        <ProtectedRoute path='/:username/edit'>
+          <UpdateUserProfileForm />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

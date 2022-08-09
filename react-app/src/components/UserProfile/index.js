@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink, useParams } from 'react-router-dom'
 import { thunkGetUserPosts } from '../../store/posts';
+import Follows from '../Follows';
 import UpdateUserProfileForm from '../UpdateUserProfileForm';
 
 export default function UserProfile() {
@@ -40,11 +41,14 @@ export default function UserProfile() {
         <div>
             <div>{user.username}</div>
             <img src={user.profile_pic}></img>
-            {sessionUser && (
+            {sessionUser && sessionUser.username === username && (
               <NavLink to={`/${sessionUser.username}/edit`}>Edit Profile</NavLink>
             )}
             <div>{user.full_name}</div>
             <div>{user.bio}</div>
+            {sessionUser && sessionUser.username != username && (
+              <Follows profileUsername={username}/>
+            )}
             {posts.reverse().map(post => {
                 return (
                     <div key={post.id}>

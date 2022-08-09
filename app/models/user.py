@@ -29,18 +29,11 @@ class User(db.Model, UserMixin):
             cascade="all, delete"
     )
 
-    followers = db.relationship(
-        "User",
-        secondary=follows,
+    followed = db.relationship(
+        'User', secondary=follows,
         primaryjoin=(follows.c.follower_id == id),
         secondaryjoin=(follows.c.followed_id == id),
-        backref=db.backref("following", lazy="dynamic"),
-        lazy="dynamic"
-    )
-    # this relationship allows you to access both the collection of users
-    # that follow a given user (with user.followers), and the collection
-    # of users that a user follows (with user.following)
-
+        backref=db.backref('follows', lazy='dynamic'), lazy='dynamic')
 
     @property
     def password(self):
@@ -53,6 +46,17 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
+    def is_following(self, user):
+        return self.followed.filter(follows.c.followed_id == user.id).count() > 0
+
+    def follow(self, user):
+        if not self.is_following(user):
+            self.followed.append(user)
+
+    def unfollow(self, user):
+        if self.is_following(user):
+            self.followed.remove(user)
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -62,4 +66,14 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'profile_pic': self.profile_pic,
             'created_at': self.created_at,
+            'followers': [user.to_dict_follows() for user in self.follows],
+            'following': [user.to_dict_follows() for user in self.followed]
+        }
+
+    def to_dict_follows(self):
+        return {
+            'id': self.id,
+            'profile_pic': self.profile_pic,
+            'username': self.username,
+            'full_name': self.full_name
         }

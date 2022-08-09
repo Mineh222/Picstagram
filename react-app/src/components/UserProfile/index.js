@@ -5,7 +5,8 @@ import { thunkGetUserPosts } from '../../store/posts';
 import { thunkGetUser } from '../../store/users';
 import Follows from '../Follows';
 import Modal from 'react-modal';
-import FollowersModal from '../FollowingModal';
+import FollowersModal from '../FollowersModal';
+import FollowingModal from '../FollowingModal';
 
 export default function UserProfile() {
     const dispatch = useDispatch();
@@ -33,6 +34,10 @@ export default function UserProfile() {
 
     function openFollowersModal() {
       setShowFollowers(true)
+    }
+
+    function openFollowingModal() {
+      setShowFollowing(true)
     }
 
     const formStyles = {
@@ -102,6 +107,16 @@ export default function UserProfile() {
               {sessionUser && sessionUser.username === username && (
                 <NavLink to={`/${sessionUser.username}/edit`}>Edit Profile</NavLink>
               )}
+              {user.following.length === 0 && (
+                <button onClick={openFollowingModal}>0 Following</button>
+              )}
+              {user.following.length > 0 && (
+                <button onClick={openFollowingModal}>{user.following.length} Following</button>
+              )}
+              <Modal isOpen={showFollowing} style={formStyles}>
+                <button onClick={() => setShowFollowing(false)}>X</button>
+                <FollowingModal user={user} setTrigger={setShowFollowing}/>
+              </Modal>
               <div>{user.full_name}</div>
               <div>{user.bio}</div>
               {sessionUser && sessionUser.username != username && (

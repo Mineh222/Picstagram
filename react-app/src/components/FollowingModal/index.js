@@ -1,21 +1,21 @@
 import { Link } from 'react-router-dom';
 
-export default function FollowersModal({user, setTrigger}) {
+export default function FollowingModal({user, setTrigger}) {
 
 
     return (
         <div>
-            <h3>Followers</h3>
-            {user.followers.length === 0 && (
-                <h3>No followers yet</h3>
+            <h3>Following</h3>
+            {user.following.length === 0 && (
+                <h3>Not following anyone yet</h3>
             )}
-            {user.followers.map(follower => {
+            {user.following.map(following => {
                 return (
-                    <div key={follower.id}>
-                        <Link to={`/${follower.username}`} onClick={() => setTrigger(false)}>
-                            <img src={follower.profile_pic}></img>
-                            <div>{follower.username}</div>
-                            <div>{follower.full_name}</div>
+                    <div key={following.id}>
+                        <Link to={`/${following.username}`} onClick={() => setTrigger(false)}>
+                            <img src={following.profile_pic}></img>
+                            <div>{following.username}</div>
+                            <div>{following.full_name}</div>
                         </Link>
                     </div>
                 )

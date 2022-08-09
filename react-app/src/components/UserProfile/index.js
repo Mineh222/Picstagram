@@ -104,21 +104,21 @@ export default function UserProfile() {
                 <button onClick={() => setShowFollowers(false)}>X</button>
                 <FollowersModal user={user} setTrigger={setShowFollowers}/>
               </Modal>
-              {sessionUser && sessionUser.username === username && (
-                <NavLink to={`/${sessionUser.username}/edit`}>Edit Profile</NavLink>
-              )}
               {user.following.length === 0 && (
                 <button onClick={openFollowingModal}>0 Following</button>
-              )}
+                )}
               {user.following.length > 0 && (
                 <button onClick={openFollowingModal}>{user.following.length} Following</button>
-              )}
+                )}
               <Modal isOpen={showFollowing} style={formStyles}>
                 <button onClick={() => setShowFollowing(false)}>X</button>
                 <FollowingModal user={user} setTrigger={setShowFollowing}/>
               </Modal>
               <div>{user.full_name}</div>
               <div>{user.bio}</div>
+              {sessionUser && sessionUser.username === username && (
+                <NavLink to={`/${sessionUser.username}/edit`}>Edit Profile</NavLink>
+              )}
               {sessionUser && sessionUser.username != username && (
                 <Follows profileUsername={username}/>
               )}

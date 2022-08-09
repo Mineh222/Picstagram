@@ -5,6 +5,8 @@ const UPDATE_POST = 'post/updatePost';
 const GET_SINGLE_POST = 'post/getSinglePost';
 const GET_ALL_POSTS = 'post/getAllPosts';
 const DELETE_POST = 'post/deletePost';
+const GET_DEMO_POSTS = 'post/getDemoPosts';
+const GET_FEED_POSTS = 'post/getFeedPosts';
 
 export const actionGetUserPosts = (posts) => {
     return {
@@ -16,6 +18,20 @@ export const actionGetUserPosts = (posts) => {
 export const actionGetExplorePosts = (posts) => {
     return {
         type: GET_EXPLORE_POSTS,
+        posts
+    }
+}
+
+export const actionGetDemoPosts = (posts) => {
+    return {
+        type: GET_DEMO_POSTS,
+        posts
+    }
+}
+
+export const actionGetFeedPosts = (posts) => {
+    return {
+        type: GET_FEED_POSTS,
         posts
     }
 }
@@ -72,6 +88,26 @@ export const thunkGetExplorePosts = (userId) => async (dispatch) => {
         const explore_posts = await responses.json();
         dispatch(actionGetExplorePosts(explore_posts));
         return explore_posts;
+    }
+}
+
+export const thunkGetDemoPosts = () => async (dispatch) => {
+    const response = await fetch('/api/posts/demo-posts')
+
+    if (response.ok) {
+        const demoPosts = await response.json();
+        dispatch(actionGetDemoPosts(demoPosts));
+        return demoPosts;
+    }
+}
+
+export const thunkGetFeedPosts = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/posts/feed/${userId}`);
+
+    if (response.ok) {
+        const feedPosts = await response.json();
+        dispatch(actionGetFeedPosts(feedPosts));
+        return feedPosts;
     }
 }
 
@@ -180,6 +216,20 @@ const postsReducer = (state = initialState, action) => {
             return newState;
 
         case GET_EXPLORE_POSTS:
+            newState = {};
+            action.posts.posts.forEach(post => {
+                newState[post.id] = post
+            });
+            return newState;
+
+        case GET_DEMO_POSTS:
+            newState = {};
+            action.posts.posts.forEach(post => {
+                newState[post.id] = post
+            });
+            return newState;
+
+        case GET_FEED_POSTS:
             newState = {};
             action.posts.posts.forEach(post => {
                 newState[post.id] = post

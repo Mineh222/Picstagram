@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from app.models import db, Post, User, Comment
+from app.models import db, Post, User, Comment, follows
 from app.forms import PostForm, CommentForm
 from app.aws import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -43,17 +43,19 @@ def get_explore_posts(id):
     return {'posts': data}
 
 @post_routes.route('/demo-posts')
-# @login_required
+@login_required
 def get_demo_posts():
     posts = Post.query.filter(Post.user_id == 1).all()
     data = [post.to_dict() for post in posts]
     return {'posts': data}
 
 
-# @post_routes.route('/feed/<int:userId>')
-# @login_required
-# def feed_posts(userId):
-
+@post_routes.route('/feed/<int:userId>')
+@login_required
+def feed_posts(userId):
+    posts = Post.query.join(follows, (follows.c.followed_id == Post.user_id)).filter(follows.c.follower_id == userId)
+    data = [post.to_dict() for post in posts]
+    return {'posts': data}
 
 
 @post_routes.route('/new', methods=['POST'])

@@ -42,6 +42,19 @@ def get_explore_posts(id):
     data = [post.to_dict() for post in posts]
     return {'posts': data}
 
+@post_routes.route('/demo-posts')
+# @login_required
+def get_demo_posts():
+    posts = Post.query.filter(Post.user_id == 1).all()
+    data = [post.to_dict() for post in posts]
+    return {'posts': data}
+
+
+# @post_routes.route('/feed/<int:userId>')
+# @login_required
+# def feed_posts(userId):
+
+
 
 @post_routes.route('/new', methods=['POST'])
 @login_required

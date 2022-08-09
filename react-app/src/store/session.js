@@ -1,7 +1,8 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-const UPLOAD_PROFILE_PIC = 'session/UploadProfilePic';
+const FOLLOW = 'session/follow';
+const UNFOLLOW = 'session/unfollow';
 
 export const setUser = (user) => ({
   type: SET_USER,
@@ -11,6 +12,20 @@ export const setUser = (user) => ({
 export const removeUser = () => ({
   type: REMOVE_USER,
 })
+
+export const actionFollowUser = (user) => {
+  return {
+      type: FOLLOW,
+      user
+  }
+}
+
+export const actionUnfollowUser = (user) => {
+  return {
+      type: UNFOLLOW,
+      user
+  }
+}
 
 const initialState = { user: null };
 
@@ -127,12 +142,46 @@ export const thunkUpdateUserProfile = (id, full_name, username, bio) => async (d
   }
 }
 
+export const thunkFollow = (username) => async (dispatch) => {
+  const response = await fetch(`/api/users/${username}/follow`, {
+    method: "PUT",
+    headers: {'Content-Type': 'application/json'}
+  })
+
+  if (response.ok) {
+    const follow_user = await response.json();
+    dispatch(actionFollowUser(follow_user));
+    return follow_user;
+  }
+}
+
+export const thunkUnfollow = (username) => async (dispatch) => {
+  const response = await fetch(`/api/users/${username}/unfollow`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'}
+  })
+
+  if (response.ok) {
+    const unfollow_user = await response.json();
+    dispatch(actionUnfollowUser(unfollow_user));
+    return unfollow_user;
+  }
+}
+
 export default function reducer(state = initialState, action) {
+  let newState = {...state}
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case FOLLOW:
+      newState.user.following.push(action.user)
+      return newState;
+    case UNFOLLOW:
+      const spliceIndex = newState.user.following.indexOf(action.user.id)
+      newState.user.following.splice(spliceIndex, 1)
+      return newState;
     default:
       return state;
   }

@@ -78,3 +78,23 @@ def update_user_profile(id):
         db.session.commit()
         return user_profile.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+# ------ follows ------
+
+@user_routes.route('/<username>/follow', methods=['PUT'])
+@login_required
+def follow(username):
+    user = User.query.filter(User.username == username).first()
+    current_user.follow(user)
+    db.session.commit()
+    return user.to_dict()
+
+
+@user_routes.route('/<username>/unfollow', methods=['PUT'])
+@login_required
+def unfollow(username):
+    user = User.query.filter(User.username == username).first()
+    current_user.unfollow(user)
+    db.session.commit()
+    return user.to_dict()

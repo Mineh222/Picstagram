@@ -14,12 +14,11 @@ class Post(db.Model):
     updated_at = db.Column(DateTime(timezone=True), onupdate=func.now())
 
     user = db.relationship("User", back_populates="posts", lazy='subquery')
-    comments = db.relationship("Comment", back_populates="post")
+    comments = db.relationship("Comment", back_populates="post", cascade="all, delete")
 
     post_likes = db.relationship("User",
             secondary=likes,
             back_populates="user_likes",
-            cascade="all, delete"
     )
 
     def has_liked_post(self, user):

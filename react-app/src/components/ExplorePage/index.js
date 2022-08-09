@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams, NavLink } from 'react-router-dom'
 import { thunkGetExplorePosts } from '../../store/posts';
@@ -8,7 +8,6 @@ export default function ExplorePage() {
     const { userId } = useParams();
 
     const posts = useSelector((state) => Object.values(state.posts));
-    console.log(posts);
 
     const shuffledPosts = posts.sort(() => Math.random() - 0.5)
 

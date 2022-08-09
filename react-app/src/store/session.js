@@ -1,13 +1,14 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const UPLOAD_PROFILE_PIC = 'session/UploadProfilePic';
 
-const setUser = (user) => ({
+export const setUser = (user) => ({
   type: SET_USER,
   payload: user
 });
 
-const removeUser = () => ({
+export const removeUser = () => ({
   type: REMOVE_USER,
 })
 
@@ -96,6 +97,33 @@ export const signUp = (email, full_name, username, password, confirmPassword) =>
     }
   } else {
     return ['An error occurred. Please try again.']
+  }
+}
+
+export const thunkUploadProfilePic = (userId, formData) => async (dispatch) => {
+  const response = await fetch(`/api/users/profile/${userId}/new-profile-pic`, {
+    method: 'POST',
+    body: formData
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setUser(data))
+    return data
+  }
+}
+
+export const thunkUpdateUserProfile = (id, full_name, username, bio) => async (dispatch) => {
+  const response = await fetch(`/api/users/profile/${id}/edit`, {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({id, full_name, username, bio})
+  })
+
+  if (response.ok) {
+    const updatedProfile = await response.json();
+    dispatch(setUser(updatedProfile));
+    return updatedProfile;
   }
 }
 

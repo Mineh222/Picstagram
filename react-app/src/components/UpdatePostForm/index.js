@@ -11,7 +11,6 @@ export default function UpdatePostForm() {
     console.log(postId)
 
     const post = useSelector((state) => state.posts[postId]);
-    console.log(post);
 
     const [caption, setCaption] = useState(`${post.caption}`);
     const [validationErrors, setValidationErrors] = useState([]);

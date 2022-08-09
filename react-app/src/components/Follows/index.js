@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkFollow, thunkUnfollow} from "../../store/session";
+import { thunkGetUser } from "../../store/users";
 
 const Follows = ({profileUsername}) => {
     const dispatch = useDispatch();
-    // console.log(username);
 
     const sessionUser = useSelector((state) => state.session.user);
     const [follow, setFollow] = useState(false);
@@ -18,14 +18,32 @@ const Follows = ({profileUsername}) => {
         }
     }, [sessionUser.following, profileUsername])
 
-    function followButton() {
+    const followButton = async (e) => {
         setFollow(true)
-        dispatch(thunkFollow(profileUsername))
+        const follow = await dispatch(thunkFollow(profileUsername))
+
+        if (follow) {
+            if (follow.username === profileUsername) {
+                dispatch(thunkGetUser(profileUsername))
+            }
+            if (sessionUser.username === profileUsername) {
+                dispatch(thunkGetUser(profileUsername))
+            }
+        }
     }
 
-    function unfollowButton() {
-        setFollow(false);
-        dispatch(thunkUnfollow(profileUsername))
+    const unfollowButton = async (e) => {
+        setFollow(false)
+        const unfollow = await dispatch(thunkUnfollow(profileUsername))
+
+        if (unfollow) {
+            if (unfollow.username === profileUsername) {
+                dispatch(thunkGetUser(profileUsername))
+            }
+            if (sessionUser.username === profileUsername) {
+                dispatch(thunkGetUser(profileUsername))
+            }
+        }
     }
 
     return (

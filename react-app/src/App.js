@@ -14,6 +14,7 @@ import SinglePost from './components/SinglePost';
 import UpdatePostForm from './components/UpdatePostForm';
 import { thunkGetAllPosts } from './store/posts';
 import UpdateUserProfileForm from './components/UpdateUserProfileForm';
+import PhotoFeedPage from './components/PhotoFeed';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -45,12 +46,12 @@ function App() {
           <UserProfile/>
         </ProtectedRoute>
         <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
+          <PhotoFeedPage />
         </ProtectedRoute>
         <ProtectedRoute path='/post/new' exact={true} >
           <CreatePostForm/>
         </ProtectedRoute>
-        <ProtectedRoute path='/explore/:userId' exact={true} >
+        <ProtectedRoute path='/explore/posts' exact={true} >
           <ExplorePage/>
         </ProtectedRoute>
         <ProtectedRoute path='/post/:postId' exact={true} >

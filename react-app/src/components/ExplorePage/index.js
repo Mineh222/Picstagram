@@ -5,9 +5,9 @@ import { thunkGetExplorePosts } from '../../store/posts';
 
 export default function ExplorePage() {
     const dispatch = useDispatch();
-    const { userId } = useParams();
 
     const posts = useSelector((state) => Object.values(state.posts));
+    const userId = useSelector((state) => state.session.user.id);
 
     const shuffledPosts = posts.sort(() => Math.random() - 0.5)
 

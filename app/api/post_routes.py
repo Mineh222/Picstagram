@@ -35,7 +35,7 @@ def get_user_posts(username):
     return {'posts': data}
 
 
-@post_routes.route('/explore/<id>')
+@post_routes.route('/explore/<int:id>')
 @login_required
 def get_explore_posts(id):
     posts = Post.query.filter(Post.user_id != id).all()

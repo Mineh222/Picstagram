@@ -128,7 +128,6 @@ export default function UserProfile() {
                     <div key={post.id}>
                         <NavLink to={`/post/${post.id}`}>
                           <img src={post.picture}></img>
-                          <div>{post.caption}</div>
                         </NavLink>
                     </div>
                 )

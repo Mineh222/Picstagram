@@ -11,8 +11,8 @@ const NavBar = () => {
 
   return (
     <nav>
+      {sessionUser && (
       <ul className='navbar'>
-        {sessionUser && (
           <>
             <NavLink to={`/`} exact={true}>
               Home
@@ -31,8 +31,8 @@ const NavBar = () => {
             </NavLink>
             <LogoutButton />
           </>
-        )}
       </ul>
+      )}
     </nav>
   );
 }

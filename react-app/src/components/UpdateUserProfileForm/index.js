@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, NavLink } from 'react-router-dom';
 import { thunkUpdateUserProfile } from "../../store/session";
+import { thunkGetAllUsers } from '../../store/users';
 import UploadProfilePic from "../UserProfilePic";
 
 export default function UpdateUserProfileForm() {
@@ -9,6 +10,9 @@ export default function UpdateUserProfileForm() {
     const dispatch = useDispatch();
 
     const user = useSelector(state => state.session.user);
+    const users = useSelector((state) => Object.values(state.user));
+
+    const usernames = users.map(user => user.username);
 
     const [fullName, setFullName] = useState(user.full_name);
     const [username, setUsername] = useState(user.username);
@@ -16,6 +20,18 @@ export default function UpdateUserProfileForm() {
     const [updatePic, setUpdatePic] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+
+    useEffect(() => {
+        dispatch(thunkGetAllUsers())
+    }, [dispatch])
+
+    useEffect(() => {
+        const errors = [];
+        if (usernames.includes(username)) errors.push("Username already exists");
+        if (fullName.length > 100) errors.push("Name cannot exceed 100 characters.");
+        if (bio.length > 150) errors.push("Bio cannot exceed 150 characters");
+        setValidationErrors(errors)
+    }, [username, fullName, bio])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,6 +55,20 @@ export default function UpdateUserProfileForm() {
                 }
             </div>
             <form onSubmit={handleSubmit}>
+                {hasSubmitted && validationErrors.length > 0 && (
+                  <div className="errorHandling">
+                    <div className="errorTitle">
+                      Please fix the following error(s) before submitting:
+                    </div>
+                    <ul className='errors'>
+                      {validationErrors.map((error) => (
+                        <li key={error} id="error">
+                        {error}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
                 <label>Name</label>
                 <input
                     type="text"

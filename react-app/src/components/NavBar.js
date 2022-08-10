@@ -3,18 +3,23 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LoginForm from './auth/LoginForm';
 import LogoutButton from './auth/LogoutButton';
+import SearchBar from './SearchBar';
+import './NavBar.css'
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
     <nav>
-      <ul>
+      <ul className='navbar'>
         {sessionUser && (
           <>
             <NavLink to={`/`} exact={true}>
               Home
             </NavLink>
+            <div className='search-bar'>
+              <SearchBar />
+            </div>
             <NavLink to={`/explore/posts`} exact={true}>
               Explore
             </NavLink>

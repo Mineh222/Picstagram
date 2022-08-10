@@ -23,7 +23,7 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def users():
     users = User.query.all()
-    return {'users': [user.to_dict() for user in users]}
+    return {'users': [user.to_dict_short() for user in users]}
 
 
 @user_routes.route('/profile/<username>')
@@ -31,6 +31,13 @@ def users():
 def user(username):
     user = User.query.filter(User.username == username).first()
     return user.to_dict()
+
+
+@user_routes.route('/search/<searchword>')
+def search_user(searchword):
+    users = db.session.query(User).filter(User.username.ilike(f"%{searchword}%"))
+    data = [user.to_dict_short() for user in users]
+    return {'users': data}
 
 
 @user_routes.route('/profile/<int:id>/new-profile-pic', methods=['POST'])

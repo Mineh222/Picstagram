@@ -10,7 +10,8 @@ export default function PhotoFeedPage() {
     const posts = useSelector((state) => Object.values(state.posts));
     const user = useSelector((state) => state.session.user);
     const users = useSelector((state) => Object.values(state.user));
-    console.log(users);
+
+    const shuffledUsers = users.sort(() => Math.random() - 0.5)
 
     useEffect(() => {
         if (user.following.length === 0) {
@@ -30,7 +31,7 @@ export default function PhotoFeedPage() {
         <div>
             <div>
                 <h3>Suggested Users:</h3>
-                {users.slice(0,5).map(user => {
+                {shuffledUsers.slice(0,5).map(user => {
                     return (
                         <div key={user.id}>
                             <NavLink to={`/${user.username}`}>

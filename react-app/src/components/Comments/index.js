@@ -15,9 +15,9 @@ export default function Comments({comment}) {
 
     return (
         <div>
-            <div>{comment.user.username} {comment.comment}</div>
                 {!showUpdateCommentForm ?
                     <>
+                        <div>{comment.user.username} {comment.comment}</div>
                         {(comment.user_id === sessionUser.id) && (
                             <>
                                 <button onClick={() => setShowUpdateCommentForm(true)}>Edit</button>

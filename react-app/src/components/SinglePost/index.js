@@ -49,14 +49,10 @@ export default function SinglePost() {
                     <button onClick={onDelete}>Delete</button>
                 </>
             )}
-            <div >
-              {comments.map((comment) => (
-                <div key={comment.id}>
-                  <Comments comment={comment}/>
-                </div>
-              ))}
-            </div>
             <div>
+                <Likes sessionUser={sessionUser} post={post}/>
+            </div>
+            <span>
                 {post.likes.length === 0 && (
                     <div></div>
                 )}
@@ -66,9 +62,13 @@ export default function SinglePost() {
                 {post.likes.length > 1 && (
                     <span>{post.likes.length} likes</span>
                 )}
-            </div>
-            <div>
-                <Likes sessionUser={sessionUser} post={post}/>
+            </span>
+            <div >
+              {comments.map((comment) => (
+                <div key={comment.id}>
+                  <Comments comment={comment}/>
+                </div>
+              ))}
             </div>
             <div>
                 <CommentForm />

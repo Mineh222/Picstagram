@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { thunkPostComment } from "../../store/comments";
+import './CommentForm.css'
 
 export default function CommentForm() {
     const dispatch = useDispatch();
@@ -25,7 +26,7 @@ export default function CommentForm() {
 
         setHasSubmitted(true);
 
-        if (validationErrors.length) return alert("Cannot submit comment")
+        if (validationErrors.length) return alert("Cannot submit comment. Please correct error.")
 
         const payload = {
             user_id: sessionUser.id,
@@ -50,24 +51,22 @@ export default function CommentForm() {
         <form onSubmit={handleSubmit}>
             {hasSubmitted && validationErrors.length > 0 && (
               <div className="errorHandling">
-                <div className="errorTitle">
-                  Please fix the following error(s) before posting:
-                </div>
                 <ul className="errors">
                   {validationErrors.map((error) => (
-                    <li key={error} id="error">
+                    <div key={error} id="error">
                       {error}
-                    </li>
+                    </div>
                   ))}
                 </ul>
               </div>
             )}
-            <textarea
-                required
-                placeholder="Add a comment..."
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-            ></textarea>
+              <textarea
+                  required
+                  placeholder="Add a comment..."
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                  maxLength='150'
+              ></textarea>
             <button type='submit'>Post</button>
         </form>
     )

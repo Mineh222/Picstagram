@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
-import EditCommentForm from '../UpdateCommentForm';
+import UpdateCommentForm from '../UpdateCommentForm';
 import { thunkDeleteComment } from '../../store/comments';
 
 export default function Comments({comment}) {
@@ -26,7 +26,7 @@ export default function Comments({comment}) {
                         )}
                     </>
                     :
-                    <EditCommentForm comment={comment} setTrigger={() => setShowUpdateCommentForm(false)}/>
+                    <UpdateCommentForm comment={comment} setTrigger={() => setShowUpdateCommentForm(false)}/>
                 }
         </div>
     )

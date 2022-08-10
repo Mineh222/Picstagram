@@ -3,21 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, NavLink } from 'react-router-dom';
 import { thunkUpdatePost, thunkGetSinglePost } from '../../store/posts';
 
-export default function UpdatePostForm() {
+export default function UpdatePostForm({post, setTrigger}) {
     const history = useHistory()
     const dispatch = useDispatch()
-
-    const { postId } = useParams()
-
-    const post = useSelector((state) => state.posts[postId]);
 
     const [caption, setCaption] = useState(`${post.caption}`);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-
-    useEffect(() => {
-      dispatch(thunkGetSinglePost(postId))
-    }, [dispatch, postId]);
 
     useEffect(() => {
         const errors = [];
@@ -33,11 +25,10 @@ export default function UpdatePostForm() {
 
         // if (validationErrors.length) return alert("Cannot edit post. Please correct error.");
 
-        const updatedPost = await dispatch(thunkUpdatePost(postId, caption))
+        const updatedPost = await dispatch(thunkUpdatePost(post.id, caption))
 
         if (updatedPost) {
             reset();
-            history.push(`/post/${postId}`)
         }
     }
 
@@ -45,6 +36,7 @@ export default function UpdatePostForm() {
         setCaption('');
         setHasSubmitted(false);
         setValidationErrors([]);
+        setTrigger();
     }
 
     if (!post) return null
@@ -69,9 +61,7 @@ export default function UpdatePostForm() {
                   onChange={(e) => setCaption(e.target.value)}
               ></textarea>
               <button type="submit">Edit</button>
-              <NavLink  to={`/post/${postId}`}>
-                <button className='cancel-button'>Cancel</button>
-              </NavLink>
+              <button onClick={setTrigger}>Cancel</button>
           </form>
 
         </div>

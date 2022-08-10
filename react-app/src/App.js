@@ -58,9 +58,6 @@ function App() {
         <ProtectedRoute path='/post/:postId' exact={true} >
           <SinglePost/>
         </ProtectedRoute>
-        <ProtectedRoute path='/post/:postId/edit' exact={true} >
-          <UpdatePostForm/>
-        </ProtectedRoute>
         <ProtectedRoute path='/:username/edit'>
           <UpdateUserProfileForm />
         </ProtectedRoute>

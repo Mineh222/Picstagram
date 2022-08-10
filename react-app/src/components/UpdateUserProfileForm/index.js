@@ -13,6 +13,7 @@ export default function UpdateUserProfileForm() {
     const users = useSelector((state) => Object.values(state.user));
 
     const usernames = users.map(user => user.username);
+    const filteredUsernames = usernames.filter(username => username != user.username);
 
     const [fullName, setFullName] = useState(user.full_name);
     const [username, setUsername] = useState(user.username);
@@ -27,7 +28,7 @@ export default function UpdateUserProfileForm() {
 
     useEffect(() => {
         const errors = [];
-        if (usernames.includes(username)) errors.push("Username already exists");
+        if (filteredUsernames.includes(username)) errors.push("Username already exists");
         if (fullName.length > 100) errors.push("Name cannot exceed 100 characters.");
         if (bio.length > 150) errors.push("Bio cannot exceed 150 characters");
         setValidationErrors(errors)

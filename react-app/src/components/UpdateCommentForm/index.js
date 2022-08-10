@@ -16,7 +16,6 @@ export default function UpdateCommentForm({comment, setTrigger}) {
 
     useEffect(() => {
         const errors = [];
-        if (updatedComment.length < 1) errors.push("Comment must be at least 1 character.");
         if (updatedComment.length > 150) errors.push("Comment length cannot exceed 150 characters");
         setValidationerrors(errors);
     }, [updatedComment])

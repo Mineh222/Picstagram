@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError, Length
+from wtforms.validators import DataRequired, ValidationError, Length
 from app.models import User
 import re
 
@@ -33,8 +33,14 @@ def password_validate(form, field):
         raise ValidationError('Password must be a minimum of 8 characters and contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")')
 
 
+def email_validate(form, field):
+    email = field.data
+    if (not re.fullmatch('[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}', email)):
+        raise ValidationError('Please enter a valid email')
+
+
 class SignUpForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), user_exists, Email(message="Please enter a valid email address.")])
+    email = StringField('email', validators=[DataRequired(), user_exists, email_validate])
     full_name = StringField('full_name', validators=[DataRequired(), Length(max=100, message="Full Name cannot exceed 100 characters")])
     username = StringField(
         'username', validators=[DataRequired(), username_exists, Length(max=40, message="Username cannot exceed 40 characters")])

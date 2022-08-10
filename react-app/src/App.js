@@ -15,6 +15,7 @@ import UpdatePostForm from './components/UpdatePostForm';
 import { thunkGetAllPosts } from './store/posts';
 import UpdateUserProfileForm from './components/UpdateUserProfileForm';
 import PhotoFeedPage from './components/PhotoFeed';
+import SearchResults from './components/SearchResults';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -63,6 +64,12 @@ function App() {
         <ProtectedRoute path='/:username/edit'>
           <UpdateUserProfileForm />
         </ProtectedRoute>
+        <ProtectedRoute path='/search/:searchword'>
+          <SearchResults />
+        </ProtectedRoute>
+        <Route>
+          <h1>Page not found.</h1>
+        </Route>
       </Switch>
     </BrowserRouter>
   );

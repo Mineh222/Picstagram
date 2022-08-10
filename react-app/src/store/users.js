@@ -1,5 +1,6 @@
-const GET_SINGLE_USER = 'user/getSingleUser'
-const GET_ALL_USERS = 'users/getAllUsers'
+const GET_SINGLE_USER = 'user/getSingleUser';
+const GET_ALL_USERS = 'users/getAllUsers';
+const GET_SEARCHED_USERS = 'users/getSearchedUsers';
 
 
 export const actionGetUser = (user) => {
@@ -12,6 +13,13 @@ export const actionGetUser = (user) => {
 export const actionGetAllUsers = (users) => {
   return {
     type: GET_ALL_USERS,
+    users
+  }
+}
+
+export const actionGetSearchedUsers = (users) => {
+  return {
+    type: GET_SEARCHED_USERS,
     users
   }
 }
@@ -36,6 +44,16 @@ export const thunkGetAllUsers = () => async (dispatch) => {
   }
 }
 
+export const thunkGetSearchedUsers = (searchword) => async (dispatch) => {
+  const response = await fetch(`/api/users/search/${searchword}`);
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(actionGetSearchedUsers(data.users));
+    return data.users;
+  }
+}
+
 const initialState = {}
 
 const userReducer = (state = initialState, action) => {
@@ -52,6 +70,13 @@ const userReducer = (state = initialState, action) => {
         newState[user.id] = user
       });
       return newState;
+
+    case GET_SEARCHED_USERS:
+      newState = {};
+      action.users.forEach(user => {
+        newState[user.id] = user
+      });
+      return newState
 
     default:
       return state

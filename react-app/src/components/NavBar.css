@@ -1,0 +1,11 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    list-style: none;
+    margin: auto;
+    padding: 10px 0;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+  }

@@ -66,11 +66,11 @@ class User(db.Model, UserMixin):
             'bio': self.bio,
             'profile_pic': self.profile_pic,
             'created_at': self.created_at,
-            'followers': [user.to_dict_follows() for user in self.follows],
-            'following': [user.to_dict_follows() for user in self.followed]
+            'followers': [user.to_dict_short() for user in self.follows],
+            'following': [user.to_dict_short() for user in self.followed]
         }
 
-    def to_dict_follows(self):
+    def to_dict_short(self):
         return {
             'id': self.id,
             'profile_pic': self.profile_pic,

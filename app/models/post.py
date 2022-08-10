@@ -41,7 +41,7 @@ class Post(db.Model):
             'caption': self.caption,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
-            'user': self.user.to_dict(),
+            'user': self.user.to_dict_short(),
             'comments': [comment.to_dict() for comment in self.comments],
-            'likes': [user.to_dict() for user in self.post_likes]
+            'likes': [user.to_dict_short() for user in self.post_likes]
         }

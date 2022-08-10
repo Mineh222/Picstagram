@@ -18,6 +18,11 @@ const LoginForm = () => {
     }
   };
 
+  const demoSubmit = (e) => {
+    e.preventDefault();
+    return dispatch(login('demo@aa.io', 'password'))
+  }
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -59,6 +64,7 @@ const LoginForm = () => {
         </div>
       </form>
       <NavLink to={'/sign-up'}>Register</NavLink>
+      <NavLink to='/' className='demo-link' onClick={demoSubmit}>Demo</NavLink>
     </>
   );
 };

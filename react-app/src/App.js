@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(thunkGetAllPosts());
+      // await dispatch(thunkGetAllPosts());
       await dispatch(authenticate());
       setLoaded(true);
     })();

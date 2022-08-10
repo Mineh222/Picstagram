@@ -8,7 +8,6 @@ export default function UpdatePostForm() {
     const dispatch = useDispatch()
 
     const { postId } = useParams()
-    console.log(postId)
 
     const post = useSelector((state) => state.posts[postId]);
 
@@ -23,7 +22,7 @@ export default function UpdatePostForm() {
     useEffect(() => {
         const errors = [];
         if (caption.length > 150) {
-            errors.push("Caption length cannot exceed 150 characters")
+            errors.push("Caption length cannot exceed 150 characters.")
         }
         setValidationErrors(errors)
     }, [caption])
@@ -32,7 +31,7 @@ export default function UpdatePostForm() {
         e.preventDefault();
         setHasSubmitted(true);
 
-        if (validationErrors.length) return alert("Cannot edit post. Please correct error(s).");
+        // if (validationErrors.length) return alert("Cannot edit post. Please correct error.");
 
         const updatedPost = await dispatch(thunkUpdatePost(postId, caption))
 
@@ -56,14 +55,11 @@ export default function UpdatePostForm() {
           <form onSubmit={handleSubmit}>
               {hasSubmitted && validationErrors.length > 0 && (
                 <div className="errorHandling">
-                  <div className="errorTitle">
-                    Please fix the following errors before submitting:
-                  </div>
                   <ul className='errors'>
                     {validationErrors.map((error) => (
-                      <li key={error} id="error">
+                      <div key={error} id="error">
                       {error}
-                      </li>
+                      </div>
                     ))}
                   </ul>
                 </div>

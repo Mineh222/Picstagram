@@ -4,35 +4,39 @@ import { NavLink } from 'react-router-dom';
 import LoginForm from './auth/LoginForm';
 import LogoutButton from './auth/LogoutButton';
 import SearchBar from './SearchBar';
+import HomeIcon from "@material-ui/icons/Home";
+import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
+import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import './NavBar.css'
+
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
     <nav>
+      {sessionUser && (
       <ul className='navbar'>
-        {sessionUser && (
           <>
-            <NavLink to={`/`} exact={true}>
-              Home
-            </NavLink>
             <div className='search-bar'>
               <SearchBar />
             </div>
+            <NavLink to={`/`} exact={true}>
+              <HomeIcon />
+            </NavLink>
             <NavLink to={`/explore/posts`} exact={true}>
-              Explore
+              <ExploreOutlinedIcon />
             </NavLink>
             <NavLink to='/post/new' exact={true}>
-              New Post
+              <AddBoxOutlinedIcon />
             </NavLink>
             <NavLink to={`/${sessionUser.username}`} exact={true}>
-              Profile
+              <img id="nav_bar_profile_pic"src={sessionUser.profile_pic}></img>
             </NavLink>
             <LogoutButton />
           </>
-        )}
       </ul>
+      )}
     </nav>
   );
 }

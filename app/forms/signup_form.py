@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
-from wtforms.validators import DataRequired, Email, ValidationError
+from wtforms.validators import DataRequired, Email, ValidationError, Length
 from app.models import User
+import re
 
 
 def user_exists(form, field):
@@ -24,15 +25,20 @@ def password_match(form, field):
     password = form.data['password']
     confirmPassword = form.data['confirmPassword']
     if (password != confirmPassword):
-        raise ValidationError('Passwords must match.')
+        raise ValidationError('Password fields must match.')
+
+def password_validate(form, field):
+    password = field.data
+    if(not re.fullmatch('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$', password)):
+        raise ValidationError('Password must be a minimum of 8 characters and contain at least 1 lowercase letter, uppercase letter, number, and special character (i.e. "!@#$%^&*")')
 
 
 class SignUpForm(FlaskForm):
-    email = StringField('email', validators=[DataRequired(), user_exists])
-    full_name = StringField('full_name', validators=[DataRequired()])
+    email = StringField('email', validators=[DataRequired(), user_exists, Email(message="Please enter a valid email address.")])
+    full_name = StringField('full_name', validators=[DataRequired(), Length(max=100, message="Full Name cannot exceed 100 characters")])
     username = StringField(
-        'username', validators=[DataRequired(), username_exists])
-    password = StringField('password', validators=[DataRequired()])
+        'username', validators=[DataRequired(), username_exists, Length(max=40, message="Username cannot exceed 40 characters")])
+    password = StringField('password', validators=[DataRequired(), password_validate])
     confirmPassword = StringField('confirmPassword', validators=[DataRequired(), password_match])
 
 

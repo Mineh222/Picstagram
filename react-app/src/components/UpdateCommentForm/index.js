@@ -26,7 +26,7 @@ export default function UpdateCommentForm({comment, setTrigger}) {
 
         setHasSubmitted(true);
 
-        if (validationErrors.length) return alert("Cannot edit comment. Please correct error(s).");
+        if (validationErrors.length) return alert("Cannot edit comment. Please correct error.");
 
         const thunkComment = dispatch(thunkUpdateComment(commentId, updatedComment))
 
@@ -46,14 +46,11 @@ export default function UpdateCommentForm({comment, setTrigger}) {
         <form onSubmit={handleSubmit}>
             {hasSubmitted && validationErrors.length > 0 && (
               <div className="errorHandling">
-                <div className="errorTitle">
-                  Please fix the following error(s) before posting:
-                </div>
                 <ul className="errors">
                   {validationErrors.map((error) => (
-                    <li key={error} id="error">
+                    <div key={error} id="error">
                       {error}
-                    </li>
+                    </div>
                   ))}
                 </ul>
               </div>

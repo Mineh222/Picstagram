@@ -1,0 +1,11 @@
+.choose_pro_pic_label {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    color: white;
+    background-color: #0095F6;
+    cursor: pointer;
+    padding: 5px 18px;
+    border-radius: 4px;
+    width: 200px;
+}

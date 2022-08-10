@@ -50,6 +50,7 @@ const LoginForm = () => {
             placeholder='Email'
             value={email}
             onChange={updateEmail}
+            required
           />
         </div>
         <div>
@@ -59,11 +60,12 @@ const LoginForm = () => {
             placeholder='Password'
             value={password}
             onChange={updatePassword}
+            required
           />
           <button type='submit'>Log in</button>
         </div>
       </form>
-      <NavLink to={'/sign-up'}>Register</NavLink>
+      <NavLink to={'/sign-up'}>Sign Up</NavLink>
       <NavLink to='/' className='demo-link' onClick={demoSubmit}>Demo</NavLink>
     </>
   );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkUploadProfilePic, setUser} from "../../store/session";
+import { thunkUploadProfilePic } from "../../store/session";
+import './UserProfilePic.css';
 
 export default function UploadProfilePic({hideForm}) {
     const dispatch = useDispatch();
@@ -30,8 +31,9 @@ export default function UploadProfilePic({hideForm}) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>Choose Profile Picture</label>
+            <label className="choose_pro_pic_label"htmlFor="choose_pro_pic">Choose Profile Picture</label>
             <input
+                id="choose_pro_pic"
                 type="file"
                 accept="image/*"
                 onChange={updatedProfilePic}

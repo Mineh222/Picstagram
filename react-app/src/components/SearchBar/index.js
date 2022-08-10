@@ -11,7 +11,6 @@ const SearchBar = () => {
     const [wordEntry, setWordEntry] = useState("");
 
     const users = useSelector(state => Object.values(state.search));
-    console.log(users);
 
     const dispatch = useDispatch();
     const history = useHistory();

@@ -20,6 +20,7 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 @post_routes.route('/all')
+@login_required
 def get_all_posts():
     posts = Post.query.all()
     data = [post.to_dict() for post in posts]

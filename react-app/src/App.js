@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(thunkGetAllPosts());
+      // await dispatch(thunkGetAllPosts());
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -43,9 +43,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <Route path='/' exact={true} >
+        <ProtectedRoute path='/' exact={true} >
           <PhotoFeedPage />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path='/:username' exact={true} >
           <UserProfile/>
         </ProtectedRoute>

@@ -56,6 +56,7 @@ export default function UpdatePostForm({post, setTrigger}) {
                 </div>
               )}
               <textarea
+                  placeholder='Optional'
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
               ></textarea>

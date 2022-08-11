@@ -5,9 +5,7 @@ import { thunkUpdateComment } from "../../store/comments";
 
 export default function UpdateCommentForm({comment, setTrigger}) {
     const dispatch = useDispatch();
-    const { postId } = useParams();
 
-    const sessionUser = useSelector((state) => state.session.user)
     const commentId = comment.id
 
     const [updatedComment, setUpdatedComment] = useState(`${comment.comment}`);

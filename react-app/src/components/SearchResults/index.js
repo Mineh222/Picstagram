@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { thunkGetSearchedUsers } from '../../store/users';
+import './SearchResults.css';
 
 export default function SearchResults() {
     const dispatch = useDispatch();
@@ -18,16 +19,18 @@ export default function SearchResults() {
             {users.length === 0 ?
                 <h2>No users found.</h2>
                 :
-                <h3>{searchword}</h3>
+                <h3 id="search-word">Result(s) for "{searchword}"</h3>
             }
             <div>
                 {users && users.map(user => {
                     return (
-                        <div key={user.id}>
-                            <Link to={`/${user.username}`}>
-                                <img src={user.profile_pic} alt="profilePic"></img>
-                                <p>{user.username}</p>
-                                <p>{user.full_name}</p>
+                        <div className="user-info-search-page"key={user.id}>
+                            <Link className="user-info-search-page" to={`/${user.username}`}>
+                                <img id="search-page-user-pic" src={user.profile_pic} alt="profilePic"></img>
+                                <div id="user-names-search-page">
+                                    <p id="username-search-page">{user.username}</p>
+                                    <p>{user.full_name}</p>
+                                </div>
                             </Link>
                         </div>
                     )

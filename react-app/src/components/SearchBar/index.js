@@ -67,8 +67,8 @@ const SearchBar = () => {
                     {filteredUsers.map((user) => {
                         return (
                             <Link key={user.id} className="searched-user" to={`/${user.username}`} onClick={clearInput}>
-                                <img src={user.profile_pic}></img>
-                                <div>{user.username}</div>
+                                <img id="search-bar-profile-pic" src={user.profile_pic}></img>
+                                <div id="search-bar-username">{user.username}</div>
                             </Link>
                         )
                     })}

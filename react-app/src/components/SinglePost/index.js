@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { thunkGetSinglePost, thunkDeletePost } from '../../store/posts';
@@ -10,6 +10,7 @@ import CommentForm from '../CommentForm';
 import Likes from '../Likes';
 
 import './SinglePost.css';
+import UpdatePostForm from '../UpdatePostForm';
 
 export default function SinglePost() {
     const dispatch = useDispatch();
@@ -20,12 +21,14 @@ export default function SinglePost() {
     const post = useSelector((state) => state.posts[postId]);
     const comments = useSelector((state) => Object.values(state.comments));
 
+    const [showUpdatePostForm, setShowUpdatePostForm ] = useState(false);
+
     useEffect(() => {
         dispatch(thunkGetSinglePost(postId))
     }, [dispatch, postId])
 
-    const onDelete = () => {
-        dispatch(thunkDeletePost(postId))
+    const onDelete = async (e) => {
+        await dispatch(thunkDeletePost(postId))
         history.push(`/${sessionUser.username}`)
     }
 
@@ -39,16 +42,22 @@ export default function SinglePost() {
         <div>
             <img id="user_avator_single_post" src={post.user.profile_pic} alt="user_profile_pic"></img>
             <span>{post.user.username}</span>
-            <div>
-                <img src={post.picture}></img>
-                <div>{post.caption}</div>
-            </div>
-            {sessionUser.id == post.user_id && (
+            {!showUpdatePostForm ?
                 <>
-                    <NavLink to={`/post/${postId}/edit`}>Edit</NavLink>
-                    <button onClick={onDelete}>Delete</button>
+                    <div>
+                        <img src={post.picture}></img>
+                        <div>{post.caption}</div>
+                    </div>
+                    {sessionUser.id == post.user_id && (
+                        <>
+                            <button onClick={() => setShowUpdatePostForm(true)}>Edit Post</button>
+                            <button onClick={onDelete}>Delete</button>
+                        </>
+                    )}
                 </>
-            )}
+                :
+                < UpdatePostForm post={post} setTrigger={() => setShowUpdatePostForm(false)}/>
+            }
             <div>
                 <Likes sessionUser={sessionUser} post={post}/>
             </div>

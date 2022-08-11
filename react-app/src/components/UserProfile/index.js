@@ -20,9 +20,9 @@ export default function UserProfile() {
     const [showFollowing, setShowFollowing] = useState(false);
 
     useEffect(() => {
-        dispatch(thunkGetUser(username))
-        dispatch(thunkGetUserPosts(username))
-    }, [dispatch, username])
+      dispatch(thunkGetUser(username))
+      dispatch(thunkGetUserPosts(username))
+  }, [dispatch, username])
 
     if (!user) {
       return null;

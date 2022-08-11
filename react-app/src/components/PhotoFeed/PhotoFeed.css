@@ -1,0 +1,65 @@
+
+.suggested-users {
+    display: flex;
+    flex-direction: column;
+    height: 20rem;
+    border: 1px solid rgba(var(--b6a,219,219,219),1);
+    width: 20%;
+    margin-left: 1rem;
+}
+
+#suggest-message {
+    color: rgba(var(--f52,142,142,142),1);
+    text-align: start;
+    padding-left: 1rem;
+}
+
+.home-page-container {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.suggested-users-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+#suggested-user-image {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 5px;
+
+}
+
+.home-page-posts {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    margin-bottom: 1rem;
+}
+
+#home-page-post-pic {
+    height: 293px;
+    width: 293px;
+}
+
+.home-page-user-caption {
+    width: 293px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#home-page-username {
+    margin-right: 1rem;
+    font-weight: bold;
+}

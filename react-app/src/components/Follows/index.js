@@ -52,9 +52,9 @@ const Follows = ({profileUsername}) => {
                 <div></div>
             )}
             {!follow ?
-                <button onClick={followButton}>Follow</button>
+                <button id="follow-button" onClick={followButton}>Follow</button>
                 :
-                <button onClick={unfollowButton}>Unfollow</button>
+                <button id="unfollow-button" onClick={unfollowButton}>Unfollow</button>
             }
         </>
     )

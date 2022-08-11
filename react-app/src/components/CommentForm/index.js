@@ -52,9 +52,9 @@ export default function CommentForm() {
               <div className="errorHandling">
                 <ul className="errors">
                   {validationErrors.map((error) => (
-                    <div key={error} id="error">
+                    <li key={error} id="error">
                       {error}
-                    </div>
+                    </li>
                   ))}
                 </ul>
               </div>
@@ -64,7 +64,6 @@ export default function CommentForm() {
                   placeholder="Add a comment..."
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  maxLength='150'
               ></textarea>
             <button type='submit'>Post</button>
         </form>

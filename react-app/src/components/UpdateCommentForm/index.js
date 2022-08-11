@@ -45,9 +45,9 @@ export default function UpdateCommentForm({comment, setTrigger}) {
               <div className="errorHandling">
                 <ul className="errors">
                   {validationErrors.map((error) => (
-                    <div key={error} id="error">
+                    <li key={error} id="error">
                       {error}
-                    </div>
+                    </li>
                   ))}
                 </ul>
               </div>

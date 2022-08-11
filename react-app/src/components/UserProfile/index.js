@@ -7,6 +7,7 @@ import Follows from '../Follows';
 import Modal from 'react-modal';
 import FollowersModal from '../FollowersModal';
 import FollowingModal from '../FollowingModal';
+import './UserProfile.css';
 
 export default function UserProfile() {
     const dispatch = useDispatch();
@@ -56,9 +57,10 @@ export default function UserProfile() {
       content: {
           position: 'relative',
           margin: 'auto',
-          maxWidth: '384px',
+          maxWidth: '300px',
+          height: '200px',
           width: '100%',
-          top: '40px',
+          top: '200px',
           left: '40px',
           right: '40px',
           bottom: '40px',
@@ -69,6 +71,7 @@ export default function UserProfile() {
           borderRadius: '24px',
           outline: 'none',
           padding: '18px',
+          paddingTop: '5px',
           overflow: 'visibile'
       }
   };
@@ -78,60 +81,80 @@ export default function UserProfile() {
   if (!user.following) return null;
 
     return (
-        <div>
+        <div className="user-profile-container">
           <div className="user_profile_info_container">
-              <div>{user.username}</div>
-              <img src={user.profile_pic}></img>
-              {posts.length === 0 && (
-                <div>0 Posts</div>
-              )}
-              {posts.length === 1 && (
-                <div>1 Post</div>
-              )}
-              {posts.length > 1 && (
-                <div>{posts.length} Posts</div>
-              )}
-              {user.followers.length === 0 && (
-                 <button onClick={openFollowersModal}>0 Followers</button>
-              )}
-              {user.followers.length === 1 && (
-                 <button onClick={openFollowersModal}>1 Follower</button>
-              )}
-              {user.followers.length > 1 && (
-                <button onClick={openFollowersModal}>{user.followers.length} Followers</button>
-              )}
-              <Modal isOpen={showFollowers} style={formStyles}>
-                <button onClick={() => setShowFollowers(false)}>X</button>
-                <FollowersModal user={user} setTrigger={setShowFollowers}/>
-              </Modal>
-              {user.following.length === 0 && (
-                <button onClick={openFollowingModal}>0 Following</button>
-                )}
-              {user.following.length > 0 && (
-                <button onClick={openFollowingModal}>{user.following.length} Following</button>
-                )}
-              <Modal isOpen={showFollowing} style={formStyles}>
-                <button onClick={() => setShowFollowing(false)}>X</button>
-                <FollowingModal user={user} setTrigger={setShowFollowing}/>
-              </Modal>
-              <div>{user.full_name}</div>
-              <div>{user.bio}</div>
-              {sessionUser && sessionUser.username === username && (
-                <NavLink to={`/${sessionUser.username}/edit`}>Edit Profile</NavLink>
-              )}
-              {sessionUser && sessionUser.username != username && (
-                <Follows profileUsername={username}/>
-              )}
+            <div className="user_profile_info_container2">
+              <div>
+                <img id="profile-page-propic"src={user.profile_pic}></img>
+              </div>
+              <div className='user-info-no-propic'>
+                <div className="user-name-edit-follow-buttons">
+                    <div id="profile-page-username">{user.username}</div>
+                    <div id="edit-profile-button-container">
+                      {sessionUser && sessionUser.username === username && (
+                        <NavLink id="edit-profile-button" to={`/${sessionUser.username}/edit`}>Edit Profile</NavLink>
+                      )}
+                    </div>
+                    <div>
+                      {sessionUser && sessionUser.username != username && (
+                        <Follows profileUsername={username}/>
+                      )}
+                    </div>
+                </div>
+                <div className="posts-followers-count">
+                  {posts.length === 0 && (
+                    <div className="post-count-profile-page">0 Posts</div>
+                  )}
+                  {posts.length === 1 && (
+                    <div className="post-count-profile-page">1 Post</div>
+                  )}
+                  {posts.length > 1 && (
+                    <div className="post-count-profile-page">{posts.length} Posts</div>
+                  )}
+                  {user.followers.length === 0 && (
+                    <button id="follows-button"onClick={openFollowersModal}>0 Followers</button>
+                  )}
+                  {user.followers.length === 1 && (
+                    <button id="follows-button"onClick={openFollowersModal}>1 Follower</button>
+                  )}
+                  {user.followers.length > 1 && (
+                    <button id="follows-button" onClick={openFollowersModal}>{user.followers.length} Followers</button>
+                  )}
+                  <Modal isOpen={showFollowers} style={formStyles}>
+                    <button id="close-follow-modal" onClick={() => setShowFollowers(false)}>X</button>
+                    <FollowersModal user={user} setTrigger={setShowFollowers}/>
+                  </Modal>
+                  {user.following.length === 0 && (
+                    <button id="follows-button" onClick={openFollowingModal}>0 Following</button>
+                    )}
+                  {user.following.length > 0 && (
+                    <button id="follows-button" onClick={openFollowingModal}>{user.following.length} Following</button>
+                    )}
+                  <Modal isOpen={showFollowing} style={formStyles}>
+                    <button id="close-follow-modal" onClick={() => setShowFollowing(false)}>X</button>
+                    <FollowingModal user={user} setTrigger={setShowFollowing}/>
+                  </Modal>
+                </div>
+                <div className="name-bio">
+                  <div id="profile-page-fullname">{user.full_name}</div>
+                  <div id="profile-page-bio"> {user.bio}</div>
+                </div>
+
+              </div>
+
+            </div>
           </div>
+          <div className="user-profile-posts">
             {posts.reverse().map(post => {
                 return (
                     <div key={post.id}>
                         <NavLink to={`/post/${post.id}`}>
-                          <img src={post.picture}></img>
+                          <img id="post-images-profile-page"src={post.picture}></img>
                         </NavLink>
                     </div>
                 )
             })}
+          </div>
         </div>
     )
 }

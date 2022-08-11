@@ -1,0 +1,128 @@
+.user-profile-container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.user_profile_info_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    justify-items: center;
+    margin-top: 2rem;
+    border-bottom: 1px solid lightgray;
+}
+
+.user_profile_info_container2 {
+    width: 500px;
+}
+
+#profile-page-propic {
+    border-radius: 50%;
+    width: 5rem;
+    float: left;
+    margin-right: 3rem;
+}
+
+.user-name-edit-follow-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    margin-bottom: 0.5rem
+}
+
+.posts-followers-count {
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+}
+
+#profile-page-username {
+    font-size: 20px;
+}
+
+#edit-profile-button {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    border: 0.5px solid rgb(152, 151, 151);
+    padding: 5px;
+    cursor: pointer;
+}
+
+#edit-profile-button-container {
+    margin-top: -0.2rem;
+}
+
+#follow-button, #unfollow-button {
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: rgba(var(--eca,255,255,255),1);
+    background-color: rgba(var(--d69,0,149,246),1);
+    border: none;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#follows-button {
+    background-color: transparent;
+    border: none;
+    font-size: 15px;
+    margin-top: -0.1rem;
+    cursor: pointer;
+}
+
+.name-bio {
+    margin-top: 1rem;
+}
+
+#profile-page-fullname {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+}
+
+.user-info-no-propic {
+    float: right;
+}
+
+.user_profile_info_container2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.user-profile-posts {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    padding-left: 15rem;
+    padding-right: 15rem;
+    margin-top: 2rem;
+}
+
+#post-images-profile-page {
+    width: 200px;
+    height: 200px;
+}
+
+#profile-page-bio {
+    margin-bottom: 1rem;
+}
+
+#close-follow-modal {
+    position: absolute;
+    top: 5px;
+    right: -40px;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}

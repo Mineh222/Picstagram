@@ -44,19 +44,13 @@ export default function CreatePostForm({closeCreateFormModal}) {
         }
     }
 
-    const reset = () => {
-        setPicture(null);
-        setCaption('');
-    }
+    // const reset = () => {
+    //     setPicture(null);
+    //     setCaption('');
+    // }
 
     const updatePicture = (e) => {
         const file = e.target.files[0];
-        // if (!file?.name.includes("jpg") && !file?.name.includes("jpeg") && !file?.name.includes("png")) {
-        //     validationErrors.push("Please provide a proper image (e.g., .jpg, .jpeg, .png)")
-        // }
-        // if (validationErrors.length) {
-        //     setErrors(validationErrors)
-        // }
         setPicture(file);
     }
 

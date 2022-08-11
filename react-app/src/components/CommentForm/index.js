@@ -47,26 +47,26 @@ export default function CommentForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="comment-form2"onSubmit={handleSubmit}>
             {hasSubmitted && validationErrors.length > 0 && (
-              <div className="errorHandling">
-                <ul className="errors">
+              <div className="errorHandling-comments">
+                <ul className="errors-comments">
                   {validationErrors.map((error) => (
-                    <div key={error} id="error">
+                    <li key={error} id="error">
                       {error}
-                    </div>
+                    </li>
                   ))}
                 </ul>
               </div>
             )}
               <textarea
+                  id={validationErrors.length > 0 ? "comment-box-errors" : "comment-box"}
                   required
                   placeholder="Add a comment..."
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  maxLength='150'
               ></textarea>
-            <button type='submit'>Post</button>
+            <button id={validationErrors.length > 0 ? "post-comment-box-errors" : "post-comment-btn"} type='submit'>Post</button>
         </form>
     )
 }

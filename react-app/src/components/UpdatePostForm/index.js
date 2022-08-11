@@ -23,7 +23,7 @@ export default function UpdatePostForm({post, setTrigger}) {
         e.preventDefault();
         setHasSubmitted(true);
 
-        // if (validationErrors.length) return alert("Cannot edit post. Please correct error.");
+        if (validationErrors.length) return alert("Cannot edit post. Please correct error.");
 
         const updatedPost = await dispatch(thunkUpdatePost(post.id, caption))
 
@@ -43,15 +43,14 @@ export default function UpdatePostForm({post, setTrigger}) {
 
     return (
         <div>
-          <img src={post.picture}></img>
-          <form onSubmit={handleSubmit}>
+          <form className="update-post-form"onSubmit={handleSubmit}>
               {hasSubmitted && validationErrors.length > 0 && (
                 <div className="errorHandling">
-                  <ul className='errors'>
+                  <ul className='errors-comments'>
                     {validationErrors.map((error) => (
-                      <div key={error} id="error">
+                      <li key={error} id="error">
                       {error}
-                      </div>
+                      </li>
                     ))}
                   </ul>
                 </div>
@@ -60,8 +59,8 @@ export default function UpdatePostForm({post, setTrigger}) {
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
               ></textarea>
-              <button type="submit">Edit</button>
-              <button onClick={setTrigger}>Cancel</button>
+              <button id="post-edit-comment" type="submit">Edit</button>
+              <button id="post-edit-comment" onClick={setTrigger}>Cancel</button>
           </form>
 
         </div>

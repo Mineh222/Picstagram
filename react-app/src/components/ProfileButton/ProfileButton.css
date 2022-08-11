@@ -1,5 +1,6 @@
 #nav_bar_profile_pic {
     width: 2rem;
+    border-radius: 50%;
 }
 
 .profile-icon-button {

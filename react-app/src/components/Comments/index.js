@@ -17,11 +17,14 @@ export default function Comments({comment}) {
         <div>
                 {!showUpdateCommentForm ?
                     <>
-                        <div>{comment.user.username} {comment.comment}</div>
+                        <div>
+                            <div id="comment-username">{comment.user.username}</div>
+                            <span>{comment.comment}</span>
+                        </div>
                         {(comment.user_id === sessionUser.id) && (
                             <>
-                                <button onClick={() => setShowUpdateCommentForm(true)}>Edit</button>
-                                <button onClick={() => dispatch(thunkDeleteComment(comment.id))}>Delete</button>
+                                <button  id="post-edit-comment" onClick={() => setShowUpdateCommentForm(true)}>Edit</button>
+                                <button id="post-edit-comment" onClick={() => dispatch(thunkDeleteComment(comment.id))}>Delete</button>
                             </>
                         )}
                     </>

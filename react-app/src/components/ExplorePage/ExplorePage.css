@@ -1,0 +1,13 @@
+.explore-page-pics {
+    display: flex;
+    flex-direction: row;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 0.5rem;
+    gap: 10px;
+}
+
+#explore-page-picture {
+    width: 200px;
+    height: 200px;
+}

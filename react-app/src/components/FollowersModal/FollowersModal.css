@@ -1,0 +1,28 @@
+.follow-modal-user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+}
+
+#follow-modal-user-pic {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 5px;
+}
+
+#follows-modal-heading {
+    text-align: center;
+    font-size: 14px;
+}
+
+#heading-container-follows-modal {
+    border-bottom: 1px solid lightgray;
+}
+
+#username-follow-modal {
+    font-weight: bold;
+    margin-bottom: 0.1rem;
+}

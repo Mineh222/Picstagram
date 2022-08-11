@@ -40,25 +40,26 @@ export default function UpdateCommentForm({comment, setTrigger}) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="edit-comment-container" onSubmit={handleSubmit}>
             {hasSubmitted && validationErrors.length > 0 && (
               <div className="errorHandling">
-                <ul className="errors">
+                <ul className="errors-comments">
                   {validationErrors.map((error) => (
-                    <div key={error} id="error">
+                    <li key={error} id="error">
                       {error}
-                    </div>
+                    </li>
                   ))}
                 </ul>
               </div>
             )}
             <textarea
+                className={validationErrors.length > 0 ? "update-comment-box-errors" : "update-comment-box"}
                 required
                 value={updatedComment}
                 onChange={(e) => setUpdatedComment(e.target.value)}
             ></textarea>
-            <button type='submit'>Post</button>
-            <button onClick={setTrigger}>Cancel</button>
+            <button id="post-edit-comment" type='submit'>Edit</button>
+            <button id="cancel-edit-comment" onClick={setTrigger}>Cancel</button>
         </form>
     )
 }

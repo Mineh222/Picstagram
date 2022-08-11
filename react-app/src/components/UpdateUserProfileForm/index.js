@@ -29,7 +29,8 @@ export default function UpdateUserProfileForm() {
     useEffect(() => {
         const errors = [];
         if (filteredUsernames.includes(username)) errors.push("Username already exists");
-        if (fullName.length > 100) errors.push("Name cannot exceed 100 characters.");
+        if (username.length > 20) errors.push("Username cannot exceed 20 characters")
+        if (fullName.length > 40) errors.push("Name cannot exceed 40 characters.");
         if (bio.length > 150) errors.push("Bio cannot exceed 150 characters");
         setValidationErrors(errors)
     }, [username, fullName, bio])

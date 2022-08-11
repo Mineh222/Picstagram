@@ -41,11 +41,8 @@ def email_validate(form, field):
 
 class SignUpForm(FlaskForm):
     email = StringField('email', validators=[DataRequired(), user_exists, email_validate])
-    full_name = StringField('full_name', validators=[DataRequired(), Length(max=100, message="Full Name cannot exceed 100 characters")])
+    full_name = StringField('full_name', validators=[DataRequired(), Length(max=40, message="Full Name cannot exceed 40 characters")])
     username = StringField(
-        'username', validators=[DataRequired(), username_exists, Length(max=40, message="Username cannot exceed 40 characters")])
+        'username', validators=[DataRequired(), username_exists, Length(max=20, message="Username cannot exceed 20 characters")])
     password = StringField('password', validators=[DataRequired(), password_validate])
     confirmPassword = StringField('confirmPassword', validators=[DataRequired(), password_match])
-
-
-#  Email(message="Please enter a valid email address.")]

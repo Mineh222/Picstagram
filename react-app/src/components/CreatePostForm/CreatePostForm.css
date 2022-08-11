@@ -1,7 +1,12 @@
-#upload_post_photo.upload_post_photo_input {
+#upload_post_photo {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    background-color: transparent;
+    border: none;
+    margin-right: 5rem;
+    margin-top: 0.5rem;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .upload_photo_label {
@@ -18,4 +23,58 @@
 
 input[type=file]::file-selector-button {
     visibility: hidden;
+}
+
+#create-post-heading {
+    text-align: center;
+    border-bottom: 1px solid lightgray;
+}
+
+.create-post-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-post-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    margin-bottom: 1rem;
+}
+
+textarea {
+    margin-bottom: 1rem;
+}
+
+#photo-icon {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+#create-post-btn {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    color: white;
+    background-color: #0095F6;
+    cursor: pointer;
+    padding: 5px 18px;
+    border-radius: 4px;
+    width: 240px;
+    border: none;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.create-caption-input {
+    display: flex;
+}
+
+#caption-label-create {
+    margin-right: 1rem;
 }

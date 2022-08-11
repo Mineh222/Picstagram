@@ -49,9 +49,9 @@ function App() {
         <ProtectedRoute path='/:username' exact={true} >
           <UserProfile/>
         </ProtectedRoute>
-        <ProtectedRoute path='/post/new' exact={true} >
+        {/* <ProtectedRoute path='/post/new' exact={true} >
           <CreatePostForm/>
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path='/explore/posts' exact={true} >
           <ExplorePage/>
         </ProtectedRoute>

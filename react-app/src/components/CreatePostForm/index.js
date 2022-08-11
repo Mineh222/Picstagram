@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom';
 import { thunkCreatePost } from "../../store/posts";
+import InsertPhotoOutlinedIcon from '@material-ui/icons/InsertPhotoOutlined';
 import './CreatePostForm.css'
 
 
-export default function CreatePostForm() {
+export default function CreatePostForm({closeCreateFormModal}) {
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -20,12 +21,16 @@ export default function CreatePostForm() {
 
     useEffect(() => {
         if (picture === null) validationErrors.push("Please upload a photo from your computer.")
+        if (caption.length > 150) validationErrors.push("Caption cannot exceed 150 characters.")
         setErrors(validationErrors)
-    }, [picture])
+    }, [picture, caption])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
+
+        if (errors.length) return alert("Cannot post picture. Please try again.");
+
         const formData = new FormData();
         formData.append("picture", picture);
         formData.append('caption', caption);
@@ -33,8 +38,9 @@ export default function CreatePostForm() {
         const newPost = await dispatch(thunkCreatePost(formData))
 
         if (newPost) {
-            reset();
-            history.push(`/${username}`)
+            // reset();
+            closeCreateFormModal();
+            history.push(`/${username}`);
         }
     }
 
@@ -45,60 +51,68 @@ export default function CreatePostForm() {
 
     const updatePicture = (e) => {
         const file = e.target.files[0];
-        if (!file?.name.includes("jpg") && !file?.name.includes("jpeg") && !file?.name.includes("png")) {
-            validationErrors.push("Please provide a proper image (e.g., .jpg, .jpeg, .png)")
-        }
-        if (validationErrors.length) {
-            setErrors(validationErrors)
-        }
-
+        // if (!file?.name.includes("jpg") && !file?.name.includes("jpeg") && !file?.name.includes("png")) {
+        //     validationErrors.push("Please provide a proper image (e.g., .jpg, .jpeg, .png)")
+        // }
+        // if (validationErrors.length) {
+        //     setErrors(validationErrors)
+        // }
         setPicture(file);
     }
 
     const updateCaption = (e) => {
         const caption = e.target.value;
-        if (caption.length > 150) {
-            validationErrors.push("Caption length cannot exceed 150 characters.")
-        }
-        if (validationErrors.length) {
-            setErrors(validationErrors)
-        }
         setCaption(caption);
     }
 
+    const buttonStyles = {
+        fontSize: "xxx-large",
+    }
+
     return (
-        <form onSubmit={handleSubmit}>
-            {hasSubmitted && errors.length > 0 && (
-              <div className="errorHandling">
-                <div className="errorTitle">
-                  Please fix the following error(s) before submitting:
+        <>
+            <h3 id="create-post-heading">Create new post</h3>
+            <div className="create-post-container">
+                <div id="photo-icon">
+                    <InsertPhotoOutlinedIcon style={buttonStyles}/>
                 </div>
-                <ul className='errors'>
-                  {errors.map((error) => (
-                    <div key={error} id="error">
-                    {error}
+                <form className="create-post-form" onSubmit={handleSubmit}>
+                    {hasSubmitted && errors.length > 0 && (
+                    <div className="errorHandling">
+                        <div className="errorTitle">
+                        Please fix the following error(s) before submitting:
+                        </div>
+                        <ul className='errors'>
+                        {errors.map((error) => (
+                            <li key={error} id="error">
+                            {error}
+                            </li>
+                        ))}
+                        </ul>
                     </div>
-                  ))}
-                </ul>
-              </div>
-            )}
-            <label className="upload_photo_label" htmlFor="upload_post_photo">Select from computer</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={updatePicture}
-              id="upload_post_photo"
-              className="upload_post_photo_input"
-            />
-            <label>Caption:</label>
-            <textarea
-                placeholder="Optional"
-                type="text"
-                name="caption"
-                onChange={updateCaption}
-                value={caption}
-            ></textarea>
-            <button type="submit">Submit</button>
-        </form>
+                    )}
+                    <label className="upload_photo_label" htmlFor="upload_post_photo">Select from computer</label>
+                    <input
+                    type="file"
+                    accept="image/*"
+                    onChange={updatePicture}
+                    id="upload_post_photo"
+                    className="upload_post_photo_input"
+                    />
+                    <div className="create-caption-input">
+                        <label id="caption-label-create">Caption:</label>
+                        <textarea
+                            placeholder="Optional"
+                            type="text"
+                            name="caption"
+                            onChange={updateCaption}
+                            value={caption}
+                        ></textarea>
+                    </div>
+                    <button id="create-post-btn"type="submit">Submit</button>
+                </form>
+
+            </div>
+        </>
     )
 }

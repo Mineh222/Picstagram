@@ -7,6 +7,7 @@ const GET_ALL_POSTS = 'post/getAllPosts';
 const DELETE_POST = 'post/deletePost';
 const GET_DEMO_POSTS = 'post/getDemoPosts';
 const GET_FEED_POSTS = 'post/getFeedPosts';
+const CLEAR_POSTS = 'posts/clearPosts';
 
 export const actionGetUserPosts = (posts) => {
     return {
@@ -70,6 +71,10 @@ export const actionDeletePost = (postId) => {
         postId
     }
 }
+
+export const clearPosts = () => ({
+    type: CLEAR_POSTS
+  })
 
 export const thunkGetUserPosts = (username) => async (dispatch) => {
     const responses = await fetch(`/api/posts/${username}`)
@@ -252,6 +257,9 @@ const postsReducer = (state = initialState, action) => {
         case DELETE_POST:
             delete newState[action.postId]
             return newState
+
+        case CLEAR_POSTS:
+            return {};
 
         default:
             return state;

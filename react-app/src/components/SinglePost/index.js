@@ -27,8 +27,9 @@ export default function SinglePost() {
         dispatch(thunkGetSinglePost(postId))
     }, [dispatch, postId])
 
-    const onDelete = () => {
-        dispatch(thunkDeletePost(postId))
+    const onDelete = async (e) => {
+        await dispatch(thunkDeletePost(postId))
+        history.push(`/${sessionUser.username}`)
     }
 
     useEffect(() => {

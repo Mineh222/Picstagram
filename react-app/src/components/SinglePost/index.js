@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { thunkGetSinglePost, thunkDeletePost } from '../../store/posts';
 import { thunkGetAllPostComments } from '../../store/comments';
-import { NavLink, useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import Comments from '../Comments';
 import CommentForm from '../CommentForm';
@@ -39,48 +39,60 @@ export default function SinglePost() {
     if (!post) return null
 
     return (
-        <div>
-            <img id="user_avator_single_post" src={post.user.profile_pic} alt="user_profile_pic"></img>
-            <span>{post.user.username}</span>
-            {!showUpdatePostForm ?
-                <>
-                    <div>
-                        <img src={post.picture}></img>
-                        <div>{post.caption}</div>
-                    </div>
-                    {sessionUser.id == post.user_id && (
-                        <>
-                            <button onClick={() => setShowUpdatePostForm(true)}>Edit Post</button>
-                            <button onClick={onDelete}>Delete</button>
-                        </>
-                    )}
-                </>
-                :
-                < UpdatePostForm post={post} setTrigger={() => setShowUpdatePostForm(false)}/>
-            }
-            <div>
-                <Likes sessionUser={sessionUser} post={post}/>
-            </div>
-            <span>
-                {post.likes.length === 0 && (
-                    <div></div>
-                )}
-                {post.likes.length === 1 && (
-                    <span>{post.likes.length} like</span>
-                )}
-                {post.likes.length > 1 && (
-                    <span>{post.likes.length} likes</span>
-                )}
-            </span>
-            <div >
-              {comments.map((comment) => (
-                <div key={comment.id}>
-                  <Comments comment={comment}/>
+        <div className="single-post-main-container">
+            <div className="single-post-container">
+                <div>
+                        <div className="picture-container">
+                            <div>
+                                <img id="single-post-pic"src={post.picture}></img>
+                                <div id={!sessionUser ? "single-post-caption" : "single-post-caption2"}>{post.caption}</div>
+                            </div>
+                        {!showUpdatePostForm ?
+                            <>
+                                {sessionUser.id == post.user_id && (
+                                    <div id="post-buttons">
+                                        <button id="edit-post-btn" onClick={() => setShowUpdatePostForm(true)}>Edit Post</button>
+                                        <button id="delete-post-btn" onClick={onDelete}>Delete Post</button>
+                                    </div>
+                                )}
+                            </>
+                            :
+                                < UpdatePostForm post={post} setTrigger={() => setShowUpdatePostForm(false)}/>
+                        }
+                        </div>
                 </div>
-              ))}
-            </div>
-            <div>
-                <CommentForm />
+                <div className="comments-container">
+                    <div id="user-info-single-post">
+                        <img id="user_avator_single_post" src={post.user.profile_pic} alt="user_profile_pic"></img>
+                        <span>{post.user.username}</span>
+                    </div>
+                    <div className="likes-container">
+                        <div>
+                            <Likes sessionUser={sessionUser} post={post}/>
+                        </div>
+                        <span>
+                            {post.likes.length === 0 && (
+                                <div></div>
+                            )}
+                            {post.likes.length === 1 && (
+                                <span>{post.likes.length} like</span>
+                            )}
+                            {post.likes.length > 1 && (
+                                <span>{post.likes.length} likes</span>
+                            )}
+                        </span>
+                    </div>
+                    <div className="comments">
+                        {comments.map((comment) => (
+                            <div key={comment.id}>
+                            <Comments comment={comment}/>
+                            </div>
+                        ))}
+                    </div>
+                    <div className="comment-form">
+                        <CommentForm />
+                    </div>
+                </div>
             </div>
         </div>
     )

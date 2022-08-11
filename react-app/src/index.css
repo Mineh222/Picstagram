@@ -5,8 +5,9 @@ img {
 }
 
 body {
+    position: absolute;
     margin: 0;
     padding: 0;
-    height: 100%;
     width: 100%;
+    background-color: #fafafa;
 }

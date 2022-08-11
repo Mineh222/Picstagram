@@ -16,7 +16,7 @@ const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   return (
-    <nav>
+    <nav className='nav-bar-container'>
       {sessionUser && (
       <ul className='navbar'>
           <>

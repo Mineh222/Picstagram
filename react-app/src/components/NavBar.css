@@ -10,6 +10,22 @@
     border-bottom: 1px solid lightgray;
   }
 
-  #nav_bar_profile_pic {
-    width: 2rem;
-  }
+.picstagram-logo {
+  width: 100px;
+}
+
+.nav-bar-right {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-bar {
+  width: 250px;
+}
+
+#right-side-icon {
+  margin: 0 10px;
+  color: black;
+}

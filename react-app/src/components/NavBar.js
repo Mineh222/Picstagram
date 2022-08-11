@@ -4,10 +4,12 @@ import { NavLink } from 'react-router-dom';
 import LoginForm from './auth/LoginForm';
 import LogoutButton from './auth/LogoutButton';
 import SearchBar from './SearchBar';
-import HomeIcon from "@material-ui/icons/Home";
+import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
 import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
 import './NavBar.css'
+import ProfileButton from './ProfileButton';
+import picstagramLogo from "../images/picstagram-logo.png";
 
 
 const NavBar = () => {
@@ -18,22 +20,26 @@ const NavBar = () => {
       {sessionUser && (
       <ul className='navbar'>
           <>
+            <div>
+              <NavLink to={`/`} exact={true}>
+                <img className="picstagram-logo" src={picstagramLogo} alt='picstagram-logo'></img>
+              </NavLink>
+            </div>
             <div className='search-bar'>
               <SearchBar />
             </div>
-            <NavLink to={`/`} exact={true}>
-              <HomeIcon />
-            </NavLink>
-            <NavLink to={`/explore/posts`} exact={true}>
-              <ExploreOutlinedIcon />
-            </NavLink>
-            <NavLink to='/post/new' exact={true}>
-              <AddBoxOutlinedIcon />
-            </NavLink>
-            <NavLink to={`/${sessionUser.username}`} exact={true}>
-              <img id="nav_bar_profile_pic"src={sessionUser.profile_pic}></img>
-            </NavLink>
-            <LogoutButton />
+            <div className='nav-bar-right'>
+              <NavLink id="right-side-icon" to={`/`} exact={true}>
+                <HomeOutlinedIcon />
+              </NavLink>
+              <NavLink id="right-side-icon" to='/post/new' exact={true}>
+                <AddBoxOutlinedIcon />
+              </NavLink>
+              <NavLink id="right-side-icon" to={`/explore/posts`} exact={true}>
+                <ExploreOutlinedIcon />
+              </NavLink>
+              <ProfileButton user={sessionUser}/>
+            </div>
           </>
       </ul>
       )}

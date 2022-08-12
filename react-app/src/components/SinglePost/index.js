@@ -61,7 +61,7 @@ export default function SinglePost() {
                         }
                     </div>
                     <div className="user-caption-container">
-                        <img id="post-owner-user-pic" src={post.user.profile_pic} alt="user_profile_pic"></img>
+                        <img id="post-owner-user-pic2" src={post.user.profile_pic} alt="user_profile_pic"></img>
                         <span id="post-owner-username2">{post.user.username}</span>
                         {!showUpdatePostForm && (
                             <div id="single-post-caption">{post.caption}</div>

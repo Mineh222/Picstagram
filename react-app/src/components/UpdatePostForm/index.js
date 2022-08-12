@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams, NavLink } from 'react-router-dom';
 import { thunkUpdatePost, thunkGetSinglePost } from '../../store/posts';
 
-export default function UpdatePostForm({post, setTrigger}) {
+export default function UpdatePostForm({post, setTriggerUpdatePost, setTriggerEditDeleteModal}) {
     const history = useHistory()
     const dispatch = useDispatch()
 
@@ -36,7 +36,13 @@ export default function UpdatePostForm({post, setTrigger}) {
         setCaption('');
         setHasSubmitted(false);
         setValidationErrors([]);
-        setTrigger();
+        setTriggerUpdatePost(false);
+        setTriggerEditDeleteModal(false);
+    }
+
+    const closeModals = () => {
+      setTriggerUpdatePost(false);
+      setTriggerEditDeleteModal(false);
     }
 
     if (!post) return null
@@ -62,7 +68,7 @@ export default function UpdatePostForm({post, setTrigger}) {
               ></textarea>
               <div className="edit-comment-btns">
                 <button id="post-edit-comment" type="submit">Edit</button>
-                <button id="post-edit-comment" onClick={setTrigger}>Cancel</button>
+                <button id="post-edit-comment" onClick={closeModals}>Cancel</button>
               </div>
           </form>
     )

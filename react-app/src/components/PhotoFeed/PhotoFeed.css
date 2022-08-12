@@ -56,18 +56,20 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    flex-wrap: wrap;
 }
 
 #home-page-username {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     font-weight: bold;
+    float: left;
 }
 
 #home-page-caption {
     word-break: normal;
+    width: 293px;
 }
 
 #home-page-caption-long {
     word-break: break-all;
+    width: 293px;
 }

@@ -19,9 +19,11 @@ export default function Comments({comment}) {
                     <>
                         <div className="comment-details">
                             <img id="comment-user-pic" src={comment.user.profile_pic}></img>
-                            <div id="comment-username">{comment.user.username}</div>
-                            <div id={comment.comment.includes(" ") ? 'comment-text-container' : 'user-comment-long-string'}>
-                                <div id="user-comment">{comment.comment}</div>
+                            <div className='comment-username-text'>
+                                <div id={comment.comment.includes(" ") ? 'comment-text-container' : 'user-comment-long-string'}>
+                                    <div id="comment-username">{comment.user.username}</div>
+                                    <div id="user-comment">{comment.comment}</div>
+                                </div>
                             </div>
                         </div>
                         <div className="comment-details">

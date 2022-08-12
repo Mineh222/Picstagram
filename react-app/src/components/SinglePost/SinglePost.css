@@ -120,10 +120,12 @@
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     font-size: 14px;
+    float: left;
 }
 
 #single-post-caption {
     font-size: 14px;
+    margin-left: 0.5rem;
 }
 
 .comments {
@@ -137,7 +139,6 @@
     flex-direction: row;
     margin-top: 0.5rem;
     align-items: flex-start;
-    /* word-break: break-all */
 }
 
 #comment-user-pic {
@@ -151,20 +152,18 @@
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     font-size: 14px;
+    float: left;
 }
 
 #user-comment {
     font-size: 14px;
+    margin-left: 0.5rem;
 }
 
 .comment-btns {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-}
-
-#sessionUser-comment {
-    font-size: 14px;
 }
 
 .likes-container {
@@ -189,4 +188,10 @@
 
 #caption-container-long-string {
     word-break: break-all;
+}
+
+.comment-username-text {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:initial
 }

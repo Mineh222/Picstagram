@@ -17,9 +17,15 @@ export default function CreatePostForm({closeCreateFormModal}) {
 
     const username = useSelector((state) => state.session.user.username);
 
-    let validationErrors = [];
+    // console.log(picture)
+    // console.log(picture.type);
+
 
     useEffect(() => {
+        const validationErrors = [];
+        if (!picture?.type.includes('png') && !picture?.type.includes('jpg') && !picture?.type.includes('jpeg')) {
+            validationErrors.push("Image type must be a png, jpg, or jpeg file.")
+        }
         if (picture === null) validationErrors.push("Please upload a photo from your computer.")
         if (caption.length > 150) validationErrors.push("Caption cannot exceed 150 characters.")
         setErrors(validationErrors)

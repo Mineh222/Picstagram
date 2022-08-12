@@ -1,18 +1,8 @@
-#user_avator_single_post {
-    border-radius: 50%;
-    width: 10%;
-    height: auto;
-}
-
 #like_button{
     background: transparent;
     border: none;
     color: lightgray
 }
-
-/* #like_button:hover {
-    color: red;
-} */
 
 #unlike_button {
     background: transparent;
@@ -21,192 +11,164 @@
     transition-delay: color 2s;
 }
 
-/* #unlike_button:hover {
-    color: lightgray
-} */
+.single-post-container-main {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2rem;
+}
 
-.single-post-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-left: 50px;
-    padding-right: 50px;
-
+.post-page-left {
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #single-post-pic {
-    width: 500px;
-    height: 500px;
+    width:500px;
+    height:500px;
 }
 
-.single-post-main-container {
-    display: flex;
-    justify-content: center;
-    margin: auto;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-}
-
-.comments-container {
+.post-page-right {
+    width: 50%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin-left: 15%;
+    margin-left: 1rem;
 }
 
-.picture-container {
-    display: flex;
-    justify-content: center;
-    margin-left: 50%;
+#post-owner-user-pic {
+    height: 3vw;
+    width: 3vw;
+    border-radius: 50%;
+    padding: 5px;
 }
 
-#single-post-caption {
-    position: absolute;
-    margin-left: -5rem;
-    margin-top: -29.7rem;
-    width: 300px;
+#post-owner-user-pic2 {
+    height: 3vw;
+    width: 3vw;
+    border-radius: 50%;
 }
 
-#single-post-caption2 {
-    position: absolute;
-    margin-left: 41rem;
-    margin-top: -29.8rem;
-    width: 300px;
-}
-
-#user-info-single-post {
+.main-post-user-info {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.2rem;
+    border-bottom: 1px solid lightgray;
+    width: 50%;
+}
+
+#post-owner-username {
     font-weight: bold;
+    margin-left: 0.5rem;
+    margin-right: 3rem;
+    font-size: 14px;
+}
+
+#edit-post-btn, #delete-post-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgba(var(--d69,0,149,246),1);
+}
+
+.update-post-form {
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+#edit-post-input {
+    /* resize: none; */
+    overflow-y: scroll;
+    border-radius: 2px;
+    border: 1px solid rgb(137, 135, 135);
+}
+
+#edit-post-input:hover {
+    border: 1px solid rgba(var(--d69,0,149,246),1);
+}
+
+.errors-comments {
+    color: red;
+    font-size: 14px;
+    width: 300px;
+    margin-left: -2rem;
+}
+
+#post-edit-comment {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgba(var(--d69,0,149,246),1);
+}
+
+.edit-comment-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.user-caption-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    width: 50%;
     margin-top: 1rem;
-    margin-left: 2rem;
+}
+
+#post-owner-username2 {
+    font-weight: bold;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 14px;
+}
+
+#single-post-caption {
+    font-size: 14px;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.comment-details {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.5rem;
+    align-items: flex-start;
+}
+
+#comment-user-pic {
+    height: 3vw;
+    width: 3vw;
+    border-radius: 50%;
+}
+
+#comment-username {
+    font-weight: bold;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: 14px;
+}
+
+#user-comment {
+    font-size: 14px;
+}
+
+.comment-btns {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+#sessionUser-comment {
+    font-size: 14px;
 }
 
 .likes-container {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0.2rem;
-    font-weight: bold;
-    margin-left: 2rem;
-}
-
-#edit-post-btn {
-    width: 100px;
-    height: 20px;
-    align-items: center;
-    border: none;
-    color: rgba(var(--d69,0,149,246),1);
-    background-color: transparent;
-    cursor: pointer;
-}
-
-#post-buttons {
-    position: absolute;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 100px;
-    height: 20px;
-    gap: 1rem;
-    margin-left: 2rem;
-    margin-top: -2rem;
-}
-
-#delete-post-btn {
-    width: 100px;
-    height: 20px;
-    border: none;
-    color: rgba(var(--d69,0,149,246),1);
-    background-color: transparent;
-    cursor: pointer;
-}
-
-.comments {
-    margin-left: 2.5rem;
     margin-top: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-#comment-username {
-    font-weight: bold;
-}
-
-.comment-form {
-    margin-left: 2.5rem;
-    margin-top: 0.5rem;
-}
-
-.comment-form2 {
-    display: flex;
-    flex-direction: row;
-}
-
-#post-comment-btn {
-    height: 20px;
-    border: none;
-    color: rgba(var(--d69,0,149,246),1);
-    background-color: transparent;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.errors-comments {
-    position: relative;
-    color: red;
-
-}
-
-#comment-box-errors {
-    margin-top: 3rem;
-    position: absolute;
-    margin-left: 2.5rem;
-}
-
-#post-comment-box-errors {
-    margin-top: 3rem;
-    position: absolute;
-    margin-left: 13rem;
-    height: 20px;
-    border: none;
-    color: rgba(var(--d69,0,149,246),1);
-    background-color: transparent;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.edit-comment-container {
-    display: flex;
-    flex-direction: row;
-}
-
-#post-edit-comment {
-    height: 20px;
-    border: none;
-    color: rgba(var(--d69,0,149,246),1);
-    background-color: transparent;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-#cancel-edit-comment {
-    height: 20px;
-    border: none;
-    color: rgba(var(--d69,0,149,246),1);
-    background-color: transparent;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-.update-post-form {
-    display: flex;
-   position: absolute;
-   margin-left: -20rem;
-   margin-top: -3rem;
 }

@@ -39,14 +39,14 @@ export default function SinglePost() {
     if (!post) return null
 
     return (
-        <div className="single-post-main-container">
-            <div className="single-post-container">
-                <div>
-                        <div className="picture-container">
-                            <div>
-                                <img id="single-post-pic"src={post.picture}></img>
-                                <div id={!sessionUser ? "single-post-caption" : "single-post-caption2"}>{post.caption}</div>
-                            </div>
+        <div className="single-post-container-main">
+            <div className="post-page-left">
+                    <img id="single-post-pic"src={post.picture}></img>
+            </div>
+            <div className="post-page-right">
+                    <div className="main-post-user-info">
+                        <img id="post-owner-user-pic" src={post.user.profile_pic}></img>
+                        <span id="post-owner-username">{post.user.username}</span>
                         {!showUpdatePostForm ?
                             <>
                                 {sessionUser.id == post.user_id && (
@@ -57,14 +57,22 @@ export default function SinglePost() {
                                 )}
                             </>
                             :
-                                < UpdatePostForm post={post} setTrigger={() => setShowUpdatePostForm(false)}/>
+                            < UpdatePostForm post={post} setTrigger={() => setShowUpdatePostForm(false)}/>
                         }
-                        </div>
-                </div>
-                <div className="comments-container">
-                    <div id="user-info-single-post">
-                        <img id="user_avator_single_post" src={post.user.profile_pic} alt="user_profile_pic"></img>
-                        <span>{post.user.username}</span>
+                    </div>
+                    <div className="user-caption-container">
+                        <img id="post-owner-user-pic2" src={post.user.profile_pic} alt="user_profile_pic"></img>
+                        <span id="post-owner-username2">{post.user.username}</span>
+                        {!showUpdatePostForm && (
+                            <div id="single-post-caption">{post.caption}</div>
+                            )}
+                    </div>
+                    <div className="comments">
+                        {comments.map((comment) => (
+                            <div key={comment.id}>
+                                <Comments comment={comment}/>
+                            </div>
+                        ))}
                     </div>
                     <div className="likes-container">
                         <div>
@@ -82,17 +90,9 @@ export default function SinglePost() {
                             )}
                         </span>
                     </div>
-                    <div className="comments">
-                        {comments.map((comment) => (
-                            <div key={comment.id}>
-                            <Comments comment={comment}/>
-                            </div>
-                        ))}
-                    </div>
                     <div className="comment-form">
                         <CommentForm />
                     </div>
-                </div>
             </div>
         </div>
     )

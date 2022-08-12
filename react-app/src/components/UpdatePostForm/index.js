@@ -42,7 +42,6 @@ export default function UpdatePostForm({post, setTrigger}) {
     if (!post) return null
 
     return (
-        <div>
           <form className="update-post-form"onSubmit={handleSubmit}>
               {hasSubmitted && validationErrors.length > 0 && (
                 <div className="errorHandling">
@@ -56,14 +55,15 @@ export default function UpdatePostForm({post, setTrigger}) {
                 </div>
               )}
               <textarea
+                  id="edit-post-input"
                   placeholder='Optional'
                   value={caption}
                   onChange={(e) => setCaption(e.target.value)}
               ></textarea>
-              <button id="post-edit-comment" type="submit">Edit</button>
-              <button id="post-edit-comment" onClick={setTrigger}>Cancel</button>
+              <div className="edit-comment-btns">
+                <button id="post-edit-comment" type="submit">Edit</button>
+                <button id="post-edit-comment" onClick={setTrigger}>Cancel</button>
+              </div>
           </form>
-
-        </div>
     )
 }

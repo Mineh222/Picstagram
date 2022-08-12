@@ -14,19 +14,22 @@ export default function Comments({comment}) {
     if (!comments) return null;
 
     return (
-        <div>
+        <div className="comment-details">
                 {!showUpdateCommentForm ?
                     <>
-                        <div>
+                        <div className="comment-details">
+                            <img id="comment-user-pic" src={comment.user.profile_pic}></img>
                             <div id="comment-username">{comment.user.username}</div>
-                            <span>{comment.comment}</span>
+                            <div id={comment.user.id != sessionUser.id ? "user-comment" : "sessionUser-comment"}>{comment.comment}</div>
                         </div>
-                        {(comment.user_id === sessionUser.id) && (
-                            <>
-                                <button  id="post-edit-comment" onClick={() => setShowUpdateCommentForm(true)}>Edit</button>
-                                <button id="post-edit-comment" onClick={() => dispatch(thunkDeleteComment(comment.id))}>Delete</button>
-                            </>
-                        )}
+                        <div className="comment-details">
+                            {(comment.user_id === sessionUser.id) && (
+                                <div className="comment-btns">
+                                    <button  id="post-edit-comment" onClick={() => setShowUpdateCommentForm(true)}>Edit</button>
+                                    <button id="post-edit-comment" onClick={() => dispatch(thunkDeleteComment(comment.id))}>Delete</button>
+                                </div>
+                            )}
+                        </div>
                     </>
                     :
                     <UpdateCommentForm comment={comment} setTrigger={() => setShowUpdateCommentForm(false)}/>

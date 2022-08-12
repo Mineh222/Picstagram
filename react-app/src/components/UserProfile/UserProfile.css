@@ -126,3 +126,11 @@
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
+
+#profile-page-bio {
+    word-break: normal;
+}
+
+#profile-page-bio-long {
+    word-break: break-all;
+}

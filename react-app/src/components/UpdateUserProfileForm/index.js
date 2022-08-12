@@ -4,6 +4,7 @@ import { useHistory, NavLink } from 'react-router-dom';
 import { thunkUpdateUserProfile } from "../../store/session";
 import { thunkGetAllUsers } from '../../store/users';
 import UploadProfilePic from "../UserProfilePic";
+import './UpdateUserProfileForm.css';
 
 export default function UpdateUserProfileForm() {
     const history = useHistory();
@@ -49,56 +50,59 @@ export default function UpdateUserProfileForm() {
 
     return (
         <div className="editProfileContainer">
-            <img className="edit_user_propic" src={user.profile_pic} alt="user_profile_picture"></img>
-            <div>
-                {!updatePic ?
-                    <button onClick={() => setUpdatePic(true)}>Change Profile Picture</button>
-                    : <UploadProfilePic hideForm={() => setUpdatePic(false)} />
-                }
-            </div>
-            <form onSubmit={handleSubmit}>
-                {hasSubmitted && validationErrors.length > 0 && (
-                  <div className="errorHandling">
-                    <div className="errorTitle">
-                      Please fix the following error(s) before submitting:
+            <div className="edit-profile-border">
+                <img className="edit_user_propic" src={user.profile_pic} alt="user_profile_picture"></img>
+                <div>
+                    {!updatePic ?
+                        <button id="change-propic-btn" onClick={() => setUpdatePic(true)}>Change Profile Picture</button>
+                        : <UploadProfilePic hideForm={() => setUpdatePic(false)} />
+                    }
+                </div>
+                <form className="update-profile-form" onSubmit={handleSubmit}>
+                    {hasSubmitted && validationErrors.length > 0 && (
+                    <div className="errorHandling">
+                        <div className="errorTitle">
+                        Please fix the following error(s) before submitting:
+                        </div>
+                        <ul className='errors'>
+                        {validationErrors.map((error) => (
+                            <li key={error} id="error">
+                            {error}
+                            </li>
+                        ))}
+                        </ul>
                     </div>
-                    <ul className='errors'>
-                      {validationErrors.map((error) => (
-                        <li key={error} id="error">
-                        {error}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                <label>Name</label>
-                <input
-                    type="text"
-                    placeholder="Name"
-                    onChange={(e) => setFullName(e.target.value)}
-                    value={fullName}
-                    required
-                ></input>
-                <label>Username</label>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    onChange={(e) => setUsername(e.target.value)}
-                    value={username}
-                    required
-                ></input>
-                <label>Bio</label>
-                <textarea
-                    type="bio"
-                    placeholder="Optional Bio"
-                    onChange={(e) => setBio(e.target.value)}
-                    value={bio ? bio: ''}
-                ></textarea>
-                <button type="submit">Done</button>
-                <NavLink to={`/${user.username}`}>
-                    <button>Cancel</button>
-                </NavLink>
-            </form>
+                    )}
+                    <label>Name</label>
+                    <input
+                        type="text"
+                        placeholder="Name"
+                        onChange={(e) => setFullName(e.target.value)}
+                        value={fullName}
+                        required
+                    ></input>
+                    <label>Username</label>
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        onChange={(e) => setUsername(e.target.value)}
+                        value={username}
+                        required
+                    ></input>
+                    <label>Bio</label>
+                    <textarea
+                        type="bio"
+                        placeholder="Optional Bio"
+                        onChange={(e) => setBio(e.target.value)}
+                        value={bio ? bio: ''}
+                    ></textarea>
+                    <button type="submit">Done</button>
+                    <NavLink to={`/${user.username}`}>
+                        <button>Cancel</button>
+                    </NavLink>
+                </form>
+
+            </div>
         </div>
     )
 }

@@ -1,0 +1,22 @@
+.editProfileContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+    /* width: 200px; */
+}
+
+.update-profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-profile-border {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.5px solid #222;
+    width: 300px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}

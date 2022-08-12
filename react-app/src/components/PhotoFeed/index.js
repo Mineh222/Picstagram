@@ -38,7 +38,7 @@ export default function PhotoFeedPage() {
                                 <img id="home-page-post-pic"src={post.picture}></img>
                                 <div className="home-page-user-caption">
                                     <div id="home-page-username">{post.user.username}</div>
-                                    <div id="home-page-caption">{post.caption}</div>
+                                    <div id={post.caption.includes(" ") ? "home-page-caption" : "home-page-caption-long"}>{post.caption}</div>
                                 </div>
                             </div>
                         </NavLink>

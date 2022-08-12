@@ -137,6 +137,7 @@
     flex-direction: row;
     margin-top: 0.5rem;
     align-items: flex-start;
+    /* word-break: break-all */
 }
 
 #comment-user-pic {
@@ -171,4 +172,21 @@
     flex-direction: row;
     align-items: center;
     margin-top: 0.5rem;
+}
+
+#comment-text-container {
+    word-break: normal;
+}
+
+
+#user-comment-long-string {
+    word-break: break-all;
+}
+
+#caption-container {
+    word-break: normal;
+}
+
+#caption-container-long-string {
+    word-break: break-all;
 }

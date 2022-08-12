@@ -1,14 +1,7 @@
 /* TODO Add site wide styles */
-img {
-    width: 20%;
-    height: auto;
-}
-
 body {
-    position: absolute;
     margin: 0;
     padding: 0;
-    width: 100%;
     background-color: #fafafa;
 }
 

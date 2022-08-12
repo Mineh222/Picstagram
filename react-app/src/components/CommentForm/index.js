@@ -16,7 +16,7 @@ export default function CommentForm() {
 
     useEffect(() => {
         const errors = [];
-        if (comment.length > 150) errors.push("Comment length cannot exceed 150 characters");
+        if (comment.length > 50) errors.push("Comment length cannot exceed 50 characters");
         setValidationerrors(errors);
     }, [comment])
 

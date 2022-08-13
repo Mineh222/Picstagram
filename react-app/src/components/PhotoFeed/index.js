@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { thunkGetDemoPosts, thunkGetFeedPosts } from '../../store/posts';
 import { thunkGetAllUsers } from '../../store/users';
@@ -13,6 +13,8 @@ export default function PhotoFeedPage() {
     const users = useSelector((state) => Object.values(state.user));
 
     const shuffledUsers = users.sort(() => Math.random() - 0.5)
+    const filteredUsers = shuffledUsers.filter(usr => usr.username != user.username)
+    const filtered = filteredUsers.filter(usrr => !usrr.username.includes("test"))
 
     useEffect(() => {
         if (user.following.length === 0) {
@@ -49,7 +51,7 @@ export default function PhotoFeedPage() {
             </div>
             <div className="suggested-users">
                 <h3 id="suggest-message">Suggestions For You</h3>
-                {shuffledUsers.slice(0,5).map(user => {
+                {filtered.slice(0,5).map(user => {
                     return (
                         <div className="suggested-users-info"key={user.id}>
                             <NavLink className="suggested-users-info" to={`/${user.username}`}>

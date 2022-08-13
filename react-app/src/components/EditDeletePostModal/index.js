@@ -50,7 +50,7 @@ export default function EditDeletePostModal({postId, sessionUser, post, setShowE
             background: '#fff',
             overflow: 'auto',
             WebkitOverflowScrolling: 'touch',
-            borderRadius: '12px',
+            borderRadius: '5px',
             outline: 'none',
             padding: '18px',
             paddingTop: '0px',

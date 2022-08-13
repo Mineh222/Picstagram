@@ -22,8 +22,8 @@ export default function ExplorePage() {
         <div className="explore-page-pics" >
             {shuffledPosts.map(post => {
                 return (
-                    <div className="explore-page-pics" key={post.id}>
-                        <NavLink className="explore-page-pics" to={`/post/${post.id}`}>
+                    <div key={post.id}>
+                        <NavLink to={`/post/${post.id}`}>
                             <img id="explore-page-picture" src={post.picture} alt={post.caption}></img>
                         </NavLink>
                     </div>

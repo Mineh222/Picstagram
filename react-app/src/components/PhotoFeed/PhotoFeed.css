@@ -1,4 +1,3 @@
-
 .suggested-users {
     display: flex;
     flex-direction: column;
@@ -60,6 +59,17 @@
 }
 
 #home-page-username {
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     font-weight: bold;
+    float: left;
+}
+
+#home-page-caption {
+    word-break: break-all;
+    width: 293px;
+}
+
+#home-page-caption-long {
+    word-break: break-all;
+    width: 293px;
 }

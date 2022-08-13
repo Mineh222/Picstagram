@@ -1,13 +1,17 @@
 .explore-page-pics {
-    display: flex;
-    flex-direction: row;
-    padding-left: 50px;
-    padding-right: 50px;
-    margin-top: 0.5rem;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    padding-left: 30rem;
+    padding-right: 30rem;
+    margin-top: 2rem;
 }
 
 #explore-page-picture {
     width: 200px;
     height: 200px;
+    padding: 10px;
 }

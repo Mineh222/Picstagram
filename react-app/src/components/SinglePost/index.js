@@ -12,6 +12,10 @@ import Likes from '../Likes';
 import './SinglePost.css';
 import UpdatePostForm from '../UpdatePostForm';
 
+import Modal from 'react-modal';
+import MoreHorizOutlinedIcon from '@material-ui/icons/MoreHorizOutlined';
+import EditDeletePostModal from '../EditDeletePostModal';
+
 export default function SinglePost() {
     const dispatch = useDispatch();
     const history = useHistory();
@@ -22,15 +26,16 @@ export default function SinglePost() {
     const comments = useSelector((state) => Object.values(state.comments));
 
     const [showUpdatePostForm, setShowUpdatePostForm ] = useState(false);
+    const [showEditDeleteModal, setShowEditDeleteModal] = useState(false);
 
     useEffect(() => {
         dispatch(thunkGetSinglePost(postId))
     }, [dispatch, postId])
 
-    const onDelete = async (e) => {
-        await dispatch(thunkDeletePost(postId))
-        history.push(`/${sessionUser.username}`)
-    }
+    // const onDelete = async (e) => {
+    //     await dispatch(thunkDeletePost(postId))
+    //     history.push(`/${sessionUser.username}`)
+    // }
 
     useEffect(() => {
         dispatch(thunkGetAllPostComments(postId))
@@ -38,34 +43,80 @@ export default function SinglePost() {
 
     if (!post) return null
 
+    function openEditDeleteModal() {
+        setShowEditDeleteModal(true)
+    }
+
+    const formStyles = {
+        overlay: {
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            width: '100%',
+            height: '100%',
+            minHeight: '100%',
+            padding: '12px',
+            backgroundColor: 'rgba(34, 34, 34, 0.65)'
+        },
+        content: {
+            position: 'relative',
+            margin: 'auto',
+            maxWidth: '300px',
+            height: '100px',
+            width: '100%',
+            top: '200px',
+            left: '40px',
+            right: '40px',
+            bottom: '40px',
+            border: '1px solid #ccc',
+            background: '#fff',
+            overflow: 'auto',
+            WebkitOverflowScrolling: 'touch',
+            borderRadius: '12px',
+            padding: '0px',
+            outline: 'none',
+            overflow: 'visibile'
+        }
+    }
+
     return (
         <div className="single-post-container-main">
             <div className="post-page-left">
                     <img id="single-post-pic"src={post.picture}></img>
             </div>
             <div className="post-page-right">
+                <div className="post-page-right-border">
                     <div className="main-post-user-info">
                         <img id="post-owner-user-pic" src={post.user.profile_pic}></img>
                         <span id="post-owner-username">{post.user.username}</span>
                         {!showUpdatePostForm ?
-                            <>
+                            <div id="more-containers">
                                 {sessionUser.id == post.user_id && (
-                                    <div id="post-buttons">
-                                        <button id="edit-post-btn" onClick={() => setShowUpdatePostForm(true)}>Edit Post</button>
-                                        <button id="delete-post-btn" onClick={onDelete}>Delete Post</button>
+                                    <div id="horizontal-btns-container">
+                                        <button id="edit-delete-btn" onClick={openEditDeleteModal}>
+                                            <MoreHorizOutlinedIcon />
+                                        </button>
+                                        <Modal isOpen={showEditDeleteModal} style={formStyles}>
+                                            <button id="close-edit-delete-modal" onClick={() => setShowEditDeleteModal(false)}>X</button>
+                                            <EditDeletePostModal setShowEditDeleteModal={setShowEditDeleteModal} post={post} postId={postId} sessionUser={sessionUser}/>
+                                        </Modal>
                                     </div>
                                 )}
-                            </>
+                            </div>
                             :
                             < UpdatePostForm post={post} setTrigger={() => setShowUpdatePostForm(false)}/>
                         }
                     </div>
                     <div className="user-caption-container">
                         <img id="post-owner-user-pic2" src={post.user.profile_pic} alt="user_profile_pic"></img>
-                        <span id="post-owner-username2">{post.user.username}</span>
-                        {!showUpdatePostForm && (
+                        <div id={post.caption.includes(" ") ? "caption-container" : "caption-container-long-string"}>
+                            <span id="post-owner-username2">{post.user.username}</span>
+                            {!showUpdatePostForm && (
                             <div id="single-post-caption">{post.caption}</div>
                             )}
+                        </div>
                     </div>
                     <div className="comments">
                         {comments.map((comment) => (
@@ -78,7 +129,7 @@ export default function SinglePost() {
                         <div>
                             <Likes sessionUser={sessionUser} post={post}/>
                         </div>
-                        <span>
+                        <span id="likes-count">
                             {post.likes.length === 0 && (
                                 <div></div>
                             )}
@@ -93,6 +144,8 @@ export default function SinglePost() {
                     <div className="comment-form">
                         <CommentForm />
                     </div>
+
+                </div>
             </div>
         </div>
     )

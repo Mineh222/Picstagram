@@ -1,7 +1,11 @@
 #like_button{
     background: transparent;
     border: none;
-    color: lightgray
+    cursor: pointer;
+}
+
+#like_button:hover {
+    color: rgb(184, 181, 181);
 }
 
 #unlike_button {
@@ -9,6 +13,7 @@
     border: none;
     color: red;
     transition-delay: color 2s;
+    cursor: pointer;
 }
 
 .single-post-container-main {
@@ -32,7 +37,7 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
 }
 
 #post-owner-user-pic {
@@ -53,7 +58,7 @@
     flex-direction: row;
     align-items: center;
     border-bottom: 1px solid lightgray;
-    width: 50%;
+    width: 100%;
 }
 
 #post-owner-username {
@@ -87,13 +92,6 @@
     border: 1px solid rgba(var(--d69,0,149,246),1);
 }
 
-.errors-comments {
-    color: red;
-    font-size: 14px;
-    width: 300px;
-    margin-left: -2rem;
-}
-
 #post-edit-comment {
     background-color: transparent;
     border: none;
@@ -111,7 +109,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    width: 50%;
+    width: 100%;
     margin-top: 1rem;
 }
 
@@ -120,16 +118,18 @@
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     font-size: 14px;
+    float: left;
 }
 
 #single-post-caption {
     font-size: 14px;
+    margin-left: 0.5rem;
 }
 
 .comments {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 }
 
 .comment-details {
@@ -150,10 +150,12 @@
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     font-size: 14px;
+    float: left;
 }
 
 #user-comment {
     font-size: 14px;
+    margin-left: 0.5rem;
 }
 
 .comment-btns {
@@ -162,13 +164,109 @@
     flex-direction: row;
 }
 
-#sessionUser-comment {
-    font-size: 14px;
-}
-
 .likes-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-top: 0.5rem;
+}
+
+#comment-text-container {
+    word-break: break-all;
+}
+
+
+#user-comment-long-string {
+    word-break: break-all;
+}
+
+#caption-container {
+    word-break: break-all;
+}
+
+#caption-container-long-string {
+    word-break: break-all;
+}
+
+.comment-username-text {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:initial
+}
+
+#more-containers {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#horizontal-btns-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#edit-delete-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#post-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* gap: 30px; */
+    width: 300px;
+    height: 100px;
+}
+
+#delete-post-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid lightgray;
+    height: 50px;
+    width: 100%;
+}
+
+#delete-post-btn {
+    color: red;
+    font-weight: bold;
+}
+
+#close-edit-delete-modal {
+    position: absolute;
+    bottom: 85px;
+    right: -40px;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+#edit-post-btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+#edit-post-btn {
+    color: black;
+}
+
+#likes-count {
+    font-size: 14px;
+}
+
+.post-page-right-border {
+    background-color: white;
+    width: 300px;
+    height:500px;
 }

@@ -1,0 +1,107 @@
+.update-post-form-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+#edit-post-header-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between
+}
+
+#edit-form-header {
+    font-size: 14px;
+}
+
+#cancel-edit-post {
+    color: black;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+#done-edit-post {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgba(var(--d69,0,149,246),1);
+    font-weight: bold;
+}
+
+#edit-post-picture-container {
+    width: 50%;
+}
+
+.update-post-form-container2 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid lightgrey;
+}
+
+#edit-post-picture-container {
+    width: 70%;
+}
+
+#edit-post-picture {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+#edit-post-user-propic {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+#user-info-edit-form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.edit-form-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 30%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+}
+
+#edit-post-username {
+    margin-left: 0.2rem;
+    font-size: 14px;
+    font-weight: bold;
+    cursor:default;
+}
+
+#edit-post-input2 {
+    border: none;
+    height: 200px;
+    width: 200px;
+    overflow-y:hidden;
+    resize: none;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.errors-edit-post {
+    color: red;
+    font-size: 14px;
+    margin-left: -2rem;
+    word-break: break-all;
+}
+
+.errorHandling {
+    word-break: break-all;
+}

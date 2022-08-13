@@ -19,7 +19,7 @@ export default function FollowersModal({user, setTrigger}) {
                             <img id="follow-modal-user-pic" src={follower.profile_pic}></img>
                             <div id="user-names-follow-modal">
                                 <div id="username-follow-modal">{follower.username}</div>
-                                <div>{follower.full_name}</div>
+                                <div id={follower.full_name.includes(" ") ? "user-fullname" : "user-fullname-long"}>{follower.full_name}</div>
                             </div>
                         </Link>
                     </div>

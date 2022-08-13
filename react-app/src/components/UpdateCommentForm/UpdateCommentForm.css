@@ -1,0 +1,45 @@
+.edit-comment-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-comment-header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#edit-comment-header {
+    font-size: 14px;
+}
+
+#cancel-edit-comment {
+    color: black;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.edit-comment-user-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#edit-comment-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+#edit-comment-box {
+    resize: none;
+    width: 200px;
+}
+
+#post-edit-comment {
+    font-weight: bold;
+}

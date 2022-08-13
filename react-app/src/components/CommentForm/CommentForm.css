@@ -1,4 +1,36 @@
-.comment_input {
-    border: 1px solid lightgray;
-    width: 300px;
+
+.comment-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+#comment-box {
+    border: none;
+    width: 200px;
+    resize: none;
+    margin-top: 1rem;
+    /* margin-left: 1rem; */
+    font-size: 14px;
+}
+
+#post-comment-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: rgba(var(--d69,0,149,246),1);
+    font-weight: bold;
+}
+
+.errors-comments {
+    color: red;
+    font-size: 14px;
+    position: relative;
+}
+
+.comment-form-with-errors {
+    display: flex;
+    flex-direction: column;
 }

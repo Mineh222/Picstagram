@@ -14,6 +14,8 @@ export default function UpdateCommentForm({comment, setTrigger}) {
 
     useEffect(() => {
         const errors = [];
+        const whiteSpace = updatedComment.replace(/^>s+/, '').replace(/\s+$/, '')
+        if( whiteSpace === '') errors.push('Comment must be valid characters, no white spaces.')
         if (updatedComment.length > 150) errors.push("Comment length cannot exceed 150 characters");
         setValidationerrors(errors);
     }, [updatedComment])

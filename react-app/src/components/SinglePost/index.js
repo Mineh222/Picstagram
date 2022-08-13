@@ -87,23 +87,24 @@ export default function SinglePost() {
                     <img id="single-post-pic"src={post.picture}></img>
             </div>
             <div className="post-page-right">
+                <div className="post-page-right-border">
                     <div className="main-post-user-info">
                         <img id="post-owner-user-pic" src={post.user.profile_pic}></img>
                         <span id="post-owner-username">{post.user.username}</span>
                         {!showUpdatePostForm ?
-                            <>
+                            <div id="more-containers">
                                 {sessionUser.id == post.user_id && (
-                                    <>
+                                    <div id="horizontal-btns-container">
                                         <button id="edit-delete-btn" onClick={openEditDeleteModal}>
                                             <MoreHorizOutlinedIcon />
                                         </button>
                                         <Modal isOpen={showEditDeleteModal} style={formStyles}>
-                                            {/* <button id="close-edit-delete-modal" onClick={() => setShowEditDeleteModal(false)}>X</button> */}
+                                            <button id="close-edit-delete-modal" onClick={() => setShowEditDeleteModal(false)}>X</button>
                                             <EditDeletePostModal setShowEditDeleteModal={setShowEditDeleteModal} post={post} postId={postId} sessionUser={sessionUser}/>
                                         </Modal>
-                                    </>
+                                    </div>
                                 )}
-                            </>
+                            </div>
                             :
                             < UpdatePostForm post={post} setTrigger={() => setShowUpdatePostForm(false)}/>
                         }
@@ -128,7 +129,7 @@ export default function SinglePost() {
                         <div>
                             <Likes sessionUser={sessionUser} post={post}/>
                         </div>
-                        <span>
+                        <span id="likes-count">
                             {post.likes.length === 0 && (
                                 <div></div>
                             )}
@@ -143,6 +144,8 @@ export default function SinglePost() {
                     <div className="comment-form">
                         <CommentForm />
                     </div>
+
+                </div>
             </div>
         </div>
     )

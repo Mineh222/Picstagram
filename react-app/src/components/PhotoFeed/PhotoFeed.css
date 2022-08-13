@@ -65,7 +65,7 @@
 }
 
 #home-page-caption {
-    word-break: normal;
+    word-break: break-all;
     width: 293px;
 }
 

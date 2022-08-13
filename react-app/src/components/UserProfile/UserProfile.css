@@ -129,7 +129,7 @@
 }
 
 #profile-page-bio {
-    word-break: normal;
+    word-break: break-all;
 }
 
 #profile-page-bio-long {

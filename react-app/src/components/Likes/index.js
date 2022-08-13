@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { thunkUpdateLike, thunkUpdateUnlike } from "../../store/posts";
+import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
+import FavoriteOutlinedIcon from '@material-ui/icons/FavoriteOutlined';
 
 const Likes = ({sessionUser, post}) => {
     const dispatch = useDispatch();
@@ -31,9 +33,9 @@ const Likes = ({sessionUser, post}) => {
     return (
         <div>
             {!like ?
-                <button id="like_button" onClick={likeButton}><i id="heart" className="fa-solid fa-heart fa-2x" ></i></button>
+                <button id="like_button" onClick={likeButton}><FavoriteBorderOutlinedIcon id="heart"/></button>
                 :
-                <button id="unlike_button" onClick={unlikeButton}><i id="heart2" className="fa-solid fa-heart fa-2x"></i></button>
+                <button id="unlike_button" onClick={unlikeButton}><FavoriteOutlinedIcon id="heart2"/></button>
             }
         </div>
     )

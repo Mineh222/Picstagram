@@ -28,7 +28,7 @@
 }
 
 #user-fullname {
-    word-break: normal;
+    word-break: break-all;
 }
 
 #user-fullname-long {

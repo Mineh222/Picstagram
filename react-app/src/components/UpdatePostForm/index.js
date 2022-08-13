@@ -14,6 +14,8 @@ export default function UpdatePostForm({post, setTriggerUpdatePost, setTriggerEd
 
     useEffect(() => {
         const errors = [];
+        const whiteSpace = caption.replace(/^>s+/, '').replace(/\s+$/, '')
+        if( whiteSpace === '') errors.push('Caption must be valid characters, no white spaces.')
         if (caption.length > 150) {
             errors.push("Caption length cannot exceed 150 characters.")
         }
@@ -67,7 +69,7 @@ export default function UpdatePostForm({post, setTriggerUpdatePost, setTriggerEd
               <form id="edit-post-form" onSubmit={handleSubmit}>
                   {hasSubmitted && validationErrors.length > 0 && (
                     <div className="errorHandling">
-                      <ul className='errors-comments'>
+                      <ul className='errors-edit-post'>
                         {validationErrors.map((error) => (
                           <li key={error} id="error">
                           {error}

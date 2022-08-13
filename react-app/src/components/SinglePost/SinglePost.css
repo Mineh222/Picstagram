@@ -1,7 +1,11 @@
 #like_button{
     background: transparent;
     border: none;
-    color: lightgray
+    cursor: pointer;
+}
+
+#like_button:hover {
+    color: rgb(184, 181, 181);
 }
 
 #unlike_button {
@@ -9,6 +13,7 @@
     border: none;
     color: red;
     transition-delay: color 2s;
+    cursor: pointer;
 }
 
 .single-post-container-main {
@@ -32,7 +37,7 @@
     width: 50%;
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
 }
 
 #post-owner-user-pic {
@@ -53,7 +58,7 @@
     flex-direction: row;
     align-items: center;
     border-bottom: 1px solid lightgray;
-    width: 50%;
+    width: 100%;
 }
 
 #post-owner-username {
@@ -111,7 +116,7 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    width: 50%;
+    width: 100%;
     margin-top: 1rem;
 }
 
@@ -131,7 +136,7 @@
 .comments {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 100%;
 }
 
 .comment-details {
@@ -174,7 +179,7 @@
 }
 
 #comment-text-container {
-    word-break: normal;
+    word-break: break-all;
 }
 
 
@@ -183,7 +188,7 @@
 }
 
 #caption-container {
-    word-break: normal;
+    word-break: break-all;
 }
 
 #caption-container-long-string {
@@ -196,11 +201,24 @@
     flex-wrap:initial
 }
 
+#more-containers {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+#horizontal-btns-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
 #edit-delete-btn {
     background-color: transparent;
     border: none;
     cursor: pointer;
-    margin-left: 2rem;
+    display: flex;
+    justify-content: flex-end;
 }
 
 #post-buttons {
@@ -248,4 +266,14 @@
 
 #edit-post-btn {
     color: black;
+}
+
+#likes-count {
+    font-size: 14px;
+}
+
+.post-page-right-border {
+    background-color: white;
+    width: 300px;
+    height:500px;
 }

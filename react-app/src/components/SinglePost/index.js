@@ -64,7 +64,7 @@ export default function SinglePost() {
             position: 'relative',
             margin: 'auto',
             maxWidth: '300px',
-            height: '200px',
+            height: '100px',
             width: '100%',
             top: '200px',
             left: '40px',
@@ -74,10 +74,9 @@ export default function SinglePost() {
             background: '#fff',
             overflow: 'auto',
             WebkitOverflowScrolling: 'touch',
-            borderRadius: '24px',
+            borderRadius: '12px',
+            padding: '0px',
             outline: 'none',
-            padding: '18px',
-            paddingTop: '5px',
             overflow: 'visibile'
         }
     }
@@ -99,7 +98,7 @@ export default function SinglePost() {
                                             <MoreHorizOutlinedIcon />
                                         </button>
                                         <Modal isOpen={showEditDeleteModal} style={formStyles}>
-                                            <button id="close-edit-delete-modal" onClick={() => setShowEditDeleteModal(false)}>X</button>
+                                            {/* <button id="close-edit-delete-modal" onClick={() => setShowEditDeleteModal(false)}>X</button> */}
                                             <EditDeletePostModal setShowEditDeleteModal={setShowEditDeleteModal} post={post} postId={postId} sessionUser={sessionUser}/>
                                         </Modal>
                                     </>

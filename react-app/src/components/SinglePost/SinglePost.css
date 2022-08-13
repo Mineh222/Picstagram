@@ -195,3 +195,57 @@
     flex-direction: row;
     flex-wrap:initial
 }
+
+#edit-delete-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+#post-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* gap: 30px; */
+    width: 300px;
+    height: 100px;
+}
+
+#delete-post-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-bottom: 1px solid lightgray;
+    height: 50px;
+    width: 100%;
+}
+
+#delete-post-btn {
+    color: red;
+    font-weight: bold;
+}
+
+#close-edit-delete-modal {
+    position: absolute;
+    bottom: 85px;
+    right: -40px;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}
+
+#edit-post-btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
+
+#edit-post-btn {
+    color: black;
+}

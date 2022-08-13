@@ -39,10 +39,10 @@ export default function EditDeletePostModal({postId, sessionUser, post, setShowE
         content: {
             position: 'relative',
             margin: 'auto',
-            maxWidth: '300px',
-            height: '200px',
+            maxWidth: '700px',
+            height: '500px',
             width: '100%',
-            top: '200px',
+            top: '50px',
             left: '40px',
             right: '40px',
             bottom: '40px',
@@ -50,10 +50,13 @@ export default function EditDeletePostModal({postId, sessionUser, post, setShowE
             background: '#fff',
             overflow: 'auto',
             WebkitOverflowScrolling: 'touch',
-            borderRadius: '24px',
+            borderRadius: '12px',
             outline: 'none',
             padding: '18px',
-            paddingTop: '5px',
+            paddingTop: '0px',
+            paddingLeft: '0px',
+            paddingBottom: '0px',
+            paddingRight: '0px',
             overflow: 'visibile'
         }
     }
@@ -61,11 +64,15 @@ export default function EditDeletePostModal({postId, sessionUser, post, setShowE
 
     return (
         <div id="post-buttons">
-            <button id="edit-post-btn" onClick={openUpdatePostForm}>Edit Post</button>
+            <div id="delete-post-container">
+                <button id="delete-post-btn" onClick={onDelete}>Delete</button>
+            </div>
+            <div id="edit-post-btn-container">
+                <button id="edit-post-btn" onClick={openUpdatePostForm}>Edit</button>
+            </div>
             <Modal isOpen={showUpdatePostForm} style={formStyles2}>
                 <UpdatePostForm post={post} setTriggerUpdatePost={setShowUpdatePostForm} setTriggerEditDeleteModal={setShowEditDeleteModal}/>
             </Modal>
-            <button id="delete-post-btn" onClick={onDelete}>Delete Post</button>
         </div>
         )
     }

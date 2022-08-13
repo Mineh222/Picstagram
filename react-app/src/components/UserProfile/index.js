@@ -8,6 +8,7 @@ import Modal from 'react-modal';
 import FollowersModal from '../FollowersModal';
 import FollowingModal from '../FollowingModal';
 import './UserProfile.css';
+import GridOnOutlinedIcon from '@material-ui/icons/GridOnOutlined';
 
 export default function UserProfile() {
     const dispatch = useDispatch();
@@ -143,6 +144,10 @@ export default function UserProfile() {
               </div>
 
             </div>
+          </div>
+          <div id="posts-header">
+            <GridOnOutlinedIcon id="grid-icon"/>
+            <h3 id="posts-h3">POSTS</h3>
           </div>
           <div className="user-profile-posts">
             {posts.reverse().map(post => {

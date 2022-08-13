@@ -24,7 +24,7 @@ export default function CreatePostForm({closeCreateFormModal}) {
     useEffect(() => {
         const validationErrors = [];
         const whiteSpace = caption.replace(/^>s+/, '').replace(/\s+$/, '')
-        if( whiteSpace === '') validationErrors.push('Caption must be valid characters, no white spaces.')
+        if( whiteSpace === '') validationErrors.push('Please enter a valid caption.')
         if (!picture?.type.includes('png') && !picture?.type.includes('jpg') && !picture?.type.includes('jpeg')) {
             validationErrors.push("Image type must be a png, jpg, or jpeg file.")
         }

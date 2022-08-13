@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { thunkUpdateComment } from "../../store/comments";
+import './UpdateCommentForm.css';
 
 export default function UpdateCommentForm({comment, setTrigger}) {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export default function UpdateCommentForm({comment, setTrigger}) {
     useEffect(() => {
         const errors = [];
         const whiteSpace = updatedComment.replace(/^>s+/, '').replace(/\s+$/, '')
-        if( whiteSpace === '') errors.push('Comment must be valid characters, no white spaces.')
+        if( whiteSpace === '') errors.push('Please enter a valid comment.')
         if (updatedComment.length > 150) errors.push("Comment length cannot exceed 150 characters");
         setValidationerrors(errors);
     }, [updatedComment])
@@ -38,11 +38,25 @@ export default function UpdateCommentForm({comment, setTrigger}) {
         setUpdatedComment('');
         setHasSubmitted(false);
         setValidationerrors([]);
-        setTrigger();
+        setTrigger(false);
+    }
+
+    const closeModal = () => {
+      setTrigger(false)
     }
 
     return (
-        <form className="edit-comment-container" onSubmit={handleSubmit}>
+      <div className="edit-comment-container">
+        <div className="edit-comment-header-container">
+          <button id="cancel-edit-comment" onClick={closeModal}>Cancel</button>
+          <h3 id="edit-comment-header">Edit Comment</h3>
+          <button id="post-edit-comment" type='submit' form="edit-comment-form">Done</button>
+        </div>
+        <div className="edit-comment-user-info">
+          <img id="comment-user-pic" src={comment.user.profile_pic}></img>
+          <div id="comment-username">{comment.user.username}</div>
+        </div>
+        <form id="edit-comment-form" onSubmit={handleSubmit}>
             {hasSubmitted && validationErrors.length > 0 && (
               <div className="errorHandling">
                 <ul className="errors-comments">
@@ -55,13 +69,13 @@ export default function UpdateCommentForm({comment, setTrigger}) {
               </div>
             )}
             <textarea
-                className={validationErrors.length > 0 ? "update-comment-box-errors" : "update-comment-box"}
+                rows='3'
+                id="edit-comment-box"
                 required
                 value={updatedComment}
                 onChange={(e) => setUpdatedComment(e.target.value)}
             ></textarea>
-            <button id="post-edit-comment" type='submit'>Edit</button>
-            <button id="cancel-edit-comment" onClick={setTrigger}>Cancel</button>
         </form>
+      </div>
     )
 }

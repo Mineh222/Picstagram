@@ -17,7 +17,7 @@ export default function CommentForm() {
     useEffect(() => {
         const errors = [];
         const whiteSpace = comment.replace(/^>s+/, '').replace(/\s+$/, '')
-        if( whiteSpace === '') errors.push('Comment must be valid characters, no white spaces.')
+        if( whiteSpace === '') errors.push('Please enter a valid comment.')
         if (comment.length > 150) errors.push("Comment length cannot exceed 150 characters");
         setValidationerrors(errors);
     }, [comment])
@@ -49,26 +49,30 @@ export default function CommentForm() {
     }
 
     return (
-        <form className="comment-form2"onSubmit={handleSubmit}>
-            {hasSubmitted && validationErrors.length > 0 && (
-              <div className="errorHandling-comments">
-                <ul className="errors-comments">
-                  {validationErrors.map((error) => (
-                    <li key={error} id="error">
-                      {error}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+      <div className="comment-form-with-errors">
+        {hasSubmitted && validationErrors.length > 0 && (
+          <div className="errorHandling-comments">
+            <ul className="errors-comments">
+              {validationErrors.map((error) => (
+                <li key={error} id="error">
+                  {error}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+        <form className="comment-form"onSubmit={handleSubmit}>
               <textarea
-                  id={validationErrors.length > 0 ? "comment-box-errors" : "comment-box"}
+                  id="comment-box"
                   required
                   placeholder="Add a comment..."
                   value={comment}
+                  rows="3"
                   onChange={(e) => setComment(e.target.value)}
               ></textarea>
-            <button id={validationErrors.length > 0 ? "post-comment-box-errors" : "post-comment-btn"} type='submit'>Post</button>
+            <button id="post-comment-btn" type='submit'>Post</button>
         </form>
+
+      </div>
     )
 }

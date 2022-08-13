@@ -1,0 +1,10 @@
+#close-edit-comment {
+    position: absolute;
+    right: -40px;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    cursor: pointer;
+}

@@ -92,13 +92,6 @@
     border: 1px solid rgba(var(--d69,0,149,246),1);
 }
 
-.errors-comments {
-    color: red;
-    font-size: 14px;
-    width: 300px;
-    margin-left: -2rem;
-}
-
 #post-edit-comment {
     background-color: transparent;
     border: none;

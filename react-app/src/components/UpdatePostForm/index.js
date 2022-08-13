@@ -15,7 +15,7 @@ export default function UpdatePostForm({post, setTriggerUpdatePost, setTriggerEd
     useEffect(() => {
         const errors = [];
         const whiteSpace = caption.replace(/^>s+/, '').replace(/\s+$/, '')
-        if( whiteSpace === '') errors.push('Caption must be valid characters, no white spaces.')
+        if( whiteSpace === '') errors.push('Please enter a valid caption.')
         if (caption.length > 150) {
             errors.push("Caption length cannot exceed 150 characters.")
         }

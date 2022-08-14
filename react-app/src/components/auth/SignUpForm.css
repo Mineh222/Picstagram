@@ -1,29 +1,27 @@
 .signup-form-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 250px;
-    height: 500px;
-    -webkit-box-align: center;
+    height: auto;
     background-color: rgba(var(--d87,255,255,255),1);
     border: 1px solid rgba(var(--b6a,219,219,219),1);
     border-radius: 1px;
     margin: auto;
     margin-top: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
-.signup-form {
-    margin-top: -5rem;
-    margin-bottom: 3rem;
-}
-
-.signup-errors {
-    margin-top: -2.5rem;
-    margin-bottom: 0.5rem;
-    font-size: 14px;
-    font-weight: bold;
-    margin-left: 1rem;
+.sign-up-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1px;
+    margin: auto;
+    margin-top: 2rem;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 input {
@@ -39,38 +37,17 @@ input:hover {
     border: 0.5px solid rgb(137, 135, 135);
 }
 
-#signup-inputs-errors {
-    margin-left: 1.75rem;
-}
-
-#logo-signup-errors {
-    width: 10rem;
-    margin-bottom: 25rem;
-    position: absolute;
-}
-
 #logo-signup {
     width: 10rem;
-    position: absolute;
-    margin-bottom: 25rem;
+    margin-top: 1rem;
 }
 
 #signup-message {
     color: rgba(var(--f52,142,142,142),1);
     text-align: center;
-    margin-bottom: 7.5rem;
-    margin-top: 1rem;
-    position: static;
     padding-left: 1rem;
     padding-right: 1rem;
-}
-
-#signup-message-errors {
-    color: rgba(var(--f52,142,142,142),1);
-    text-align: center;
-    margin-top: 4rem;
-    margin-bottom: 3rem;
-    position: static;
+    margin-bottom: 1rem;
 }
 
 #signup-button {
@@ -82,38 +59,33 @@ input:hover {
     font-weight: bold;
     cursor: pointer;
     width: 12rem;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
-#signup-button-errors {
-    padding: 5px;
-    color: rgba(var(--eca,255,255,255),1);
-    background-color: rgba(var(--d69,0,149,246),1);
-    border: none;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    width: 12rem;
-    margin-top: 1rem;
-    margin-left: 1.75rem;
-}
-
-.already-have-account2 {
+.already-have-account {
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
     margin: auto;
-    margin-top: 35rem;
     background-color: rgba(var(--d87,255,255,255),1);
     border: 1px solid rgba(var(--b6a,219,219,219),1);
     border-radius: 1px;
     width: 250px;
     height: 3rem;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 1rem;
+    font-size: 14px;
 }
 
 #navlink-to-login {
     margin-left: 0.5rem;
     color: rgba(var(--d69,0,149,246),1);
     font-weight: bold;
+}
+
+.signup-errors {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
 }

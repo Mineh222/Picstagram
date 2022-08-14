@@ -1,7 +1,6 @@
 .splash {
     margin: 0;
     margin-top: 2rem;
-    padding-bottom: 100px;
     width: 100%;
     top: 40px;
     bottom: 20px;
@@ -23,7 +22,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     background-color: rgba(var(--d87,255,255,255),1);
     border: 1px solid rgba(var(--b6a,219,219,219),1);
     border-radius: 1px;
@@ -34,7 +32,7 @@
 .splash-right-container {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     width: 50%;
 }
 
@@ -51,6 +49,7 @@
 
 #logo-splash {
     width: 10rem;
+    margin-top: 0.5rem;
 }
 
 .login-form {
@@ -71,7 +70,7 @@
 .splash-or-lines {
     display: flex;
     padding-bottom: 15px;
-    padding-top: 10px;
+    padding-top: 25px;
 }
 
 .splash-or-indv-line {
@@ -94,17 +93,21 @@
 .demo-link {
     color: black;
     cursor: pointer;
+    font-size: 14px;
+    margin-top: 1.5rem;
 }
 
-.already-have-account {
+.dont-have-account {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    font-size: 14px;
     background-color: rgba(var(--d87,255,255,255),1);
     border: 1px solid rgba(var(--b6a,219,219,219),1);
     border-radius: 1px;
     width: 17rem;
     height: 3rem;
+    margin-top: 1rem;
 }
 
 #sign-up-link {
@@ -117,4 +120,6 @@
     font-size: 14px;
     font-weight: bold;
     margin-bottom: 0.5rem;
+    padding-left: 10px;
+    padding-right: 10px;
 }

@@ -33,6 +33,8 @@ export default function PhotoFeedPage() {
         dispatch(thunkGetAllUsers())
     }, [dispatch])
 
+    if (!lastFilter) return null;
+
     return (
         <div className='home-page-container'>
             <div>

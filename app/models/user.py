@@ -77,3 +77,12 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'full_name': self.full_name
         }
+
+    def to_dict_short_home_page(self):
+        return {
+            'id': self.id,
+            'profile_pic': self.profile_pic,
+            'username': self.username,
+            'full_name': self.full_name,
+            'followers': [user.username for user in self.follows],
+        }

@@ -23,7 +23,7 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def users():
     users = User.query.all()
-    return {'users': [user.to_dict_short() for user in users]}
+    return {'users': [user.to_dict_short_home_page() for user in users]}
 
 
 @user_routes.route('/profile/<username>')

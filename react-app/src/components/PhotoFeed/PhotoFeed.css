@@ -43,16 +43,17 @@
     align-items: center;
     text-decoration: none;
     color: black;
-    margin-bottom: 1rem;
+    width: 350px;
+    padding: 0;
 }
 
 #home-page-post-pic {
-    height: 293px;
-    width: 293px;
+    height: 350px;
+    width: 350px;
 }
 
 .home-page-user-caption {
-    width: 293px;
+    width: 350px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -62,6 +63,7 @@
     margin-right: 0.5rem;
     font-weight: bold;
     float: left;
+    margin-left: 0.5rem;
 }
 
 #home-page-caption {
@@ -72,4 +74,37 @@
 #home-page-caption-long {
     word-break: break-all;
     width: 293px;
+}
+
+.post-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgrey;
+    margin-bottom: 2rem;
+}
+
+.photo-feed-post-user-info {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    align-items: center;
+}
+
+#photo-feed-user-pic {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+#navlink-photo-feed {
+    color: black;
+}
+
+.likes-container-photo-feed {
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    align-items: center;
 }

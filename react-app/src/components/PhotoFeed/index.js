@@ -38,6 +38,11 @@ export default function PhotoFeedPage() {
     return (
         <div className='home-page-container'>
             <div>
+                {posts.length === 0 && (
+                    <h3>No posts yet. Check out suggested users!</h3>
+                )}
+            </div>
+            <div>
                 {posts.reverse().map(post => {
                     return (
                         <div  key={post.id} className="post-container">

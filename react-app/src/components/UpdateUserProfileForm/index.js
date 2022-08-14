@@ -18,7 +18,7 @@ export default function UpdateUserProfileForm() {
 
     const [fullName, setFullName] = useState(user.full_name);
     const [username, setUsername] = useState(user.username);
-    const [bio, setBio] = useState(user.bio);
+    const [bio, setBio] = useState(user?.bio);
     const [updatePic, setUpdatePic] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -32,7 +32,7 @@ export default function UpdateUserProfileForm() {
         if (filteredUsernames.includes(username)) errors.push("Username already exists");
         if (username.length > 20) errors.push("Username cannot exceed 20 characters")
         if (fullName.length > 40) errors.push("Name cannot exceed 40 characters.");
-        if (bio.length > 150) errors.push("Bio cannot exceed 150 characters");
+        if (bio?.length > 150) errors.push("Bio cannot exceed 150 characters");
         setValidationErrors(errors)
     }, [username, fullName, bio])
 

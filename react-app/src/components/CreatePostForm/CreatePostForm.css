@@ -78,3 +78,8 @@ textarea {
 #caption-label-create {
     margin-right: 1rem;
 }
+
+#create-post-image, #no-photo-icon {
+    width: 200px;
+    height: 200px;
+}

@@ -51,81 +51,83 @@ const SignUpForm = () => {
 
   return (
     <>
-    <div className='signup-form-container'>
-        <img id={errors.length > 0 ? "logo-signup-errors" : "logo-signup"} src={picstagramLogo}></img>
-        <div id={errors.length > 0 ? 'signup-message-errors' : "signup-message"}>Sign up to see photos from your friends.</div>
-        <form className={errors.length > 0 ? 'signup-form-errors' : 'signup-form'} onSubmit={onSignUp}>
+    <div className="sign-up-page">
+      <div className='signup-form-container'>
+          <img id="logo-signup" src={picstagramLogo}></img>
+          <div id="signup-message">Sign up to see photos from your friends.</div>
           <div className="signup-errors">
             {errors.map((error, ind) => (
               <li key={ind}>{error}</li>
             ))}
           </div>
-            <div>
-              <input
-                className="sign-up-input-field"
-                id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
-                required
-                placeholder='Email'
-                type='text'
-                name='email'
-                onChange={updateEmail}
-                value={email}
-              ></input>
-            </div>
-            <div>
-              <input
-                className="sign-up-input-field"
-                id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
-                required
-                placeholder='Full Name'
-                type='text'
-                name='fullName'
-                onChange={updateFullName}
-                value={fullName}
-              ></input>
-            </div>
-            <div>
-              <input
-                className="sign-up-input-field"
-                id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
-                required
-                placeholder='Username'
-                type='text'
-                name='username'
-                onChange={updateUsername}
-                value={username}
-              ></input>
-            </div>
-            <div>
-              <input
-                className="sign-up-input-field"
-                id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
-                required
-                placeholder='Password'
-                type='password'
-                name='password'
-                onChange={updatePassword}
-                value={password}
-              ></input>
-            </div>
-            <div>
-              <input
-                className="sign-up-input-field"
-                id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
-                placeholder='Confirm Password'
-                type='password'
-                name='confirm_password'
-                onChange={updateConfirmPassword}
-                value={confirmPassword}
-                required
-              ></input>
-            </div>
-            <button id={errors.length > 0 ? 'signup-button-errors' : "signup-button"} type='submit'>Sign Up</button>
-        </form>
-        <div className="already-have-account2">
-          <span>Have an account?</span>
-          <NavLink id="navlink-to-login"to='/log-in'>Log In</NavLink>
-        </div>
+          <form className='signup-form' onSubmit={onSignUp}>
+              <div>
+                <input
+                  className="sign-up-input-field"
+                  id='signup-inputs'
+                  required
+                  placeholder='Email'
+                  type='text'
+                  name='email'
+                  onChange={updateEmail}
+                  value={email}
+                ></input>
+              </div>
+              <div>
+                <input
+                  className="sign-up-input-field"
+                  id='signup-inputs'
+                  required
+                  placeholder='Full Name'
+                  type='text'
+                  name='fullName'
+                  onChange={updateFullName}
+                  value={fullName}
+                ></input>
+              </div>
+              <div>
+                <input
+                  className="sign-up-input-field"
+                  id='signup-inputs'
+                  required
+                  placeholder='Username'
+                  type='text'
+                  name='username'
+                  onChange={updateUsername}
+                  value={username}
+                ></input>
+              </div>
+              <div>
+                <input
+                  className="sign-up-input-field"
+                  id='signup-inputs'
+                  required
+                  placeholder='Password'
+                  type='password'
+                  name='password'
+                  onChange={updatePassword}
+                  value={password}
+                ></input>
+              </div>
+              <div>
+                <input
+                  className="sign-up-input-field"
+                  id='signup-inputs'
+                  placeholder='Confirm Password'
+                  type='password'
+                  name='confirm_password'
+                  onChange={updateConfirmPassword}
+                  value={confirmPassword}
+                  required
+                ></input>
+              </div>
+              <button id="signup-button" type='submit'>Sign Up</button>
+          </form>
+      </div>
+      <div className="already-have-account">
+        <span>Have an account?</span>
+        <NavLink id="navlink-to-login"to='/log-in'>Log In</NavLink>
+      </div>
     </div>
     <Footer />
     </>

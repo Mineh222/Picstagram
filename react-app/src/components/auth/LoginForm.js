@@ -80,16 +80,16 @@ const LoginForm = () => {
                   <div className='splash-or'>OR</div>
                   <div className='splash-or-indv-line'></div>
           </div>
-          <div>
+          <div className='demo-link'>
             <NavLink to='/' className='demo-link' onClick={demoSubmit}>
-              <div>Log in as a Demo User</div>
+              <div>Log in as Demo User</div>
             </NavLink>
           </div>
         </div>
-          <div className='already-have-account'>
-            <span>Don't have an account?</span>
-            <NavLink id="sign-up-link" to={'/sign-up'}>Sign Up</NavLink>
-          </div>
+        <div className='dont-have-account'>
+          <span>Don't have an account?</span>
+          <NavLink id="sign-up-link" to={'/sign-up'}>Sign Up</NavLink>
+        </div>
       </div>
     </div>
     <Footer />

@@ -1,11 +1,41 @@
 .choose_pro_pic_label {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #0095F6;
+    padding: 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.upload-photo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 5px;
+}
+
+#choose_pro_pic {
+    border: 1px solid lightgray;
+    background-color: transparent;
+    text-align: center;
     display: flex;
     justify-content: center;
-    font-weight: 600;
-    color: white;
-    background-color: #0095F6;
-    cursor: pointer;
-    padding: 5px 18px;
-    border-radius: 4px;
-    width: 200px;
+    align-items: center;
 }
+
+#edit-profile-upload-btn {
+    background-color: #0095F6;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    width: 30%;
+    padding: 5px;
+    text-align: center;
+}
+
+/* input[type=file] {
+    cursor: pointer
+} */

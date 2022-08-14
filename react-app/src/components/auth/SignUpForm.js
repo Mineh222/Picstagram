@@ -61,6 +61,7 @@ const SignUpForm = () => {
           </div>
             <div>
               <input
+                className="sign-up-input-field"
                 id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
                 required
                 placeholder='Email'
@@ -72,6 +73,7 @@ const SignUpForm = () => {
             </div>
             <div>
               <input
+                className="sign-up-input-field"
                 id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
                 required
                 placeholder='Full Name'
@@ -83,6 +85,7 @@ const SignUpForm = () => {
             </div>
             <div>
               <input
+                className="sign-up-input-field"
                 id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
                 required
                 placeholder='Username'
@@ -94,6 +97,7 @@ const SignUpForm = () => {
             </div>
             <div>
               <input
+                className="sign-up-input-field"
                 id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
                 required
                 placeholder='Password'
@@ -105,6 +109,7 @@ const SignUpForm = () => {
             </div>
             <div>
               <input
+                className="sign-up-input-field"
                 id={errors.length > 0 ? 'signup-inputs-errors' : 'signup-inputs'}
                 placeholder='Confirm Password'
                 type='password'

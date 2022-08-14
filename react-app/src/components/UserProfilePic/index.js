@@ -43,29 +43,32 @@ export default function UploadProfilePic({hideForm}) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            {hasSubmitted && errors.length > 0 && (
-                <div className="errorHandling">
-                    <div className="errorTitle">
-                    Please fix the following error(s) before submitting:
+            <form onSubmit={handleSubmit}>
+                <div className="upload-photo-container">
+                    <label className="choose_pro_pic_label" htmlFor="choose_pro_pic">Upload Photo</label>
+                    {hasSubmitted && errors.length > 0 && (
+                        <div className="errorHandling-edit-propic">
+                            {/* <div className="errorTitle">
+                            Please fix the following error before submitting:
+                            </div> */}
+                            {errors.map((error) => (
+                                <li key={error} id="error">
+                                {error}
+                                </li>
+                            ))}
+                        </div>
+                    )}
+                    <div>
+                        <input
+                            className="no-file-chosen"
+                            id="choose_pro_pic"
+                            type="file"
+                            accept="image/*"
+                            onChange={updatedProfilePic}
+                        ></input>
                     </div>
-                    <ul className='errors'>
-                    {errors.map((error) => (
-                        <li key={error} id="error">
-                        {error}
-                        </li>
-                    ))}
-                    </ul>
+                    <button id="edit-profile-upload-btn" type="submit">Submit</button>
                 </div>
-            )}
-            <label className="choose_pro_pic_label"htmlFor="choose_pro_pic">Choose Profile Picture</label>
-            <input
-                id="choose_pro_pic"
-                type="file"
-                accept="image/*"
-                onChange={updatedProfilePic}
-            ></input>
-            <button type="submit">Upload</button>
-        </form>
+            </form>
     )
 }

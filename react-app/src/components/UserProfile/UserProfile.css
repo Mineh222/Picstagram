@@ -51,6 +51,7 @@
     border: 0.5px solid rgb(152, 151, 151);
     padding: 5px;
     cursor: pointer;
+    border-radius: 3px;
 }
 
 #edit-profile-button-container {

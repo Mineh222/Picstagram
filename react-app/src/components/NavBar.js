@@ -46,7 +46,7 @@ const NavBar = () => {
       margin: 'auto',
       maxWidth: '500px',
       width: '100%',
-      top: '80px',
+      top: '30px',
       left: '40px',
       right: '40px',
       bottom: '40px',

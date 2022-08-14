@@ -14,6 +14,7 @@ export default function CreatePostForm({closeCreateFormModal}) {
     const [caption, setCaption] = useState('');
     const [errors, setErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [pictureURL, setpictureURL] = useState('');
 
     const username = useSelector((state) => state.session.user.username);
 
@@ -60,6 +61,7 @@ export default function CreatePostForm({closeCreateFormModal}) {
     const updatePicture = (e) => {
         const file = e.target.files[0];
         setPicture(file);
+        setpictureURL(URL.createObjectURL(file))
     }
 
     const updateCaption = (e) => {
@@ -76,7 +78,11 @@ export default function CreatePostForm({closeCreateFormModal}) {
             <h3 id="create-post-heading">Create new post</h3>
             <div className="create-post-container">
                 <div id="photo-icon">
-                    <InsertPhotoOutlinedIcon style={buttonStyles}/>
+                    {picture === null ?
+                        <InsertPhotoOutlinedIcon style={buttonStyles} id="no-photo-icon"/>
+                        :
+                        <img id="create-post-image"src={pictureURL}></img>
+                    }
                 </div>
                 <form className="create-post-form" onSubmit={handleSubmit}>
                     {hasSubmitted && errors.length > 0 && (

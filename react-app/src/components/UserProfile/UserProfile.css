@@ -153,3 +153,7 @@
 #grid-icon {
     width: 15px;
 }
+
+#no-posts-message {
+    text-align: center;
+}

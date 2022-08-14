@@ -5,6 +5,7 @@ import { signUp } from '../../store/session';
 import { NavLink } from 'react-router-dom';
 import picstagramLogo from "../../images/picstagram-logo.png";
 import './SignUpForm.css';
+import Footer from '../Footer';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -52,7 +53,7 @@ const SignUpForm = () => {
     <>
     <div className='signup-form-container'>
         <img id={errors.length > 0 ? "logo-signup-errors" : "logo-signup"} src={picstagramLogo}></img>
-        <div id={errors.length > 0 ? 'signup-message-errors' : "signup-message"}>Sign up to see photos and videos from your friends.</div>
+        <div id={errors.length > 0 ? 'signup-message-errors' : "signup-message"}>Sign up to see photos from your friends.</div>
         <form className={errors.length > 0 ? 'signup-form-errors' : 'signup-form'} onSubmit={onSignUp}>
           <div className="signup-errors">
             {errors.map((error, ind) => (
@@ -126,6 +127,7 @@ const SignUpForm = () => {
           <NavLink id="navlink-to-login"to='/log-in'>Log In</NavLink>
         </div>
     </div>
+    <Footer />
     </>
   );
 };

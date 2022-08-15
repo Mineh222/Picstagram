@@ -60,20 +60,19 @@ export default function UserProfile() {
           margin: 'auto',
           maxWidth: '300px',
           height: '200px',
-          width: '100%',
+          width: '300px',
           top: '200px',
           left: '40px',
           right: '40px',
           bottom: '40px',
           border: '1px solid #ccc',
           background: '#fff',
-          overflow: 'auto',
-          WebkitOverflowScrolling: 'touch',
-          borderRadius: '24px',
+          borderRadius: '5px',
           outline: 'none',
-          padding: '18px',
+          padding: '0px',
           paddingTop: '5px',
-          overflow: 'visibile'
+          overflow: 'auto',
+          overflowX: 'hidden',
       }
   };
 

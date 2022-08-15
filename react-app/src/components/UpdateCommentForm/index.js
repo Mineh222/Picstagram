@@ -25,7 +25,7 @@ export default function UpdateCommentForm({comment, setTrigger}) {
 
         setHasSubmitted(true);
 
-        if (validationErrors.length) return alert("Cannot edit comment. Please correct error.");
+        if (validationErrors.length) return alert("Cannot edit comment. Please correct error(s).");
 
         const thunkComment = dispatch(thunkUpdateComment(commentId, updatedComment))
 

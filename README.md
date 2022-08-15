@@ -1,129 +1,105 @@
-# Flask React Project
+<h1>Welcome to Picstagram!</h1>
 
-This is the starter for the Flask React project.
+<img src="https://i.postimg.cc/FH7pyQ2r/picstagram-logo.png"></img>
 
-## Getting started
-1. Clone this repository (only this branch)
+Picstagram is a clone of Instagram, the popular social media app that lets you share photos and interact with friends. On Picstagram, users can sign up or log in, explore photos on the explore page, search for and follow their favorite users, share posts, and leave likes and comments on posts. 
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+[Live Link to Picstagram](https://piccstagram.herokuapp.com/)
 
-2. Install dependencies
+[Picstagram Documentation](https://github.com/Mineh222/Picstagram/wiki)
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+## Technologies
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+Picstagram was built using the following technologies:
+* **Backend: Flask**
+* **Frontend: React/Redux and Javascript/JSX**
+* **Database: SQLAlchemy**
+* **Design/Styling: HTML and CSS**
+* **Hosting: Heroku**
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+## Key Features
 
-   ```bash
-   pipenv shell
-   ```
+### User Authentication
 
-   ```bash
-   flask db upgrade
-   ```
+* On Picstagram, users can log-in with their correct credentials, or click the demo user link for quick access to demo the application.
+* Users can also sign-up, giving them access to all of Picstagram's features.
+* Errors are rendered in the event of inputting invalid credentials, and must be corrected before submitting the form.
 
-   ```bash
-   flask seed all
-   ```
+### Picture Posts (Create, Read, Update, Delete)
 
-   ```bash
-   flask run
-   ```
+Logged in users can:
+* View picture posts on the explore page, a user's profile page, or on their photo feed page depending on who they follow.
+* Create, update, or delete their picture posts.
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+### Comments (Create, Read, Update, Delete)
 
-***
+Logged in users can:
+* Read comments left on posts when clicking on a specific post and redirecting to its page.
+* Create, update, or delete comments they have left on any post.
+
+### User Profile (Read, Update)
+
+Logged in users can:
+* View profiles of all users on Picstagram.
+* Update their own user profile information including: name, username, bio, and profile picture by clicking on the 'edit profile' button located on their profile page.
+
+### Likes (Read, Update)
+
+Logged in users can:
+* View how many likes a post has.
+* Like and unlike posts via the heart icon seen under any post.
+
+### Follow (Read, Update)
+
+Logged in users can:
+* View the number of followers they or another user has from a user's profile page. A list of follower usernames can also be viewed by clicking on the "followers" count on any user's profile page.
+* View the number of users a person follows from a user's profile page. A list of following usernames can also be viewed by clicking on the "following" count on any user's profile page.
+* Follow and unfollow users from their user profile page by clicking on the blue "follow" or "unfollow" button.
+
+### Search (Create, Read)
+
+Logged in users can:
+* Type in key letters or words to search for users in the search bar located inside the navbar.
+* Press enter or click the magnifying glass button to view the results for their search.
+
+### Technical Challenges 
+
+* Implementing the likes and follows feature.
+* Figuring out the database relationships between likes, users, and posts as well as between follows and users was tricky and required a lot of research as well as trial and error.
+* Below is a snippet of how I implemented my follows relationship.
+
+```JavaScript
+follows = db.Table(
+    "follows",
+    db.Model.metadata,
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("followed_id", db.Integer, db.ForeignKey("users.id"))
+)
 
 
-*IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on alpine-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+    followed = db.relationship(
+        'User', secondary=follows,
+        primaryjoin=(follows.c.follower_id == id),
+        secondaryjoin=(follows.c.followed_id == id),
+        backref=db.backref('follows', lazy='dynamic'), lazy='dynamic')
+```
 
-### Dev Containers (OPTIONAL for M1 Users)
-The following instructions detail an *optional* development setup for M1 Mac users having issues with the `psycopg` package.
+## Future Improvements 
 
-1. Make sure you have the [Microsoft Remote - Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension installed. 
-2. Make sure you have [Docker](https://www.docker.com/products/docker-desktop/) installed on your computer. 
-3. Clone the repository (only this branch)
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
-4. Open the repo in VS Code. 
-5. Click "Open in Container" when VS Code prompts to open container in the bottom right hand corner. 
-6. **Be Patient!** The initial install will take a LONG time, it's building a container that has postgres preconfigured and even installing all your project dependencies. (For both flask and react!)
+* Allow users to add comments to a post from the photo feed page.
+* Allow users to search for keywords that will show results of photos that are related.
+* Notifications page to view who has liked or commented on your posts.
 
-   **Note:** This will take much less time on future starts because everything will be cached.
-
-7. Once everything is up, be sure to make a `.env` file based on `.env.example` in both the root directory and the *react-app* directory before running your app. You do not need a `DATABASE_URL` in the `.env` file if you are using this Docker setup for development - the URL is already set in the image (see `.devcontainer/Dockerfile` for the URL).
-
-8. Get into your pipenv, migrate your database, seed your database, and run your flask app
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-9. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
-
-<br>
-
-## Deploy to Heroku
-This repo comes configured with Github Actions. When you push to your main branch, Github will automatically pull your code, package and push it to Heroku, and then release the new image and run db migrations. 
-
-1. Write your Dockerfile. In order for the Github action to work effectively, it must have a configured Dockerfile. Follow the comments found in this [Dockerfile](./Dockerfile) to write your own!
-
-2. Create a new project on Heroku.
-
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres".
-
-4. Configure production environment variables. In your Heroku app settings -> config variables you should have two environment variables set:
-
-   |    Key          |    Value    |
-   | -------------   | ----------- |
-   | `DATABASE_URL`  | Autogenerated when adding postgres to Heroku app |
-   | `SECRET_KEY`    | Random string full of entropy |
-
-5. Generate a Heroku OAuth token for your Github Action. To do so, log in to Heroku via your command line with `heroku login`. Once you are logged in, run `heroku authorizations:create`. Copy the GUID value for the Token key.
-
-6. In your Github Actions Secrets you should have two environment variables set. You can set these variables via your Github repository settings -> secrets -> actions. Click "New respository secret" to create
-each of the following variables:
-
-   |    Key            |    Value    |
-   | -------------     | ----------- |
-   | `HEROKU_API_KEY`  | Heroku Oauth Token (from step 6)|
-   | `HEROKU_APP_NAME` | Heroku app name    |
-
-7. Push to your `main` branch! This will trigger the Github Action to build your Docker image and deploy your application to the Heroku container registry. Please note that the Github Action will automatically upgrade your production database with `flask db upgrade`. However, it will *not* automatically seed your database. You must manually seed your production database if/when you so choose (see step 8).
-
-8. *Attention!* Please run this command *only if you wish to seed your production database*: `heroku run -a HEROKU_APP_NAME flask seed all`
-
-## Helpful commands
-|    Command            |    Purpose    |
-| -------------         | ------------- |
-| `pipenv shell`        | Open your terminal in the virtual environment and be able to run flask commands without a prefix |
-| `pipenv run`          | Run a command from the context of the virtual environment without actually entering into it. You can use this as a prefix for flask commands  |
-| `flask db upgrade`    | Check in with the database and run any needed migrations  |
-| `flask db downgrade`  | Check in with the database and revert any needed migrations  |
-| `flask seed all`      | Just a helpful syntax to run queries against the db to seed data. See the **app/seeds** folder for reference and more details |
-| `heroku login -i`      | Authenticate your heroku-cli using the command line. Drop the -i to authenticate via the browser |
-| `heroku authorizations:create` | Once authenticated, use this to generate an Oauth token |
-| `heroku run -a <app name>` | Run a command from within the deployed container on Heroku |
+## Installation Instructions
+After cloning Picstagram into your desired directory:
+* In the root directory, run 'pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt' to install dependencies
+* Cd into the 'react-app' directory and run 'npm install' to install dependencies
+* In the root directory, and create an '.env' file based off of the example provided in the '.env.example' file
+* To set up the database:
+> * Run the command 'pipenv shell' to open the virtual environment
+> * In the root directory, run 'flask db upgrade' to create the database
+> * In the root directory, run 'flask db seed all' to add all models and seeders into your database
+* To run the app in development mode: 
+> * In one terminal, in the root directory run the command 'flask run'
+> * In another terminal, cd into the frontend directory 'react-app' and run the command 'npm start'
+> * With both terminals running, navigate to 'localhost:3000'. Congrats, you've successfully installed and ran Picstagram!

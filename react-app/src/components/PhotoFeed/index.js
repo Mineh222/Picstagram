@@ -16,7 +16,7 @@ export default function PhotoFeedPage() {
     const shuffledUsers = users.sort(() => Math.random() - 0.5)
     const filteredUsers = shuffledUsers.filter(usr => usr.username != user.username)
     const filtered = filteredUsers.filter(usrr => !usrr.username.includes("test"))
-    const lastFilter = filtered.filter(userr => !userr.followers.includes(user.username))
+    const lastFilter = filtered.filter(userr => !userr.followers?.includes(user.username))
 
 
     useEffect(() => {

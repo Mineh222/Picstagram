@@ -27,7 +27,7 @@ export default function CommentForm() {
 
         setHasSubmitted(true);
 
-        if (validationErrors.length) return alert("Cannot submit comment. Please correct error.")
+        if (validationErrors.length) return alert("Cannot submit comment. Please correct error(s).")
 
         const payload = {
             user_id: sessionUser.id,

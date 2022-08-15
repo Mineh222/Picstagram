@@ -110,6 +110,9 @@ export default function CreatePostForm({closeCreateFormModal}) {
                     <div className="create-caption-input">
                         <label id="caption-label-create">Caption:</label>
                         <textarea
+                            rows='3'
+                            cols='25'
+                            id="caption-textbox"
                             placeholder="Optional"
                             type="text"
                             name="caption"

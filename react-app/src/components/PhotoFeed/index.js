@@ -79,7 +79,7 @@ export default function PhotoFeedPage() {
                                             <NavLink id="navlink-photo-feed" to={`/${post.user.username}`}>
                                                 <div id="home-page-username">{post.user.username}</div>
                                             </NavLink>
-                                            <div>{post.caption}</div>
+                                            <div id="home-page-post-caption">{post.caption}</div>
                                         </div>
                                     </div>
                                 </div>

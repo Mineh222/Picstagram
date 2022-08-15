@@ -108,3 +108,7 @@
     width: 350px;
     align-items: center;
 }
+
+#home-page-post-caption {
+    margin-left: 0.5rem;
+}

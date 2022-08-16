@@ -87,3 +87,11 @@ textarea {
 #caption-textbox {
     resize: vertical;
 }
+
+.errorTitle {
+    color: red
+}
+
+.errors {
+    color: red;
+}

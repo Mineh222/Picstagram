@@ -25,7 +25,7 @@
     background-color: rgba(var(--d87,255,255,255),1);
     border: 1px solid rgba(var(--b6a,219,219,219),1);
     border-radius: 1px;
-    height: 23rem;
+    /* height: 25rem; */
     width: 17rem;
 }
 
@@ -69,7 +69,7 @@
 
 .splash-or-lines {
     display: flex;
-    padding-bottom: 15px;
+    /* padding-bottom: 15px; */
     padding-top: 25px;
 }
 
@@ -94,7 +94,8 @@
     color: black;
     cursor: pointer;
     font-size: 14px;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 .dont-have-account {
@@ -122,4 +123,5 @@
     margin-bottom: 0.5rem;
     padding-left: 10px;
     padding-right: 10px;
+    color: red;
 }

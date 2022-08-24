@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     height: 20rem;
-    border: 1px solid rgba(var(--b6a,219,219,219),1);
+    /* border: 1px solid rgba(var(--b6a,219,219,219),1); */
     width: 20%;
     margin-left: 1rem;
 }
@@ -10,7 +10,8 @@
 #suggest-message {
     color: rgba(var(--f52,142,142,142),1);
     text-align: start;
-    padding-left: 1rem;
+    margin-left: 0.5rem;
+    font-size: 16px;
 }
 
 .home-page-container {
@@ -26,14 +27,22 @@
     align-items: center;
     text-decoration: none;
     color: black;
+    margin-left: 0.3rem;
+}
+
+#suggest-users-user-session-pic {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    padding: 5px;
+    padding-bottom: 0px;
 }
 
 #suggested-user-image {
     border-radius: 50%;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2rem;
+    height: 2rem;
     padding: 5px;
-
 }
 
 .home-page-posts {
@@ -60,20 +69,15 @@
 }
 
 #home-page-username {
-    margin-right: 0.5rem;
+    margin-right: 0.3rem;
     font-weight: bold;
     float: left;
     margin-left: 0.5rem;
 }
 
 #home-page-caption {
-    word-break: break-all;
-    width: 293px;
-}
-
-#home-page-caption-long {
-    word-break: break-all;
-    width: 293px;
+    word-wrap: break-word;
+    width: 345px;
 }
 
 .post-container {
@@ -81,6 +85,8 @@
     flex-direction: column;
     border: 1px solid lightgrey;
     margin-bottom: 2rem;
+    border-radius: 8px;
+    background-color: white;
 }
 
 .photo-feed-post-user-info {
@@ -111,4 +117,15 @@
 
 #home-page-post-caption {
     margin-left: 0.5rem;
+}
+
+.suggest-users-user-session-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#suggest-users-user-session-name {
+    font-weight: bold;
 }

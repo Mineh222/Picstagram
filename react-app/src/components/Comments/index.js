@@ -45,7 +45,7 @@ export default function Comments({comment}) {
             position: 'relative',
             margin: 'auto',
             maxWidth: '300px',
-            height: '220px',
+            // height: '220px',
             width: '100%',
             top: '200px',
             left: '40px',

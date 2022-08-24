@@ -23,7 +23,7 @@
 }
 
 .post-page-left {
-    width: 50%;
+    width: 70%;
     display: flex;
     justify-content: flex-end;
 }
@@ -44,14 +44,16 @@
     height: 3vw;
     width: 3vw;
     border-radius: 50%;
-    padding: 5px;
+    margin-left: 0.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 #post-owner-user-pic2 {
     height: 3vw;
     width: 3vw;
     border-radius: 50%;
-    margin-left: 0.2rem;
+    margin-left: 0.5rem;
 }
 
 .main-post-user-info {
@@ -114,6 +116,12 @@
     margin-top: 1rem;
 }
 
+#caption-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:initial
+}
+
 #post-owner-username2 {
     font-weight: bold;
     margin-left: 0.5rem;
@@ -125,6 +133,7 @@
 #single-post-caption {
     font-size: 14px;
     margin-left: 0.5rem;
+    word-wrap: break-word;
 }
 
 .comments {
@@ -144,7 +153,7 @@
     height: 3vw;
     width: 3vw;
     border-radius: 50%;
-    margin-left: 0.2rem;
+    margin-left: 0.5rem;
 }
 
 #comment-username {
@@ -158,6 +167,8 @@
 #user-comment {
     font-size: 14px;
     margin-left: 0.5rem;
+    word-wrap: break-word;
+
 }
 
 .comment-btns {
@@ -171,23 +182,7 @@
     flex-direction: row;
     align-items: center;
     margin-top: 0.5rem;
-}
-
-#comment-text-container {
-    word-break: break-all;
-}
-
-
-#user-comment-long-string {
-    word-break: break-all;
-}
-
-#caption-container {
-    word-break: break-all;
-}
-
-#caption-container-long-string {
-    word-break: break-all;
+    margin-left: 0.5rem;
 }
 
 .comment-username-text {

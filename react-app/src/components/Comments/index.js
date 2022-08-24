@@ -23,6 +23,10 @@ export default function Comments({comment}) {
         setShowUpdateCommentForm(false)
     }
 
+    const commentStyles = {
+        width: '195px',
+        wordWrap: 'break-word'
+    }
 
     const formStyles3 = {
         overlay: {
@@ -65,11 +69,11 @@ export default function Comments({comment}) {
                 {!showUpdateCommentForm ?
                     <>
                         <div className="comment-details">
-                            <img id="comment-user-pic" src={comment.user.profile_pic}></img>
+                            <img id="comment-user-pic" src={comment.user.profile_pic} alt="user-comment-profile-pic"></img>
                             <div className='comment-username-text'>
-                                <div id={comment.comment.includes(" ") ? 'comment-text-container' : 'user-comment-long-string'}>
+                                <div id='comment-text-container'>
                                     <div id="comment-username">{comment.user.username}</div>
-                                    <div id="user-comment">{comment.comment}</div>
+                                    <div id="user-comment" style={commentStyles}>{comment.comment}</div>
                                 </div>
                             </div>
                         </div>

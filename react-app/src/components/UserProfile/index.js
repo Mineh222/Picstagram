@@ -138,7 +138,7 @@ export default function UserProfile() {
                 <div className="name-bio">
                   <div id="profile-page-fullname">{user.full_name}</div>
                   {user.bio && (
-                    <div id={user.bio.includes(" ") ? "profile-page-bio" : "profile-page-bio-long"}> {user.bio}</div>
+                    <div id="profile-page-bio">{user.bio}</div>
                   )}
                 </div>
               </div>

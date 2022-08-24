@@ -47,6 +47,11 @@ export default function SinglePost() {
         setShowEditDeleteModal(true)
     }
 
+    const captionStyles = {
+        width: '195px',
+        wordWrap: 'break-word'
+    }
+
     const formStyles = {
         overlay: {
             position: 'fixed',
@@ -111,11 +116,13 @@ export default function SinglePost() {
                     </div>
                     <div className="user-caption-container">
                         <img id="post-owner-user-pic2" src={post.user.profile_pic} alt="user_profile_pic"></img>
-                        <div id={post.caption.includes(" ") ? "caption-container" : "caption-container-long-string"}>
-                            <span id="post-owner-username2">{post.user.username}</span>
-                            {!showUpdatePostForm && (
-                            <div id="single-post-caption">{post.caption}</div>
-                            )}
+                        <div id="caption-container">
+                            <div id="caption-container-nested">
+                                <div id="post-owner-username2">{post.user.username}</div>
+                                {!showUpdatePostForm && (
+                                <div style={captionStyles} id="single-post-caption">{post.caption}</div>
+                                )}
+                            </div>
                         </div>
                     </div>
                     <div className="comments">

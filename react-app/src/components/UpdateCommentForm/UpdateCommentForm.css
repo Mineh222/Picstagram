@@ -43,3 +43,7 @@
 #post-edit-comment {
     font-weight: bold;
 }
+
+textarea:focus {
+    outline: none;
+}

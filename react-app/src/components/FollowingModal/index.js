@@ -10,7 +10,7 @@ export default function FollowingModal({user, setTrigger}) {
                 <h3 id="follows-modal-heading">Following</h3>
             </div>
             {user.following.length === 0 && (
-                <h3 id="follows-modal-heading" >Not following anyone yet</h3>
+                <h3 id="follows-modal-heading2" >Not following anyone yet</h3>
             )}
             {user.following.map(following => {
                 return (

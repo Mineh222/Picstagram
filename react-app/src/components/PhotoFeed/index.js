@@ -75,7 +75,7 @@ export default function PhotoFeedPage() {
                                         </span>
                                     </div>
                                     <div className="home-page-user-caption">
-                                        <div id={post.caption.includes(" ") ? "home-page-caption" : "home-page-caption-long"}>
+                                        <div id="home-page-caption">
                                             <NavLink id="navlink-photo-feed" to={`/${post.user.username}`}>
                                                 <div id="home-page-username">{post.user.username}</div>
                                             </NavLink>
@@ -88,6 +88,10 @@ export default function PhotoFeedPage() {
                 })}
             </div>
             <div className="suggested-users">
+                <div className="suggest-users-user-session-info">
+                    <img id="suggest-users-user-session-pic" src={user.profile_pic}></img>
+                    <div id="suggest-users-user-session-name">{user.username}</div>
+                </div>
                 <h3 id="suggest-message">Suggestions For You</h3>
                 {lastFilter.slice(0,5).map(user => {
                     return (

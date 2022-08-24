@@ -19,6 +19,11 @@
     margin-top: -0.5rem;
 }
 
+#follows-modal-heading2 {
+    text-align: center;
+    font-size: 14px;
+}
+
 #heading-container-follows-modal {
     border-bottom: 1px solid lightgray;
 }

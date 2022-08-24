@@ -51,7 +51,7 @@ const SearchBar = () => {
     return (
         <div className="search">
             <form className="search-inputs">
-                <input required type="text" placeholder="Search for users!" value={wordEntry} onChange={handleFilter}></input>
+                <input required type="text" placeholder="Search" value={wordEntry} onChange={handleFilter}></input>
                 <div className="searchIcon">
                     {wordEntry.length === 0 ?
                         <button className="search-icon-button">
@@ -59,7 +59,9 @@ const SearchBar = () => {
                         </button>
                         :
                         <>
-                            <CloseIcon id="close-button" onClick={cancelSearch}/>
+                            <button className="close-icon-button">
+                                <CloseIcon id="close-icon" onClick={cancelSearch}/>
+                            </button>
                             <button className="search-icon-button" type="submit" onClick={clearInput}>
                                 <SearchIcon id="search-icon" onClick={clearInput}/>
                             </button>

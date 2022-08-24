@@ -58,7 +58,7 @@ export default function UserProfile() {
       content: {
           position: 'relative',
           margin: 'auto',
-          maxWidth: '300px',
+          // maxWidth: '300px',
           height: '200px',
           width: '300px',
           top: '200px',
@@ -70,7 +70,7 @@ export default function UserProfile() {
           borderRadius: '5px',
           outline: 'none',
           padding: '0px',
-          paddingTop: '5px',
+          paddingTop: '0px',
           overflow: 'auto',
           overflowX: 'hidden',
       }

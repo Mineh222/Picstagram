@@ -8,12 +8,17 @@
 }
 
 #comment-box {
+    max-height: 80px;
     border: none;
     width: 200px;
     resize: none;
     margin-top: 1rem;
-    /* margin-left: 1rem; */
     font-size: 14px;
+    box-sizing: border-box;
+}
+
+#comment-box:focus {
+    outline: none;
 }
 
 #post-comment-btn {
@@ -22,6 +27,7 @@
     cursor: pointer;
     color: rgba(var(--d69,0,149,246),1);
     font-weight: bold;
+    margin-top: -1rem;
 }
 
 .errors-comments {

@@ -48,6 +48,10 @@ export default function CommentForm() {
         setValidationerrors([]);
     }
 
+    const commentBoxStyle = {
+      height: '35px',
+    }
+
     return (
       <div className="comment-form-with-errors">
         {hasSubmitted && validationErrors.length > 0 && (
@@ -63,11 +67,11 @@ export default function CommentForm() {
         )}
         <form className="comment-form"onSubmit={handleSubmit}>
               <textarea
+                  style={commentBoxStyle}
                   id="comment-box"
                   required
                   placeholder="Add a comment..."
                   value={comment}
-                  rows="3"
                   onChange={(e) => setComment(e.target.value)}
               ></textarea>
             <button id="post-comment-btn" type='submit'>Post</button>

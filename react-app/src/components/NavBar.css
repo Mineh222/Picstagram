@@ -45,12 +45,12 @@
 
 .close_create_post_btn {
   position: absolute;
-  top: 5px;
-  right: -40px;
+  top: -1px;
+  right: -35px;
   color: #FFFFFF;
   background-color: transparent;
   border: none;
-  font-size: 14px;
+  font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
 }

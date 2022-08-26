@@ -52,17 +52,17 @@
     align-items: center;
     text-decoration: none;
     color: black;
-    width: 350px;
+    width: 450px;
     padding: 0;
 }
 
 #home-page-post-pic {
-    height: 350px;
-    width: 350px;
+    height: 450px;
+    width: 450px;
 }
 
 .home-page-user-caption {
-    width: 350px;
+    width: 450px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -77,7 +77,7 @@
 
 #home-page-caption {
     word-wrap: break-word;
-    width: 345px;
+    width: 445px;
 }
 
 .post-container {
@@ -111,11 +111,11 @@
 .likes-container-photo-feed {
     display: flex;
     flex-direction: row;
-    width: 350px;
+    width: 450px;
     align-items: center;
 }
 
-#home-page-post-caption {
+#home-page-post-caption, #photo-feed-user-comment {
     margin-left: 0.5rem;
 }
 
@@ -124,8 +124,44 @@
     flex-direction: row;
     align-items: center;
     gap: 0.5rem;
+    text-decoration: none;
+    color: black;
 }
 
 #suggest-users-user-session-name {
     font-weight: bold;
+}
+
+.user-comments-photo-feed {
+    width: 450px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.user-comments-photo-feed2 {
+    word-wrap: break-word;
+    width: 445px;
+}
+
+
+#navlink-user-comment-photo-feed {
+    color: black;
+    text-decoration: none;
+}
+
+#photo-feed-comment-username {
+    margin-right: 0.3rem;
+    font-weight: bold;
+    float: left;
+    margin-left: 0.5rem;
+}
+
+#view-comments-navlink {
+    text-decoration: none;
+    color: gray;
+    width: 450px;
+    margin-left: 1rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }

@@ -5,6 +5,7 @@ import { thunkGetDemoPosts, thunkGetFeedPosts } from '../../store/posts';
 import { thunkGetAllUsers } from '../../store/users';
 import './PhotoFeed.css';
 import Likes from '../Likes';
+import { thunkGetAllComments } from "../../store/comments";
 
 export default function PhotoFeedPage() {
     const dispatch = useDispatch();
@@ -12,12 +13,16 @@ export default function PhotoFeedPage() {
     const posts = useSelector((state) => Object.values(state.posts));
     const user = useSelector((state) => state.session.user);
     const users = useSelector((state) => Object.values(state.user));
+    const comments = useSelector((state) => Object.values(state.comments));
 
     const shuffledUsers = users.sort(() => Math.random() - 0.5)
     const filteredUsers = shuffledUsers.filter(usr => usr.username != user.username)
     const filtered = filteredUsers.filter(usrr => !usrr.username.includes("test"))
     const lastFilter = filtered.filter(userr => !userr.followers?.includes(user.username))
 
+    useEffect(() => {
+        dispatch(thunkGetAllComments())
+    }, [dispatch])
 
     useEffect(() => {
         if (user.following.length === 0) {
@@ -34,6 +39,45 @@ export default function PhotoFeedPage() {
     }, [dispatch])
 
     if (!lastFilter) return null;
+
+    const postComments = (postId) => {
+        const postCommentSection = comments.filter((comment) => comment.post_id === postId)
+        return (
+            <>
+                {postCommentSection.slice(0, 2).map((comment) => {
+                    return (
+                        <div className="user-comments-photo-feed">
+                            <div className="user-comments-photo-feed2">
+                                <NavLink id="navlink-user-comment-photo-feed" to={`/${comment.user.username}`}>
+                                    <div id="photo-feed-comment-username"><b>{comment.user.username}</b></div>
+                                </NavLink>
+                                <div id="photo-feed-user-comment">{comment.comment}</div>
+                            </div>
+                        </div>
+                    )
+                })}
+            </>
+        )
+    }
+
+    const commentsLength = (postId) => {
+        const postComments = comments.filter(comment => comment.post_id === postId)
+        return (
+          <>
+            {postComments.length === 0 ?
+              <div>No comments yet</div>
+              :
+              <div>{postComments.length === 1 ?
+                <div>View {postComments.length} comment</div>
+                :
+                <div>View all {postComments.length} comments</div>
+              }
+              </div>
+            }
+
+          </>
+          )
+      }
 
     return (
         <div className='home-page-container'>
@@ -82,6 +126,12 @@ export default function PhotoFeedPage() {
                                             <div id="home-page-post-caption">{post.caption}</div>
                                         </div>
                                     </div>
+                                    <NavLink id="view-comments-navlink" to={`/post/${post.id}`}>
+                                        {commentsLength(post.id)}
+                                    </NavLink>
+                                    <div>
+                                        {postComments(post.id)}
+                                    </div>
                                 </div>
                         </div>
                     )
@@ -89,8 +139,10 @@ export default function PhotoFeedPage() {
             </div>
             <div className="suggested-users">
                 <div className="suggest-users-user-session-info">
-                    <img id="suggest-users-user-session-pic" src={user.profile_pic}></img>
-                    <div id="suggest-users-user-session-name">{user.username}</div>
+                    <NavLink className="suggest-users-user-session-info" to={`/${user.username}`}>
+                        <img id="suggest-users-user-session-pic" src={user.profile_pic}></img>
+                        <div id="suggest-users-user-session-name">{user.username}</div>
+                    </NavLink>
                 </div>
                 <h3 id="suggest-message">Suggestions For You</h3>
                 {lastFilter.slice(0,5).map(user => {

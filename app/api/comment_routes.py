@@ -12,6 +12,13 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+@comment_routes.route('/')
+@login_required
+def get_all_comments():
+    allComments = Comment.query.all()
+    comments = [comment.to_dict() for comment in allComments]
+
+    return {'comments': comments}
 
 @comment_routes.route('<id>/update', methods=['PUT'])
 @login_required

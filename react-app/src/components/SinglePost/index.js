@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { thunkGetSinglePost, thunkDeletePost } from '../../store/posts';
 import { thunkGetAllPostComments } from '../../store/comments';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, NavLink } from 'react-router-dom';
 
 import Comments from '../Comments';
 import CommentForm from '../CommentForm';
@@ -94,8 +94,12 @@ export default function SinglePost() {
             <div className="post-page-right">
                 <div className="post-page-right-border">
                     <div className="main-post-user-info">
-                        <img id="post-owner-user-pic" src={post.user.profile_pic}></img>
-                        <span id="post-owner-username">{post.user.username}</span>
+                        <NavLink id="navlinks" to={`/${post.user.username}`}>
+                            <img id="post-owner-user-pic" src={post.user.profile_pic}></img>
+                        </NavLink>
+                        <NavLink id="navlinks" to={`/${post.user.username}`}>
+                            <span id="post-owner-username">{post.user.username}</span>
+                        </NavLink>
                         {!showUpdatePostForm ?
                             <div id="more-containers">
                                 {sessionUser.id == post.user_id && (
@@ -115,10 +119,14 @@ export default function SinglePost() {
                         }
                     </div>
                     <div className="user-caption-container">
-                        <img id="post-owner-user-pic2" src={post.user.profile_pic} alt="user_profile_pic"></img>
+                        <NavLink id="navlinks" to={`/${post.user.username}`}>
+                            <img id="post-owner-user-pic2" src={post.user.profile_pic} alt="user_profile_pic"></img>
+                        </NavLink>
                         <div id="caption-container">
                             <div id="caption-container-nested">
-                                <div id="post-owner-username2">{post.user.username}</div>
+                                <NavLink id="navlinks" to={`/${post.user.username}`}>
+                                    <div id="post-owner-username2">{post.user.username}</div>
+                                </NavLink>
                                 {!showUpdatePostForm && (
                                 <div style={captionStyles} id="single-post-caption">{post.caption}</div>
                                 )}

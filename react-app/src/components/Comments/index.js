@@ -4,6 +4,7 @@ import UpdateCommentForm from '../UpdateCommentForm';
 import { thunkDeleteComment } from '../../store/comments';
 import Modal from 'react-modal';
 import './Comments.css';
+import { NavLink } from 'react-router-dom';
 
 export default function Comments({comment}) {
     const dispatch = useDispatch();
@@ -69,10 +70,14 @@ export default function Comments({comment}) {
                 {!showUpdateCommentForm ?
                     <>
                         <div className="comment-details">
-                            <img id="comment-user-pic" src={comment.user.profile_pic} alt="user-comment-profile-pic"></img>
+                            <NavLink id="navlinks" to={`/${comment.user.username}`}>
+                                <img id="comment-user-pic" src={comment.user.profile_pic} alt="user-comment-profile-pic"></img>
+                            </NavLink>
                             <div className='comment-username-text'>
                                 <div id='comment-text-container'>
-                                    <div id="comment-username">{comment.user.username}</div>
+                                    <NavLink id="navlinks" to={`/${comment.user.username}`}>
+                                        <div id="comment-username">{comment.user.username}</div>
+                                    </NavLink>
                                     <div id="user-comment" style={commentStyles}>{comment.comment}</div>
                                 </div>
                             </div>

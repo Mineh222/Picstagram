@@ -4,6 +4,7 @@
     align-items: center;
     text-decoration: none;
     color: black;
+    margin-bottom: 5px;
 }
 
 #follow-modal-user-pic {
@@ -11,6 +12,7 @@
     width: 2.5rem;
     height: 2.5rem;
     padding: 5px;
+    margin-left: 10px;
 }
 
 #follows-modal-heading {
@@ -26,6 +28,10 @@
 
 #heading-container-follows-modal {
     border-bottom: 1px solid lightgray;
+}
+
+#user-names-follow-modal {
+    margin-left: 5px;
 }
 
 #username-follow-modal {

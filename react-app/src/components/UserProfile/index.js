@@ -60,7 +60,7 @@ export default function UserProfile() {
           margin: 'auto',
           // maxWidth: '300px',
           height: '200px',
-          width: '300px',
+          width: '400px',
           top: '200px',
           left: '40px',
           right: '40px',
@@ -103,32 +103,32 @@ export default function UserProfile() {
                 </div>
                 <div className="posts-followers-count">
                   {posts.length === 0 && (
-                    <div className="post-count-profile-page">0 Posts</div>
+                    <div className="post-count-profile-page"><span id="profile-page-numbers">0</span> posts</div>
                   )}
                   {posts.length === 1 && (
-                    <div className="post-count-profile-page">1 Post</div>
+                    <div className="post-count-profile-page"><span id="profile-page-numbers">1</span> post</div>
                   )}
                   {posts.length > 1 && (
-                    <div className="post-count-profile-page">{posts.length} Posts</div>
+                    <div className="post-count-profile-page"><span id="profile-page-numbers">{posts.length}</span> posts</div>
                   )}
                   {user.followers.length === 0 && (
-                    <button id="follows-button"onClick={openFollowersModal}>0 Followers</button>
+                    <button id="follows-button"onClick={openFollowersModal}><span id="profile-page-numbers">0</span> followers</button>
                   )}
                   {user.followers.length === 1 && (
-                    <button id="follows-button"onClick={openFollowersModal}>1 Follower</button>
+                    <button id="follows-button"onClick={openFollowersModal}><span id="profile-page-numbers">1</span> follower</button>
                   )}
                   {user.followers.length > 1 && (
-                    <button id="follows-button" onClick={openFollowersModal}>{user.followers.length} Followers</button>
+                    <button id="follows-button" onClick={openFollowersModal}><span id="profile-page-numbers">{user.followers.length}</span> followers</button>
                   )}
                   <Modal isOpen={showFollowers} style={formStyles}>
                     <button id="close-follow-modal" onClick={() => setShowFollowers(false)}>X</button>
                     <FollowersModal user={user} setTrigger={setShowFollowers}/>
                   </Modal>
                   {user.following.length === 0 && (
-                    <button id="follows-button" onClick={openFollowingModal}>0 Following</button>
+                    <button id="follows-button" onClick={openFollowingModal}><span id="profile-page-numbers">0</span> following</button>
                     )}
                   {user.following.length > 0 && (
-                    <button id="follows-button" onClick={openFollowingModal}>{user.following.length} Following</button>
+                    <button id="follows-button" onClick={openFollowingModal}><span id="profile-page-numbers">{user.following.length}</span> following</button>
                     )}
                   <Modal isOpen={showFollowing} style={formStyles}>
                     <button id="close-follow-modal" onClick={() => setShowFollowing(false)}>X</button>

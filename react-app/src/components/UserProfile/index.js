@@ -60,7 +60,7 @@ export default function UserProfile() {
           margin: 'auto',
           // maxWidth: '300px',
           height: '200px',
-          width: '300px',
+          width: '400px',
           top: '200px',
           left: '40px',
           right: '40px',

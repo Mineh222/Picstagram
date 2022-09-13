@@ -70,10 +70,18 @@
     cursor: pointer;
 }
 
+.post-count-profile-page {
+    font-size: 16px;
+}
+
+#profile-page-numbers {
+    font-weight: bold;
+}
+
 #follows-button {
     background-color: transparent;
     border: none;
-    font-size: 15px;
+    font-size: 16px;
     margin-top: -0.1rem;
     cursor: pointer;
 }

@@ -5,11 +5,12 @@ import CloseIcon from "@material-ui/icons/Close";
 import {Link, useHistory} from 'react-router-dom';
 import { thunkSearchAllUsers } from "../../store/search";
 import './SearchBar.css'
+import TouchRipple from "@material-ui/core/ButtonBase/TouchRipple";
 
 const SearchBar = () => {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [wordEntry, setWordEntry] = useState("");
-    // const [errors, setErrors] = useState([]);
+    const [active, setActive] = useState(false);
 
     const users = useSelector(state => Object.values(state.search));
 
@@ -46,38 +47,39 @@ const SearchBar = () => {
         setWordEntry("")
     }
 
+    const isActive = () => {
+        setActive(true)
+    }
+
     useEffect(() => {
         const closeSearch = (e) => {
           if(e.path[0].tagName !== "INPUT"){
             setFilteredUsers([])
             setWordEntry('')
+            setActive(false)
           }
         }
         document.addEventListener("click", closeSearch)
         return () => document.removeEventListener("click", closeSearch)
     })
 
+
+
     if (!users) return null;
 
     return (
         <div className="search">
             <form className="search-inputs">
-                <input type="text" placeholder="Search" value={wordEntry} onChange={handleFilter}></input>
                 <div className="searchIcon">
-                    {wordEntry.length === 0 ?
-                        <button className="search-icon-button">
-                            <SearchIcon id="search-icon" />
-                        </button>
-                        :
-                        <>
-                            {/* <button className="close-icon-button" type="button"> */}
-                            <CloseIcon id="close-icon" onClick={cancelSearch}/>
-                            {/* </button> */}
-                            <button className="search-icon-button" type="submit" onClick={clearInput}>
-                                <SearchIcon id="search-icon" onClick={clearInput}/>
-                            </button>
-                        </>
-                    }
+                    {active === false && (
+                        <SearchIcon id="search-icon" />
+                    )}
+                </div>
+                <input className="search-input-field" onClick={isActive} type="text" placeholder="Search" value={wordEntry} onChange={handleFilter}></input>
+                <div className="searchIcon">
+                    {active === true && (
+                        <CloseIcon id="close-icon" onClick={cancelSearch}/>
+                    )}
                 </div>
             </form>
             {filteredUsers.length !== 0 && (

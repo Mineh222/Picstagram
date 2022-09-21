@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import HomeOutlinedIcon from '@material-ui/icons/HomeOutlined';
+import HomeIcon from '@material-ui/icons/Home';
 import ExploreOutlinedIcon from '@material-ui/icons/ExploreOutlined';
+import ExploreIcon from '@material-ui/icons/Explore';
 import AddBoxOutlinedIcon from '@material-ui/icons/AddBoxOutlined';
+import AddBoxIcon from '@material-ui/icons/AddBox';
 import './NavBar.css'
 import ProfileButton from './ProfileButton';
 import picstagramLogo from "../images/picstagram-logo.png";
@@ -16,8 +19,34 @@ const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   const [showCreatePostForm, setShowCreatePostForm] = useState(false);
+  const [homeActive, setHomeActive] = useState(false);
+  const [exploreActive, setExploreActive] = useState(false);
+  const [createPostActive, setCreatePostActive] = useState(false);
+
+  const currentLocation = useLocation();
 
   Modal.setAppElement('body');
+
+  useEffect(() => {
+
+    if (currentLocation.pathname === "/") {
+      setHomeActive(true);
+      setExploreActive(false);
+      setCreatePostActive(false)
+    } else if (currentLocation.pathname === "/explore/posts") {
+      setHomeActive(false);
+      setExploreActive(true);
+      setCreatePostActive(false)
+    } else if (showCreatePostForm === true) {
+      setHomeActive(false);
+      setExploreActive(false);
+      setCreatePostActive(true);
+    } else {
+      setHomeActive(false);
+      setExploreActive(false);
+      setCreatePostActive(false);
+    }
+  })
 
   function openCreateFormModal() {
     setShowCreatePostForm(true)
@@ -81,10 +110,18 @@ const NavBar = () => {
             </div>
             <div className='nav-bar-right'>
               <NavLink id="right-side-icon" to={`/`} exact={true}>
-                <HomeOutlinedIcon />
+                {homeActive ?
+                  <HomeIcon />
+                  :
+                  <HomeOutlinedIcon />
+                }
               </NavLink>
               <button className="create-post-btn" onClick={openCreateFormModal}>
-                <AddBoxOutlinedIcon />
+                {createPostActive ?
+                  <AddBoxIcon />
+                  :
+                  <AddBoxOutlinedIcon />
+                }
               </button>
               <Modal isOpen={showCreatePostForm} style={formStyles}>
                   <button className="close_create_post_btn" onClick={closeCreateFormModal}>X</button>
@@ -94,7 +131,11 @@ const NavBar = () => {
                 <AddBoxOutlinedIcon />
               </NavLink> */}
               <NavLink id="right-side-icon" to={`/explore/posts`} exact={true}>
-                <ExploreOutlinedIcon />
+                {exploreActive ?
+                  <ExploreIcon />
+                  :
+                  <ExploreOutlinedIcon />
+                }
               </NavLink>
               <ProfileButton user={sessionUser}/>
             </div>

@@ -28,6 +28,7 @@
 
 .searchIcon {
     display: flex;
+    flex-direction: row;
     border-radius: 40%;
     margin-right: 5px;
     margin: 5px 5px 5px 0;
@@ -42,16 +43,13 @@
 }
 
 #search-icon {
+    border: 0;
+    color: rgb(168, 165, 165);
     border-radius: 50%;
     transition: 0.5s;
     cursor: pointer;
-}
-
-#search-icon:hover{
-    background-color: lightgray;
-    border-radius: 50%;
-    transition: 1s;
-    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 0px;
 }
 
 .close-icon-button {

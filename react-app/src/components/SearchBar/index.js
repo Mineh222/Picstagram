@@ -46,6 +46,17 @@ const SearchBar = () => {
         setWordEntry("")
     }
 
+    useEffect(() => {
+        const closeSearch = (e) => {
+          if(e.path[0].tagName !== "INPUT"){
+            setFilteredUsers([])
+            setWordEntry('')
+          }
+        }
+        document.addEventListener("click", closeSearch)
+        return () => document.removeEventListener("click", closeSearch)
+    })
+
     if (!users) return null;
 
     return (

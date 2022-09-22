@@ -33,7 +33,7 @@ Logged in users can:
 * View picture posts on the explore page, a user's profile page, or on their photo feed page depending on who they follow.
 * Create, update, or delete their picture posts.
 
-<img src="https://i.postimg.cc/YSg87YgW/Screen-Shot-2022-08-15-at-2-26-36-AM.png"></img>
+<img src="https://i.postimg.cc/5yqN7rsC/Screen-Shot-2022-09-21-at-10-41-31-PM.png"></img>
 
 ### Comments (Create, Read, Update, Delete)
 
@@ -47,7 +47,7 @@ Logged in users can:
 * View profiles of all users on Picstagram.
 * Update their own user profile information including: name, username, bio, and profile picture by clicking on the 'edit profile' button located on their profile page.
 
-<img src="https://i.postimg.cc/MGFxkk7T/Screen-Shot-2022-08-15-at-2-22-06-AM.png"></img>
+<img src="https://i.postimg.cc/YqRCQJGc/Screen-Shot-2022-09-21-at-10-43-11-PM.png"></img>
 
 ### Likes (Read, Update)
 

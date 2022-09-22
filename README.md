@@ -11,7 +11,7 @@ Picstagram is a clone of Instagram, the popular social media app that lets you s
 ## Technologies
 
 Picstagram was built using the following technologies:
-* **Backend: Flask**
+* **Backend: Python and Flask**
 * **Frontend: React/Redux and Javascript/JSX**
 * **Database: SQLAlchemy**
 * **Design/Styling: HTML and CSS**

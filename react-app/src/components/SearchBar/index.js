@@ -78,7 +78,10 @@ const SearchBar = () => {
                 <input className="search-input-field" onClick={isActive} type="text" placeholder="Search" value={wordEntry} onChange={handleFilter}></input>
                 <div className="searchIcon">
                     {active === true && (
-                        <CloseIcon id="close-icon" onClick={cancelSearch}/>
+                        <>
+                            <CloseIcon id="close-icon" onClick={cancelSearch}/>
+                            <button className="search-icon-button" type="submit" onClick={clearInput}></button>
+                        </>
                     )}
                 </div>
             </form>

@@ -1,7 +1,7 @@
 const GET_SINGLE_USER = 'user/getSingleUser';
 const GET_ALL_USERS = 'users/getAllUsers';
 const GET_SEARCHED_USERS = 'users/getSearchedUsers';
-
+const CLEAR_SEARCHED_USERS = 'users/clearSearchedUsers';
 
 export const actionGetUser = (user) => {
   return {
@@ -23,6 +23,10 @@ export const actionGetSearchedUsers = (users) => {
     users
   }
 }
+
+export const actionClearSearchResults = () => ({
+  type: CLEAR_SEARCHED_USERS
+})
 
 export const thunkGetUser = (username) => async (dispatch) => {
   const response = await fetch(`/api/users/profile/${username}`)
@@ -77,6 +81,9 @@ const userReducer = (state = initialState, action) => {
         newState[user.id] = user
       });
       return newState
+
+    case CLEAR_SEARCHED_USERS:
+      return {};
 
     default:
       return state

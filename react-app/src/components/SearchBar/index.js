@@ -5,7 +5,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import {Link, useHistory} from 'react-router-dom';
 import { thunkSearchAllUsers } from "../../store/search";
 import './SearchBar.css'
-import TouchRipple from "@material-ui/core/ButtonBase/TouchRipple";
 
 const SearchBar = () => {
     const [filteredUsers, setFilteredUsers] = useState([]);

@@ -5,7 +5,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import {Link, useHistory} from 'react-router-dom';
 import { thunkSearchAllUsers } from "../../store/search";
 import './SearchBar.css'
-import TouchRipple from "@material-ui/core/ButtonBase/TouchRipple";
 
 const SearchBar = () => {
     const [filteredUsers, setFilteredUsers] = useState([]);
@@ -78,7 +77,10 @@ const SearchBar = () => {
                 <input className="search-input-field" onClick={isActive} type="text" placeholder="Search" value={wordEntry} onChange={handleFilter}></input>
                 <div className="searchIcon">
                     {active === true && (
-                        <CloseIcon id="close-icon" onClick={cancelSearch}/>
+                        <>
+                            <CloseIcon id="close-icon" onClick={cancelSearch}/>
+                            <button className="search-icon-button" type="submit" onClick={clearInput}></button>
+                        </>
                     )}
                 </div>
             </form>

@@ -26,10 +26,15 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-left: 20rem;
 }
 
 .search-bar {
   width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
 }
 
 #right-side-icon {

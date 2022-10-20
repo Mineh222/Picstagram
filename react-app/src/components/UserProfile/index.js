@@ -27,14 +27,14 @@ export default function UserProfile() {
       dispatch(thunkGetUserPosts(username))
   }, [dispatch, username])
 
-    // if (!user) {
-    //   return null;
-    // }
     if (!user) {
-      return (
-        <PageNotFound/>
-      )
+      return null;
     }
+    // if (!user) {
+    //   return (
+    //     <PageNotFound/>
+    //   )
+    // }
 
     if (!posts) {
         return null;
@@ -85,12 +85,6 @@ export default function UserProfile() {
   if (!user.followers) return null;
 
   if (!user.following) return null;
-
-  // if (!user) {
-  //   return (
-  //     <PageNotFound/>
-  //   )
-  // }
 
     return (
         <div className="user-profile-container">

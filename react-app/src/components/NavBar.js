@@ -13,6 +13,7 @@ import ProfileButton from './ProfileButton';
 import picstagramLogo from "../images/picstagram-logo.png";
 import Modal from 'react-modal';
 import CreatePostForm from './CreatePostForm';
+import TouchRipple from '@material-ui/core/ButtonBase/TouchRipple';
 
 
 const NavBar = () => {
@@ -29,11 +30,11 @@ const NavBar = () => {
 
   useEffect(() => {
 
-    if (currentLocation.pathname === "/") {
+    if (showCreatePostForm === false && currentLocation.pathname === "/") {
       setHomeActive(true);
       setExploreActive(false);
       setCreatePostActive(false)
-    } else if (currentLocation.pathname === "/explore/posts") {
+    } else if (showCreatePostForm === false && currentLocation.pathname === "/explore/posts") {
       setHomeActive(false);
       setExploreActive(true);
       setCreatePostActive(false)

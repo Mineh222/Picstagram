@@ -9,6 +9,7 @@ import FollowersModal from '../FollowersModal';
 import FollowingModal from '../FollowingModal';
 import './UserProfile.css';
 import GridOnOutlinedIcon from '@material-ui/icons/GridOnOutlined';
+import PageNotFound from '../404Page';
 
 export default function UserProfile() {
     const dispatch = useDispatch();
@@ -29,6 +30,11 @@ export default function UserProfile() {
     if (!user) {
       return null;
     }
+    // if (!user) {
+    //   return (
+    //     <PageNotFound/>
+    //   )
+    // }
 
     if (!posts) {
         return null;

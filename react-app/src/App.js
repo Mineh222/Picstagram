@@ -8,14 +8,12 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import { authenticate } from './store/session';
-import CreatePostForm from './components/CreatePostForm';
 import ExplorePage from './components/ExplorePage';
 import SinglePost from './components/SinglePost';
-import UpdatePostForm from './components/UpdatePostForm';
-import { thunkGetAllPosts } from './store/posts';
 import UpdateUserProfileForm from './components/UpdateUserProfileForm';
 import PhotoFeedPage from './components/PhotoFeed';
 import SearchResults from './components/SearchResults';
+import PageNotFound from './components/404Page';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,7 +21,6 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      // await dispatch(thunkGetAllPosts());
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -49,9 +46,6 @@ function App() {
         <ProtectedRoute path='/:username' exact={true} >
           <UserProfile/>
         </ProtectedRoute>
-        {/* <ProtectedRoute path='/post/new' exact={true} >
-          <CreatePostForm/>
-        </ProtectedRoute> */}
         <ProtectedRoute path='/explore/posts' exact={true} >
           <ExplorePage/>
         </ProtectedRoute>
@@ -65,7 +59,7 @@ function App() {
           <SearchResults />
         </ProtectedRoute>
         <Route>
-          <h1>Page not found.</h1>
+          <PageNotFound/>
         </Route>
       </Switch>
     </BrowserRouter>

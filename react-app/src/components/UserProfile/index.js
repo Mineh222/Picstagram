@@ -9,6 +9,7 @@ import FollowersModal from '../FollowersModal';
 import FollowingModal from '../FollowingModal';
 import './UserProfile.css';
 import GridOnOutlinedIcon from '@material-ui/icons/GridOnOutlined';
+import PageNotFound from '../404Page';
 
 export default function UserProfile() {
     const dispatch = useDispatch();
@@ -26,8 +27,13 @@ export default function UserProfile() {
       dispatch(thunkGetUserPosts(username))
   }, [dispatch, username])
 
+    // if (!user) {
+    //   return null;
+    // }
     if (!user) {
-      return null;
+      return (
+        <PageNotFound/>
+      )
     }
 
     if (!posts) {
@@ -79,6 +85,12 @@ export default function UserProfile() {
   if (!user.followers) return null;
 
   if (!user.following) return null;
+
+  // if (!user) {
+  //   return (
+  //     <PageNotFound/>
+  //   )
+  // }
 
     return (
         <div className="user-profile-container">

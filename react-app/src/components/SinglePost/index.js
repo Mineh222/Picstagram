@@ -118,6 +118,22 @@ export default function SinglePost() {
                             < UpdatePostForm post={post} setTrigger={() => setShowUpdatePostForm(false)}/>
                         }
                     </div>
+                    <div className="likes-container">
+                        <div>
+                            <Likes sessionUser={sessionUser} post={post}/>
+                        </div>
+                        <span id="likes-count">
+                            {post.likes.length === 0 && (
+                                <div></div>
+                            )}
+                            {post.likes.length === 1 && (
+                                <span>{post.likes.length} like</span>
+                            )}
+                            {post.likes.length > 1 && (
+                                <span>{post.likes.length} likes</span>
+                            )}
+                        </span>
+                    </div>
                     <div className="user-caption-container">
                         <NavLink id="navlinks" to={`/${post.user.username}`}>
                             <img id="post-owner-user-pic2" src={post.user.profile_pic} alt="user_profile_pic"></img>
@@ -139,22 +155,6 @@ export default function SinglePost() {
                                 <Comments comment={comment}/>
                             </div>
                         ))}
-                    </div>
-                    <div className="likes-container">
-                        <div>
-                            <Likes sessionUser={sessionUser} post={post}/>
-                        </div>
-                        <span id="likes-count">
-                            {post.likes.length === 0 && (
-                                <div></div>
-                            )}
-                            {post.likes.length === 1 && (
-                                <span>{post.likes.length} like</span>
-                            )}
-                            {post.likes.length > 1 && (
-                                <span>{post.likes.length} likes</span>
-                            )}
-                        </span>
                     </div>
                     <div className="comment-form">
                         <CommentForm />
